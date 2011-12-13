@@ -1,0 +1,62 @@
+body {
+    font:13px/1.231 arial,helvetica,clean,sans-serif;
+    /* for IE6/7 */
+    *font-size:small;
+    /* for IE Quirks Mode */
+    *font:x-small;
+}
+/**
+* Nudge down to get to 13px equivalent for these form elements
+*/
+select,input,button,textarea,button {
+    font:99% arial,helvetica,clean,sans-serif;
+}
+
+.clear{clear:both}
+a{cursor:pointer;color: #336699;}
+
+table {	border-collapse: collapse;	border-spacing: 0;}
+fieldset,img {	border: 0;}
+address,caption,cite,code,dfn,em,strong,th,var,optgroup {
+    font-style: inherit;	
+    font-weight: inherit;
+}
+h1,h2,h3,h4,h5,h6 {	font-size: 100%;	font-weight: normal;}
+q:before,q:after {	content: '';}
+abbr,acronym {	border: 0;	font-variant: normal;}
+sup {	vertical-align: baseline;}
+sub {	vertical-align: baseline;}
+/*because legend doesn't inherit in IE */
+legend {	color: #000;}
+input,button,textarea,select,optgroup,option {
+    font-family: inherit;	font-size: inherit;	font-style: inherit;	font-weight: inherit;
+}
+/*@purpose To enable resizing for IE */
+/*@branch For IE6-Win, IE7-Win */
+input,button,textarea,select {	*font-size: 100%;}
+.back_main{
+    width: 75%;
+    min-height: 500px;
+    float: left;
+    text-align: left;
+    margin-right: 0px;
+    margin-left: 10px;
+}
+.title_p{
+    background: #ecf7f9;
+    color: #348330;
+    height: 18px;
+    margin: 0px 0px 20px 0px;
+    padding: 7px 0px 5px 10px;
+    font-size: 14px; 
+    font-weight: bolder;
+    vertical-align: middle;
+}
+.back_side{
+    width:20%;
+    margin-right: 0px;
+    text-align: left;
+    float: right;
+    margin-left: 0px;
+}
+

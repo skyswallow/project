@@ -1,0 +1,76 @@
+/* CSS file */
+Application
+{
+	background-color: white;
+	font-family: "宋体", "Courier New";
+	font-size: 12;
+}
+
+Canvas {
+	border-style: none;
+	corner-radius: 5;
+}
+
+Label {
+	vertical-align: middle
+}
+
+ToolTip
+{
+	font-size: 12;
+}
+
+ApplicationControlBar {
+    fill-Alphas:1.0, 1.0;
+/*    fill-Colors:#ADE6FF, #6697E3; */
+	fill-Colors: white, #6697E3;
+
+}
+
+TextInput {
+	font-family: "Courier New";
+}
+
+LinkBar {
+    background-Alpha:1.0 ;
+    disabled-Color:#888383;
+    text-SelectedColor:#3F74ED;
+	horizontalGap:0;
+}
+
+.title {
+	text-align: center;
+	font-family: "宋体", "Courier New";
+	font-weight: bold;
+	background-color: #C8E4F9;
+	font-size: 12px;
+	letter-spacing: 2px;
+}
+
+.header {
+	background-color: white;
+}
+
+.footer {
+	background-color: white;
+}
+
+.profilePanel {
+	background-color: white;
+}
+
+.body {
+	background-color: #6697E3;
+}
+
+.container {
+	background-color: white;
+}
+
+.announcePanel {
+	border: 2px solid white;
+}
+
+.myCustomLinkButtonStyleName {
+	fontWeight: normal;
+}

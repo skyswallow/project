@@ -1,0 +1,71 @@
+<script type="text/javascript">
+  function checkPhone(){
+    var flag = false;
+    var phonenum = $('mobile').value.replace(/(^\s*)|(\s*$)/g,"");
+    alert(phonenum);
+    if(phonenum != null && phonenum != ""){
+      flag = true;
+    }else{
+      alert("查询条件不能为空");
+    }
+    return flag;
+  }
+  function checkForm()
+  {
+    var obj = document.getElementsByName("userInfo");
+    var len = obj.length;
+    var flag = false;
+    for(var i=0; i<len; i++){
+      if(obj[i].checked == true){
+        flag = true;
+      }
+    }
+    if(flag == false){
+      alert("请至少选择一个用户发送短信");
+    }
+    return flag;
+  }
+</script>
+<div style="height:400px; background:#FFF; padding:20px;">
+  <h2 class="new_column">找回密码</h2>
+  <div id="div_mobile">
+    <style>
+      #div_mobile table td{
+        padding:5px 0 5px 0;
+      }
+    </style>
+    <% form_tag("/driftages/get_infos", :id => 'mobile_form', :name => 'mobile_form', :class => 'required-validate', :onSubmit => 'return checkPhone();') do %>
+      请输入您目前收到家校通短信的手机号码<span style="color:#F00">*</span>:
+      <%= text_field_tag('mobile', nil, :id => 'mobile', :class => 'required') %>
+      <button name="submit" type="submit">查询</button>
+    <% end %>
+    <br/><br/>
+    <% if !@infos.blank? %>
+    <form action="/driftages/send_pass_back" method="get" onsubmit="return checkForm();">
+        <table border="1" width="50%">
+          <tr>
+            <td><b>身份</b></td>
+            <td><b>地区</b></td>
+            <td><b>学校</b></td>
+            <td><b>姓名</b></td>
+            <td><b>操作</b></td>
+          </tr>
+          <% @infos.each do |info| %>
+            <tr>
+              <td><%= info.role_name %></td>
+              <td><%= info.area %></td>
+              <td><%= info.school %></td>
+              <td><%= info.display_name %></td>
+              <td><input type="checkbox" name="userInfo" value="<%= info.id %>"/>操作</td>
+            </tr>
+          <% end %>
+        </table>
+        <input type="submit" name="submit" value="发送密码"/>
+      </form>
+    <% end %>
+    <div class="clear_height_middle"></div>
+    <p style="color:#F00;">提示：通行证的密码将发送到您的手机。</p>
+    <div class="clear_height_middle"></div>
+  </div>
+</div>
+<div class="clear"></div>

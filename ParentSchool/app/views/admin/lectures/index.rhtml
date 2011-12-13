@@ -1,0 +1,46 @@
+<%= render :partial =>"/admin/common" %>
+<div id="bd_div">
+<p class="title_p">讲座列表</p>
+<div style="margin-bottom: 5px;">
+  <a style="float:right;display: block;width: 80px;text-align: center; " href="/admin/lectures/new">新增讲座</a><span style="float:right; margin-right:2px;">  </span>
+  <div style="clear:both;"></div>
+</div>
+<table style="width: 100%;">
+    <colgroup>
+      <col width="30%"/>
+      <col width="20%"/>
+      <col width="25%"/>
+      <col width="19%"/>
+      <col width="6%"/>
+    </colgroup>
+    <tr style="background: #dedede; font-weight: bold; text-align: center;line-height: 20px;">
+      <td>主题</td>
+      <td>主讲人</td>
+      <td>对象</td>
+      <td>创建时间</td>
+      <td>操作</td>
+    </tr>
+    <% @lectures.each do |lecture| %>
+    <tr style="line-height:30px;" valign="top" class="<%=cycle('list-even','list-odd')%>">
+      <td style="padding-right:5px;">
+          <%=link_to "#{h lecture.topic}", "/lectures/#{lecture.id}", :target=>"_blank" %>
+        </td>
+        <td style="padding-right:5px;">
+          <%= h lecture.speaker %>
+        </td style="padding-right:5px;">
+        <td style="padding-right:5px;">
+          <%= h lecture.target %>
+        </td>
+        <td style="padding-right:5px;">
+          <%= lecture.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+        </td>
+        <td style=" text-align:center;">
+          <%= link_to("删除", admin_lecture_path(lecture), :method => :delete, :confirm => "确定要删除该讲座？") %>
+        </td>
+      </tr>
+    <% end if @lectures %>
+  </table>
+  <p style="text-align:center;">
+    <%= will_paginate @lectures unless @lectures.nil? %>&nbsp;
+  </p>
+</div>

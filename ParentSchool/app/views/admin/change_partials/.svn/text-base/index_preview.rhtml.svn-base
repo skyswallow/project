@@ -1,0 +1,51 @@
+<% if params[:id] == "index" %>
+  <div id="main">
+    <%= render :partial => "/home/main" %>
+  </div>
+  <div id="side">
+    <%= render :partial => "/home/side" %>
+  </div>
+<% elsif params[:id] == "class" %>
+  <div id="main">
+    <%= render :partial => "/net_classes/main" %>
+  </div>
+  <div id="side">
+    <%= render :partial => "/net_classes/side" %>
+  </div>
+<% elsif params[:id] == "exam" %>
+  <div id="main">
+    <%= render :partial => "/examination/main" %>
+  </div>
+  <div id="side">
+    <%= render :partial => "/examination/side" %>
+  </div>
+<% elsif params[:id] == "parent" %>
+  <div id="main">
+    <%= render :partial => "/news_lines/parent" -%>
+  </div>
+  <div id="side">
+    <%= render :partial => "/news_lines/parent_side" -%>
+  </div>
+<% elsif params[:id] == "book" %>
+  <div id="main">
+    <%= render :partial=>"#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::TJTS]}" %>
+    <%= render :partial=>"#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::TJSP]}" %>
+  </div>
+  <div id="side">
+    <%= render :partial=>"#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::TSPH]}" %>
+  </div>
+<% elsif params[:id] == "blog" %>
+  <div id="main">
+    <%= render :partial => "/blogs/main" %>
+  </div>
+  <div id="side">
+    <%= render :partial => "/blogs/side" %>
+  </div>
+<% elsif params[:id] == "school" %>
+  <div id="fx-main">
+    <%= render :partial => "/areas/main" %>
+  </div>
+  <div id="fx-side">
+    <%= render :partial => "/areas/side" %>
+  </div>
+<% end %>

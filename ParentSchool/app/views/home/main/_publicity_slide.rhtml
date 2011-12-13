@@ -1,0 +1,50 @@
+<div class="hot-pic">
+  <% @activities = Activity.find(:all, :conditions => ['start_date <= ? and end_date >= ? and status = ? ', Time.now.to_date, Time.now.to_date, 1], :order => "created_at desc")%>
+  <div id="class_stars_div" style="display:none;">
+    <% if @activities %>
+      <% (@activities ||[]).each do |sc|%>
+        <%=h sc.photo%>|
+      <% end %>
+    <% end %>
+  </div>
+  <div id="class_stars_id" style="display:none;">
+    <% if @activities %>
+      <% (@activities ||[]).each do |cc|%>
+        /activities/<%=cc.id.to_i%>|
+      <% end %>
+    <% end %>
+  </div>
+  <div >
+    <div id="class_star_img_div_0"></div>
+  </div>
+  <script type="text/javascript">
+    var imgUrl = new Array();
+    var imgId = new Array();
+    imgUrl[0]="/images/001.jpg";
+    var picNum = 0;
+    function nextPic() {
+      var info = document.getElementById("class_stars_div").innerHTML;
+      var inid = document.getElementById("class_stars_id").innerHTML;
+      if (info != "") {
+        var info_arr = info.split("|");
+        var inid_arr = inid.split("|");
+        var j=1;
+        for (var i=0; i<info_arr.length; i++) {
+          imgUrl[j] = info_arr[i];
+          imgId[j] = inid_arr[i];
+          j = j + 1;
+        }
+        if (picNum < info_arr.length-1 ) picNum ++ ;
+        else picNum = 1;
+        document.getElementById("class_star_img_div_0").innerHTML = "";
+        document.getElementById("class_star_img_div_0").innerHTML = "<a href='"+imgId[picNum]+"'  target='_blank'><img src='"+ imgUrl[picNum] +"' width='618px' height='80px' /></a>";
+        setTimeout('nextPic()', 5000);
+      }
+      else{
+        document.getElementById("class_star_img_div_0").innerHTML = "<a href='/activities'><img src='"+ imgUrl[0] +"' width='618px' height='80px' /></a>";
+      }
+    }
+    nextPic();
+  </script>
+</div>
+<div class="clear"></div>

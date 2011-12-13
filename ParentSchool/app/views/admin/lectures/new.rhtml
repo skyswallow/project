@@ -1,0 +1,56 @@
+<script type="text/javascript">
+  function check_lecture_form()
+  {
+    var valid = new Validation('lecture_form', {onSubmit:false});
+    var result = valid.validate();
+    var flag = true;
+    if(result && flag)
+    {
+      $("btn_submit").disable();
+      return true;
+    }
+    else
+    {
+      $("btn_submit").enable();
+      return false;
+    }
+  }
+</script>
+<%= render :partial =>"/admin/common" %>
+<div id="bd_div">
+<p class="title_p">新增讲座</p>
+<div style="margin-bottom: 5px;">
+  <a style="float:right;display: block;width: 100px;text-align: center; " href="/admin/lectures">>>返回讲座列表</a>
+</div>
+  <% form_tag "/admin/lectures", :class =>"required-validate",:multipart => true, :id =>"lecture_form", :name =>"lecture_form",:method => :post, :onsubmit =>"return check_lecture_form();" do %>
+  <table id="tab_notice">
+      <colgroup>
+        <col width="10%"/><col width="80%"/>
+      </colgroup>
+      <tr>
+        <td><span>主题：<font color="red">*</font></span></td><td><input type="text" id="lecture_topic" name="lecture[topic]" class="required max-length-50" style="width:305px;height: 20px;"/></td>
+      </tr>
+      <tr>
+        <td><span>主讲人：<font color="red">*</font></span></td>
+        <td><input type="text" id="lecture_speaker" name="lecture[speaker]" style="width:305px;height: 20px;" class="required max-length-50" /></td>
+      </tr>
+      <tr>
+        <td><span>图片文件：<font color="red">*</font></span></td>
+        <td><input type="file" id="photo" name="photo" style="width:305px;height: 20px;" class="required validate-file-jpg-gif" onkeydown="return false" onkeyup="return false" contenteditable="false" /></td>
+      </tr>
+      <tr>
+        <td><span>视频文件：<font color="red">*</font></span></td>
+        <td><input type="file" id="lecture_attachment" name="lecture[attachment]" style="width:305px;height: 20px;" class="required validate-file-flv" onkeydown="return false" onkeyup="return false" contenteditable="false" /></td>
+      </tr>
+      <tr>
+        <td valign="top"><span>对象：<font color="red">*</font></span></td>
+        <td><input type="text" id="lecture_target" name="lecture[target]" style="width:305px;height: 20px;" class="required max-length-50" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" id="btn_submit" name="btn_submit" value="确 定"/>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>

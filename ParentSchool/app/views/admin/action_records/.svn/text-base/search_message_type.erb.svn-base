@@ -1,0 +1,30 @@
+系统邀请短信类型：
+<table>
+  <% ActionRecord::MESSAGE_TYPE.each do |type| %>
+  <tr>
+    <td><input type="checkbox" value="<%= type[0] %>" name="message_name" /><span id="sp<%= type[0] %>"><%=  type[1] %></span></td>
+  </tr>
+   <% end %>
+</table>
+<input type="submit" value="确定" onclick="pass_value('message_name')"/><input type="button" value="关闭"  onclick="javascript:window.close();"/>
+<script type="text/javascript">
+  function pass_value(control_name){
+    var message_type = document.getElementsByName(control_name);
+    var str = "<select id='message_type' name='message_type' style='height: 40px;WIDTH: 200px' multiple onclick='select_message_type()'>";
+    var name="";
+    for(var i=0;i<message_type.length;i++){
+      if(message_type[i].checked){
+        str = str + "<option value="+message_type[i].value+">"+ document.getElementById("sp"+i).innerHTML+"</option>";
+        name=name+  message_type[i].value+",";
+      }
+    }
+    if(name==""){
+      alert("短信类型至少选择一项!");
+      return false;
+    }
+    str = str+ "</select>";
+    window.opener.document.getElementById("message_type_span").innerHTML = str;
+    window.opener.document.getElementById("message_type_info").value=name;
+    window.close();
+  }
+</script>

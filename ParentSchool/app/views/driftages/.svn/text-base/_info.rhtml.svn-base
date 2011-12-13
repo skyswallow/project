@@ -1,0 +1,107 @@
+<script type="text/javascript">
+  function showWindow(width,height){
+    location.href="#";
+    var windowstr= document.getElementById("popLayer").innerHTML;
+    document.getElementById("infoDiv").innerHTML=windowstr;
+    document.getElementById("infoDiv").style.left=((document.body.clientWidth-width)>0?(document.body.clientWidth-width):0)/2+"px";
+    document.getElementById("infoDiv").style.top=100+"px";
+    document.getElementById("infoDiv").style.zIndex=10001;
+    document.getElementById("infoDiv").style.width=width+"px";
+    document.getElementById("infoDiv").style.height=height+"px";
+    document.getElementById("tranDiv").style.height=document.body.clientHeight+ "px";
+    document.getElementById("tranDiv").style.width=document.body.clientWidth+ "px";
+    document.getElementById("tranDiv").style.display="";
+    document.getElementById("tranDivBack").style.display="";
+    document.getElementById("tranDivBack").style.zIndex=10000;
+    document.getElementById("infoDiv").style.display="";
+  }
+
+  function closeWindow(){
+    document.getElementById("tranDiv").style.display="none";
+  }
+</script>
+<style type="text/css">
+  #tranDiv {
+    position:absolute;
+    left:0px;
+    top:0px;
+  }
+  #tranDivBack {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    filter:alpha(Opacity=30);
+    -moz-opacity:0.3;
+    opacity:0.3;
+  }
+  #infoDiv {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    text-align:center;
+  }
+  .pop_box {
+    background:#FFF;
+    padding:10px;
+  }
+  .pop_table_box{
+    width:500px;
+    margin:0 auto;
+  }
+  .pop_table_box td{
+    padding:5px;
+    border:#ebebeb 1px solid;
+  }
+</style>
+<% if cookies[:space_id] %>
+  <h1>个人信息</h1>
+  <%=h get_nickname(cookies[:space_id]) %>&nbsp;&nbsp;
+  站内信(<a href="<%= CONFIG[:xuexi6_url] %>/app/messages" target="_blank">
+    <%= get_unread_message_count(cookies[:space_id]) %></a>)
+  <div class="clear"></div>
+  <% get_user_school_info(cookies[:space_id]) %>
+  <% if @school_info and @school_info.size > 0 %>
+    <%=h @school_info[0].school_name %>
+    <div class="clear"></div>
+    <%=h @school_info[0].grade_name %><%=h @school_info[0].class_name %>&nbsp;&nbsp;
+    <% if @school_info.size > 1 %>
+      <a href="javascript:showWindow(600,600);">查看全部班级</a>
+    <% end %>
+    <div class="clear"></div>
+    个人积分：<%= get_point(cookies[:space_id]) %>
+    <div class="clear"></div>
+    <a href="<%= CONFIG[:xuexi6_url] %>/app/spaces/<%= cookies[:space_id] %>" target="_blank">进入我的空间</a>&nbsp;&nbsp;
+    <a href="<%= CONFIG[:net_class_url] %>/net_class/classes/<%= @school_info[0].class_id %>" target="_blank">进入我的班级</a>
+  <% end %>
+<% end %>
+<div class="clear"></div>
+<div id="popLayer" style="display:none;">
+  <div class="pop_box">
+    <% if @school_info and @school_info.size > 1 %>
+      <table class="pop_table_box">
+        <% for info in @school_info %>
+          <tr>
+            <td><%=h info.school_name %></td>
+            <td><%=h info.grade_name %></td>
+            <td><%=h info.class_name %></td>
+            <td><a href="<%= CONFIG[:net_class_url] %>/net_class/classes/<%= info.class_id %>" target="_blank" onclick="closeWindow();">进入我的班级</a></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+    <br />
+    <div class="clear"></div><br />
+    <div align="center">
+      <button onclick="closeWindow();">关闭</button>
+    </div>
+  </div>
+</div>
+<div id="tranDiv" style="display:none;">
+  <div id="tranDivBack"></div>
+  <div id="infoDiv"></div>
+</div>

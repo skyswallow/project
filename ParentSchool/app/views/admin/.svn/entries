@@ -1,0 +1,110 @@
+10
+
+dir
+58831
+http://192.168.10.6/svn/projects/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/admin
+http://192.168.10.6/svn/projects
+
+
+
+2010-12-17T04:56:17.873350Z
+36304
+miaoyj
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+396abd88-c052-0e4f-aa6f-030e66311819
+
+incoming_pages
+dir
+
+change_partials
+dir
+
+lectures
+dir
+
+menus
+dir
+
+page_records
+dir
+
+action_records
+dir
+
+_common.erb
+file
+
+
+
+
+2011-12-12T07:26:17.671875Z
+d2212cee129a6d73016de6c8ace2471f
+2010-07-14T00:50:56.362493Z
+23824
+qishaoh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+665
+
+user_records
+dir
+
+contributions
+dir
+
+notices
+dir
+
+activities
+dir
+
+news_lines
+dir
+
+messages
+dir
+
+time_statistics
+dir
+
+resources
+dir
+
+activity_users
+dir
+
+book_activities
+dir
+

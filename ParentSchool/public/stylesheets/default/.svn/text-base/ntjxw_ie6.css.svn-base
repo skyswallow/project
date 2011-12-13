@@ -1,0 +1,55 @@
+﻿@charset "utf-8";
+
+/*头部*/
+.hd_right ul li{
+    margin:7px 11px 0px 8px;
+}
+.hd_right p{
+    margin-left:70px;
+}
+.hd_right ul {
+    margin-left:65px;
+}
+.main_nav ul li{
+    margin-right:12px;
+}
+.hd_right .user_info{
+    margin-left:20px;
+}
+#foot{
+    margin-top:0px;
+}
+.school_mien{
+    margin-bottom:30px;
+}
+.tei_num{
+    margin-right:38px;
+}
+.hezuo a{
+    margin:0 11px 15px 7px;
+    padding:0;
+
+}
+.hezuo a img{
+    margin-right:0;
+}
+.main_nav{
+    margin-top:0px;
+}
+.blog_link ul{
+    margin-left:310px;
+}
+.main_nav_new li{
+    margin-right:35px;
+}
+.blog_link ul{
+    margin-left:506px;
+}
+
+.school_link_list li{
+ background-position:left 5px;
+ padding-left:15px;
+ border-bottom:#CCC 1px solid;
+ padding-bottom:3px;
+ margin-bottom:5px;
+ }

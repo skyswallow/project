@@ -1,0 +1,22 @@
+<div class="pop_box">
+  <table width="100%" style="table-layout:fixed">
+    <% if @resource %>
+      <tr><td style="word-break:break-all;" align="center" colspan="2"><b><%=h @resource.title %></b></td></tr>
+      <tr><td style="word-break:break-all;" align="center" colspan="2"><%=h @resource.description %></td></tr>
+      <tr><td align="left">上传时间：<%= @resource.created_at.strftime '%Y.%m.%d' %></td><td align="left">下载量：<%= @resource.downloads %></td></tr>
+      <tr><td align="left" colspan="2"><a href="/resources/<%= @resource.id %>/download" class="down_btn">下载</a></td></tr>
+    <% else %>
+      <tr>
+        <td style="word-break:break-all;" align="center">
+          您查看的资源已经被删除！
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="clear"></div>
+  <% if @resource %>
+    <button onClick="closeResource();">关闭</button>
+  <% else %>
+    <button onClick="closeResource();window.document.location.reload();">关闭</button>
+  <% end %>
+</div>

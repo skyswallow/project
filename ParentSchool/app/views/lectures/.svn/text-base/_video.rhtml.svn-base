@@ -1,0 +1,24 @@
+<div class="movie-box">
+  <h2 class="mian_h2"><span>观看视频讲座</span></h2>
+  <div class="movie">
+    <div id="mediaspace" style="width:400px;height: 315px;float: left;"></div>
+    <ul style="float:left; ">
+      <li>主题：<span style="font-weight:bold;color: #C00;"><%= h @lecture.topic %></span></li>
+      <li>主讲：<%= h @lecture.speaker %></li>
+      <li>时间：<%= @lecture.created_at.strftime("%Y-%m-%d %H:%M:%S") %></li>
+      <li>对象：<%= h @lecture.target %></li>
+    </ul>
+  </div>
+  <script type='text/javascript' src='/javascripts/swfobject.js'></script>
+  <script type='text/javascript'>
+  var so = new SWFObject('/swf/player.swf','mpl','400','315','9');
+  so.addParam('allowfullscreen','true');
+  so.addParam('allowscriptaccess','always');
+  so.addParam('wmode','opaque');
+  so.addVariable('file','<%= @lecture.attachment_file_name %>');
+  so.addVariable('bufferlength','5');
+  so.addVariable('autostart','true');
+  so.addVariable('stretchtofit','1');
+  so.write('mediaspace');
+</script>
+</div>

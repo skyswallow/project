@@ -1,0 +1,77 @@
+10
+
+dir
+58831
+http://192.168.10.6/svn/projects/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/test
+http://192.168.10.6/svn/projects
+
+
+
+2010-11-11T07:23:36.083426Z
+32630
+gaohf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+396abd88-c052-0e4f-aa6f-030e66311819
+
+unit
+dir
+
+test_helper.rb
+file
+
+
+
+
+2011-12-12T07:26:04.937500Z
+30478106e9df8977e79fc045df799e29
+2010-05-13T02:06:18.696625Z
+20461
+gaohf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1797
+
+performance
+dir
+
+functional
+dir
+
+integration
+dir
+
+fixtures
+dir
+

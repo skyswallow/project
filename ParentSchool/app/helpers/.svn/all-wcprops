@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/helpers
+END
+user_records_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/helpers/user_records_helper.rb
+END
+incoming_pages_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/helpers/incoming_pages_helper.rb
+END
+application_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/helpers/application_helper.rb
+END
+activities_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/helpers/activities_helper.rb
+END
+blogs_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/helpers/blogs_helper.rb
+END
+time_statistics_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/helpers/time_statistics_helper.rb
+END
+resources_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/helpers/resources_helper.rb
+END

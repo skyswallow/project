@@ -1,0 +1,65 @@
+<script type="text/javascript">
+  function selectCard(num,length){
+    for(var i=1;i<=length;i++){
+      if(num == i){
+        $('select_'+ num).addClassName("selected");
+        $('sub_'+num).show();
+        for(var y=1;y<=length;y++){
+          if(y!=num){
+            $('select_'+ y).removeClassName("selected");
+            $('sub_'+y).hide();
+          }else{
+            $('sub_'+y).show();
+          }
+        }
+      }
+    }
+  }
+</script>
+<div class="study_res">
+  <h2 class="mian_h2"><span>学习资源</span>
+    <% if cookies[:space_id] %>
+      <%= link_to("更多", :resources, :class => "more-link") %>
+    <% else %>
+      <%= link_to("更多", "javascript:void(0);", :class => "more-link", :onclick => "login();") %>
+    <% end %>
+  </h2>
+  <div class="study-box">
+    <div style="width: 98%;" class="tab">
+      <ul>
+        <% Resource::GRADE.each do |type| %>
+          <% if type[0] == 1 %>
+            <li style="cursor:pointer"><a class="selected" href="javascript:void();" id="select_<%=type[0]%>" onclick="selectCard(<%=type[0]%>,<%=Resource::GRADE.size%>)"><%=type[1]%></a></li>
+          <%else%>
+            <li style="cursor:pointer"><a href="javascript:void();" id="select_<%=type[0]%>" onclick="selectCard(<%=type[0]%>,<%=Resource::GRADE.size%>)"><%=type[1]%></a></li>
+          <%end%>
+        <%end%>
+      </ul>
+      <div class="clear"></div>
+      <div class="tab-line"></div>
+      <div class="clear"></div>
+    </div>
+    <% Resource::GRADE.each do |type| %>
+      <% if type[0] == 1 %>
+        <div id="sub_<%=type[0]%>" style="display: block;">
+        <%else%>
+          <div id="sub_<%=type[0]%>" style="display: none;">
+          <% end %>
+          <table width="600">
+            <colgroup width="520" />
+            <colgroup width="80" />
+            <% resources = Resource.new_resource(type[0]) %>
+            <% for resource in resources %>
+              <tr>
+                <td><%= link_to_remote h(truncate(resource.title,:length => 40)),
+                    :html => {:title => h(resource.title.strip)},
+                    :url => "/resources/#{resource.id}",:method => :get,
+                    :complete => "javascript:showResource(500,500);" %></td>
+                <td><%= resource.created_at.strftime '%Y.%m.%d' %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>

@@ -1,0 +1,83 @@
+班级
+<hr/>
+<% @class_arry.each_key { |key| %>
+  <span style="font-size: 15px; color:#007F1D;margin-top: 10px;">
+    <%= UserGroup.find_by_id(key).name if UserGroup.find_by_id(key)  %>
+  </span>
+  <% @class_arry[key].each{|k| %>
+    <table>
+      <tr>
+        <td>
+          <input type="checkbox" id="checkbox_all_check_<%= k[0] %>_<%= key %>" name="checkbox_all_check" onclick="check_grade(<%= k[0] %>,<%= key %>);" value="<%= k[0].to_s+"_"+key.to_s %>"/>全选   <span style="font-size: 14px; color:#0099CC;margin-top: 10px;">   <%=  ['一','二','三','四','五','六'].include?(k[1][0].grade_name) ?  k[1][0].grade_name.to_s+'年级' : k[1][0].grade_name %>
+          </span>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr><% count =0 %>
+        <%  for i in 0..k[1].length-1 %>
+          <% count = count + 1 %>
+          <td>
+            <input type="checkbox" value="<%= k[1][i].id if k[1][i] %>" name="class_name_<%= k[0] %>_<%= key %>" class="<%= k[1][0].grade_name.to_s+k[1][i].class_name.to_s if k[1][i] %>" onclick="check_class_grade(<%= k[0] %>,<%= key %>);"/>
+            <%=h k[1][i].class_name if k[1][i]  %>
+          </td>
+          <% if count == 4 %>
+          </tr><tr>
+            <%  count = 0 %>
+          <% end %>
+        <% end %>
+    </table>
+  <%} %>
+<%}%>
+<input type="button" value="提交" onclick="pass_value();"/>
+<input type="button" value="关闭" onclick="javascript:window.close();"/>
+<script type="text/javascript">
+  function check_grade(count, school_id){
+    var check_value= document.getElementsByName("class_name_"+count+"_"+school_id);
+    var all_check =  document.getElementById("checkbox_all_check_"+count+"_"+school_id);
+    if(all_check.checked){
+      for(var i=0;i<check_value.length;i++){
+        check_value[i].checked = true;
+      }
+    }else{
+      for(var i=0;i<check_value.length;i++){
+        check_value[i].checked = false;
+      }
+    }
+  }
+  function check_class_grade(count,school_id){
+    var check_value= document.getElementsByName("class_name_"+count+"_"+school_id);
+    var total = 0;
+    for(var i=0;i<check_value.length;i++){
+      if(check_value[i].checked){
+        total =total+1;
+      }
+    }
+   if(total ==check_value.length){
+      document.getElementById("checkbox_all_check_"+count+"_"+school_id).checked= true;
+    }else{
+      document.getElementById("checkbox_all_check_"+count+"_"+school_id).checked= false;
+    }
+  }
+  function pass_value(){
+    var school_all_name = document.getElementsByName("checkbox_all_check");
+    var str =  "<select name='class_name' id='class_name' style='height: 40px;  WIDTH: 250px; margin-top: 20px' multiple onclick='select_class_name()' >";
+    var name =""
+    for(var i=0;i<school_all_name.length;i++){
+      var class_id = document.getElementsByName("class_name_"+school_all_name[i].value);
+      for(var j=0;j<class_id.length;j++){
+        if(class_id[j].checked){
+          str =str +"<option value="+class_id[j].value+">"+class_id[j].className+"</option>";
+          name=name+   class_id[j].value+",";
+        }
+      }
+    }
+    if(name==""){
+      alert("班级列表至少选择一项!");
+      return false;
+    }
+    str = str+ "</select>"
+    window.opener.document.getElementById("class_name_span").innerHTML=str;
+    window.opener.document.getElementById("class_name_info").value= name;
+    window.close();
+  }
+</script>

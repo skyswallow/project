@@ -1,0 +1,62 @@
+<script type="text/javascript">
+  function show_message(obj){
+    $("tanchu_message_"+obj).style.display = "block";
+    $("tanchu_message_"+obj).addClassName("show_message");
+  }
+</script>
+<div class="start">
+  <marquee height="160" width="275" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="1" direction="up">
+    <ul>
+      <li><a href="javascript:void(0)" onclick="show_message(4)"> 关于免费赠书活动正式结束的公告</a></li>
+      <li><a href="javascript:void(0)" onclick="show_message(3)"> 11月11日至11月28日被申领的图书已经开始发放，近期将陆续送至您孩子所在学校的班主任处，请在该时间段内成功申领到图书的家长注意查收。</a></li>
+      <li><a href="javascript:void(0)" onclick="show_message(2)"> 关于“11月1日至11月10日成功申领到图书家长已经可以进行获奖信息查询”事宜</a></li>
+      <li><a href="javascript:void(0)" onclick="show_message(1)"> 关于“11月1日至11月10日成功申领到图书家长的获奖信息查询”事宜</a></li>
+      <li>
+        <a href="javascript:void(0)" onclick="show_message(0)">11月1日至11月10日被申领的图书已经开始发放，近期将陆续送至您孩子所在学校的班主任处，请在该时间段内成功申领到图书的家长注意查收。</a></li>
+    </ul>
+  </marquee>
+</div>
+<div class="tanchu" id="tanchu_message_0">
+  <h1 style="font-size: 16px;font-weight: bold;text-align: center">通知</h1>
+  &nbsp; &nbsp; &nbsp; &nbsp;请11月1日至11月10日成功申领到图书的家长注意，您所申领的图书近期将送至您孩子所在学校的班主任处，请注意查收！<br/>
+  <span style="float:right;font-size: 14px;margin-right: 10px;">——南通市网上家长学校</span><div class="clear"></div>
+  <div class="queding" id="confirm_btn1" style="display:block;">
+    <input  type="button" value="关闭" style="background-color:#900;color: #fff;border: 0px;width:60px;height: 20px;cursor: pointer;" onclick="javascript:document.getElementById('tanchu_message_0').style.display='none';"/>
+  </div>
+</div>
+
+<div class="tanchu" id="tanchu_message_1">
+  <h1 style="font-size: 16px;font-weight: bold;text-align: center">通知</h1>
+  &nbsp; &nbsp; &nbsp; &nbsp;请11月1日至11月10日成功申领到图书的家长注意，您所申领的图书近期将送至您孩子所在学校的班主任处，请注意查收！<br/>
+  &nbsp; &nbsp; &nbsp; &nbsp;由于您的图书已被送出，因此您暂时不能查询您的获奖信息，我们正在进行相应调整，待调整完成后，您将可以查询获奖信息，
+  敬请留意！<br/>
+  <span style="float:right;font-size: 14px;margin-right: 10px;">——南通市网上家长学校</span><div class="clear"></div>
+  <div class="queding" id="confirm_btn1" style="display:block;">
+    <input  type="button" value="关闭" style="background-color:#900;color: #fff;border: 0px;width:60px;height: 20px;cursor: pointer;" onclick="javascript:document.getElementById('tanchu_message_1').style.display='none';"/>
+  </div>
+</div>
+
+<div class="tanchu" id="tanchu_message_2">
+  <h1 style="font-size: 16px;font-weight: bold;text-align: center">通知</h1>
+  &nbsp; &nbsp; &nbsp; &nbsp;请11月1日至11月10日成功申领到图书的家长注意，经过调整，目前您已经可以再次查询您的获奖信息，感谢您对我们活动的支持。<br/>
+  <span style="float:right;font-size: 14px;margin-right: 10px;">——南通市网上家长学校</span><div class="clear"></div>
+  <div class="queding" id="confirm_btn1" style="display:block;">
+    <input  type="button" value="关闭" style="background-color:#900;color: #fff;border: 0px;width:60px;height: 20px;cursor: pointer;" onclick="javascript:document.getElementById('tanchu_message_2').style.display='none';"/>
+  </div>
+</div>
+<div class="tanchu" id="tanchu_message_3">
+  <h1 style="font-size: 16px;font-weight: bold;text-align: center">通知</h1>
+  &nbsp; &nbsp; &nbsp; &nbsp;11月11日至11月28日成功申领到图书的家长注意，您所申领的图书近期将送至您孩子所在学校的班主任处，请注意查收！<br/>
+  <span style="float:right;font-size: 14px;margin-right: 10px;">——南通市网上家长学校</span><div class="clear"></div>
+  <div class="queding" id="confirm_btn1" style="display:block;">
+    <input  type="button" value="关闭" style="background-color:#900;color: #fff;border: 0px;width:60px;height: 20px;cursor: pointer;" onclick="javascript:document.getElementById('tanchu_message_3').style.display='none';"/>
+  </div>
+</div>
+<div class="tanchu" id="tanchu_message_4">
+  <h1 style="font-size: 16px;font-weight: bold;text-align: center">通知</h1>
+  &nbsp; &nbsp; &nbsp; &nbsp;南通市网上家长学校举办免费赠书活动，已于2010年12月31日12:00正式结束，感谢您参与此次活动。您所获赠的图书近期将送至您孩子所在学校的班主任处，敬请关注！<br/>
+  <span style="float:right;font-size: 14px;margin-right: 10px;">——南通市网上家长学校</span><div class="clear"></div>
+  <div class="queding" id="confirm_btn1" style="display:block;">
+    <input  type="button" value="关闭" style="background-color:#900;color: #fff;border: 0px;width:60px;height: 20px;cursor: pointer;" onclick="javascript:document.getElementById('tanchu_message_4').style.display='none';"/>
+  </div>
+</div>

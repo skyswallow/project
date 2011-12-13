@@ -1,0 +1,50 @@
+<div id="head_top_new">
+  <a href="/"></a>
+  <div style="float:right;">
+    <object>
+    <embed src="/swf/flash.swf" quality="high" width="400" height="180" wmode="Transparent"/>
+    </object>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="main_nav_new">
+  <ul>
+    <li style="margin-right:25px;">
+      <%= link_to("首页", "/") %>
+    </li>
+    <li style="margin-right:25px;">
+      <%= link_to("新闻综合", "/news_lines/news") %>
+    </li>
+    <li style="margin-right:25px;">
+      <% if cookies[:space_id] %>
+        <%= link_to("学习资源", :resources) %>
+      <% else %>
+        <%= link_to("学习资源", "javascript:void(0);", :onclick => "login();") %>
+      <% end %>
+    </li>
+    <li style="margin-right:25px;">
+      <%= link_to("父母学堂", "/news_lines/parent_class") %>
+    </li>
+    <li style="margin-right:25px;">
+      <%= link_to("风采展示", :schools) %>
+    </li>
+    <li style="margin-right:25px;">
+      <%= link_to("招考信息", "/examination") %>
+    </li>
+    <li style="margin-right:25px;">
+      <%= link_to("网络班级", "/net_classes") %>
+    </li>
+    <li style="margin-right:25px;">
+      <%= link_to("墨香书屋", "#{Constant::URL_PREFIX}/community/books") %>
+    </li>
+    <li style="margin-right: 25px;">
+      <%= link_to("博客空间", :blogs) %>
+    </li>
+    <li style="margin-right: 25px;">
+      <%= link_to("活动", :activities) %>
+    </li>
+    <li style="margin-right: 0px;">
+      <%= link_to("分校展示", :areas, :target =>"_blank") %>
+    </li>
+  </ul>
+</div>

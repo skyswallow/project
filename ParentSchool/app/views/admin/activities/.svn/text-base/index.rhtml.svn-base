@@ -1,0 +1,42 @@
+<p class="title_p">活动管理</p>
+<div class="clear"></div>
+<table width="100%">
+  <colgroup>
+    <col width="35%"/>
+    <col width="20%"/>
+    <col width="20%"/>
+    <col width="25%"/>
+  </colgroup>
+  <tr>
+    <td colspan="4" align="right">
+      <input type="button" value="" style="background: url(/images/xinjhd.gif) no-repeat; width:87px;height: 24px;border:0px;margin-bottom: 10px;cursor: pointer;" onclick="window.location.href='/admin/activities/new';"/>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>活动名称</strong></td>
+    <td><strong>活动开始日期</strong></td>
+    <td><strong>活动结束日期</strong></td>
+    <td><strong><center>操作</center></strong></td>
+  </tr>
+  <% (@activities || []).each do |activity| %>
+    <tr>
+      <td>
+        <a href="/activities/<%= activity.id %>" target="_blank">
+          <%= h activity.name %>
+        </a>
+      </td>
+      <td>
+        <%= activity.start_date.to_s(:activity_date) %>
+      </td>
+      <td>
+        <%= activity.end_date.to_s(:activity_date) %>
+      </td>
+      <td>
+        <%= link_to "修改", edit_admin_activity_path(activity) %>&nbsp;&nbsp;
+        <%= link_to "删除", admin_activity_path(activity), :method => :delete, :confirm => "是否确定删除该活动？" %>&nbsp;&nbsp;
+        <%= link_to "查看报名名单", "/admin/activity_users?id=#{activity.id}", :target => "_blank" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @activities if @activities %>

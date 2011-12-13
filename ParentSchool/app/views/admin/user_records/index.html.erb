@@ -1,0 +1,98 @@
+<%= javascript_include_tag :defaults  %>
+<p>用户信息</p>
+<p>
+  地区：<%= @user_records[0].area_name %>&nbsp;&nbsp;&nbsp;&nbsp;学校类型：<%= @user_records[0].s_type %>
+  &nbsp;&nbsp;&nbsp;&nbsp;学校种类：<%= @user_records[0].s_group %>&nbsp;&nbsp;&nbsp;&nbsp;
+  学校名称：<%= @user_records[0].s_name %>&nbsp;&nbsp;&nbsp;&nbsp;
+  班级：<%= @user_records[0].class_name %>&nbsp;&nbsp;&nbsp;&nbsp;  
+</p>
+<p>手机号码：<%= @user_records[0].cellphone %></p>
+<p>
+  活动类型：<select name="action_type" onchange="javascript:window.location.href='/admin/user_records?action_type='+this.value+'<%= '&target_cellphone='+params[:target_cellphone]%>';">
+    <option value="" <% if session[:action_type] == "" %> selected <% end %>>全部</option>
+    <% ActionRecord::ACTION_TYPE.each do |s| %>
+      <option value="<%=s[0]%>" <% if session[:action_type].to_s == s[0].to_s %> selected <% end %>><%=s[1]%></option>
+    <% end %>
+  </select>
+</p>
+<table width="100%" border="1" class="page1" >
+  <colgroup>
+    <col width="5%"></col>
+    <col width="25%"></col>
+    <col width="10%"></col>
+    <col width="15%"></col>
+    <col width="30%"></col>
+    <col width="15%"></col>
+  </colgroup>
+  <tr>
+    <td align="center">序号</td>
+    <td align="center" <%= sort_td_class_helper "created_at" %>>
+      <%= sort_link_helper "日期", "created_at" %>
+    </td>
+    <td align="center" <%= sort_td_class_helper "action_type" %>>
+      <%= sort_link_helper "活动类型", "action_type" %>
+    </td>
+    <td align="center" <%= sort_td_class_helper "action_result" %>>
+      <%= sort_link_helper "活动结果", "action_result" %>
+    </td>
+    <td align="center" <%= sort_td_class_helper "first_book_code" %>>
+      <%= sort_link_helper "结果描述", "first_book_code" %>
+    </td>
+    <td align="center" <%= sort_td_class_helper "spreader_phone" %>>
+      <%= sort_link_helper "推荐人手机号码", "spreader_phone" %>
+    </td>
+  </tr>
+  <%   %>
+  <% if params[:page] %>
+    <% @i  = (params[:page].to_i-1)*30+1 %>
+  <% else %>
+    <% @i = 1 %>
+  <% end %>
+  <% (@user_actions|| []).each do |u| %>
+    <tr>
+      <td><%= @i %></td>
+      <td align="center"><%= u.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+      <td align="center"><%= ActionRecord::ACTION_TYPE[u.action_type][1] %></td>
+      <td align="center"><%= ActionRecord::ACTION_RESULT[u.action_result][1] %></td>
+      <td align="center"><%= ActionRecord.action_records(u.action_result, u.first_book_code, u.second_book_code) %>
+      </td>
+      <td align="center"><%= u.spreader_phone %></td>
+      <% @i += 1 %>
+    </tr>
+  <% end %>
+</table>
+<div style="margin-top:15px;float: left; width: 730px;"><div style="float:left">
+<% if @user_actions.total_pages ==1 || params[:page].blank? ||  params[:page] =='1' %>
+  首页
+<% else %>
+  <a href="/admin/user_records?page=1&sort=<%=  params[:sort] if params[:sort]%>&target_cellphone=<%= params[:target_cellphone] %>">首页</a>
+<% end %>
+<%= will_paginate @user_actions, :prev_label => '上一页', :next_label => '下一页',:container=>false  %>
+第<%= params[:page] %><%= '1' if params[:page].blank? %>/<%=  @user_actions.total_pages %>页 &nbsp;
+<% if @user_actions.total_pages ==1 ||  @user_actions.total_pages == params[:page].to_i %>
+  尾页
+<% else %>
+  <a href="/admin/user_records?page=<%= @user_actions.total_pages %>&sort=<%=  params[:sort] if params[:sort]%>&target_cellphone=<%= params[:target_cellphone] %>">尾页</a>
+<% end %>
+ 共<%= @user_actions.total_entries %>条记录 &nbsp;
+<% total = (1..@user_actions.total_pages) %>
+跳到<select id="page" name="page" onchange="javascript:window.location.href='/admin/user_records?page='+this.value+'<%= '&sort='+params['sort'] if params['sort'] %>'+'&action_type='+'<%= session[:action_type] %>'+'<%= '&target_cellphone='+params[:target_cellphone]%>';">
+  <% total.each do |i| %>
+    <option value="<%= i  %>" <%= 'selected'  if params[:page].to_i == i.to_i %>>第<%= i %>页</option>
+  <% end %>
+</select>页</div>
+<div style="width: 65px; float: left;margin-left:5px;">
+  <%= button_to "导出列表", {:action => :create, :area_name => @user_records[0].area_name, :s_type => @user_records[0].s_type,
+    :s_group => @user_records[0].s_group, :s_name => @user_records[0].s_name, :class_name => @user_records[0].class_name, 
+    :cell_phone => @user_records[0].cellphone, :sort => params[:sort]}, {:disabled => @user_actions.blank? ? true : false}%>
+</div>
+</div>
+<style type="text/css">
+  .page1 td{
+    border: 1px solid #666666;
+    padding: 2px;
+  }
+  .page1 {
+    border: 1px solid #666666;
+  }
+</style>

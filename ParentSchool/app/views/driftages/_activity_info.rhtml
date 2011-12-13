@@ -1,0 +1,36 @@
+<%
+if cookies[:space_id]
+  topic_three = TopicBookRelation.get_top_topics_with_space(cookies[:space_id])
+  my_articles = BookArticle.get_top_articles(cookies[:space_id])
+  my_awards = BookArticle.get_top_articles(cookies[:space_id])
+end
+%>
+<div class="huodongxinxi">
+  <ul class="duhougan">
+    <% if my_articles %>
+      <li style="text-align:right; margin-right:40px;color:#F30;">（<%= my_articles.length %>/3）</li>
+      <% my_articles.each do |article| %>
+        <li class="dotbj"><a href="/" target="_blank"><%= h article.title %></a></li>
+      <% end %>
+    <% end %>
+    <li style="text-align:right; margin-right:30px;"><a style="color:#F30" href="/driftages/upload_report" target="_blank">查看我的文章>></a></li>
+  </ul>
+  <ul class="duhougan2">
+    <% if topic_three %>
+      <li style="text-align:right; margin-right:40px;color:#F30">（<%= topic_three.length %>/3）</li>
+      <% topic_three.each do |topic| %>
+        <li  class="dotbj"><a href="/" target="_blank"><%= h topic.title %></a></li>
+      <% end %>
+    <% end %>
+    <li style="text-align:right; margin-right:30px;"><a style="color:#F30" href="/topic_book_relations" target="_blank">查看所有话题>></a></li>
+  </ul>
+  <ul class="duhougan3">
+    <% if my_awards %>
+      <li style="text-align:right; margin-right:40px;color:#F30">（<%= my_awards.length %>/3）</li>
+      <% my_awards.each do |award| %>
+        <li  class="dotbj"><a href="/" target="_blank"><%= h award.title %></a></li>
+      <% end %>
+    <%end%>
+    <li style="text-align:right; margin-right:30px;"><a style="color:#F30" href="/" target="_blank">查看全部>></a></li>
+  </ul>
+</div>

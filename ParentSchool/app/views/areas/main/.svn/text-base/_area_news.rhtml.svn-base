@@ -1,0 +1,35 @@
+<fieldset style="padding:8px; width:590px; border:#b3281d 5px solid;margin-bottom:15px;_height: 700px;min-height: 700px;">
+  <legend style="margin-left:10px;padding:5px; color:#fff ;width:93px;height:52px; background:url(/images/fxfy-1.jpg) no-repeat;font-weight:bold"><span class="fy-area"><%= AreaNew.area_name(@area_id.to_i,@type) %></span></legend>
+  <div class="fx-list">
+    <table width="100%" border="0" align="center">
+      <colgroup>
+        <col width="3%"/>
+        <col width="55%"/>
+        <col width="30%"/>
+        <col width="12%"/>
+      </colgroup>
+      <tr style="font-weight:bold;background:url(/images/fxtitlebg.jpg) repeat-x;line-height:32px; background-position: center; color:#b3281d" >
+        <td style="border:0"></td>
+        <td style="border:0">标题</td>
+        <td style="border:0">上传者</td>
+        <td style="border:0">发布日期</td>
+      </tr>
+      <% if @area_news_ids and @area_news_ids.size >0 %>
+        <% (@area_news_ids || []).each do |news| %>
+          <tr>
+            <td><img src="/images/jt-icon.jpg" width="5" height="7" alt=""/></td>
+            <td><a href="/areas/<%= news.id %>" target="_blank" title="<%= h news.news_title %>"><%= h truncate(news.news_title, :length =>23) %></a></td>
+            <td><%= h news.nickname %></td>
+            <td><%= news.created_at.strftime("%Y.%m.%d") %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="4">暂无新闻</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <%= will_paginate @area_news_ids unless @area_news_ids.blank? %>
+</fieldset>
+<div class="clear"></div>

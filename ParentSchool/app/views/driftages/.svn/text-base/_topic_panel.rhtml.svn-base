@@ -1,0 +1,41 @@
+<a href="javascript:void(0)" onclick="test1()">最新话题</a>
+<a href="javascript:void(0)" onclick="test2()">人气话题</a>
+<div id="new_topics">
+  <table border="1">
+    <tr>
+      <th>话题</th>
+      <th>回复</th>
+    </tr>
+    <% (@new_topics || []).each do |n| %>
+      <tr>
+        <td><a href="<%= n.id %>" target="_blank" title="<%=h n.title %>"><%= truncate((h n.title),20,"...")%></a></td>
+        <td><%= n.group_topic_comments_count %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div id="g_topics"style="display: none">
+  <table border="1">
+    <tr>
+      <th>话题</th>
+      <th>回复</th>
+    </tr>
+    <% (@new_topics || []).each do |n| %>
+      <tr>
+        <td><a href="<%= n.id %>" target="_blank" title="<%=h n.title %>"><%= truncate((h n.title),20,"...")%></a></td>
+        <td><%= n.group_topic_comments_count %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<script type="text/javascript">
+  function test1(){
+    $("new_topics").style.display = 'block';
+    $("g_topics").style.display = 'none';
+  }
+  function test2(){
+    $("g_topics").style.display = 'block';
+    $("new_topics").style.display = 'none';
+  }
+</script>

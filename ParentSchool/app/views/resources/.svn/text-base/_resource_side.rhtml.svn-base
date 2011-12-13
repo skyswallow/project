@@ -1,0 +1,40 @@
+<!--最新资源栏目开始-->
+<div class="side_box index">
+  <h2 class="side_h2">
+    <span>最新试卷</span>
+  </h2>
+  <ul class="artical_list_1">
+    <% new_resources = find_new_resources(10) %>
+    <% new_resources.each do |resource| %>
+      <li>
+        <%= link_to_remote h(truncate(resource.title, :length => 20)),
+          :html => {:title => resource.title},
+          :url => "/resources/#{resource.id}", :method => :get,
+          :complete => "javascript:showResource(500,500);" %>
+      </li>
+    <% end if new_resources %>
+  </ul>
+</div>
+<!--最新资源栏目结束-->
+<div class="clear"></div>
+<!--热门下载栏目开始-->
+<div class="side_box index">
+  <h2 class="side_h2">
+    <span>热门试卷</span>
+  </h2>
+  <ul class="artical_list_1">
+    <% hot_resources = find_hot_resources(10) %>
+    <% hot_resources.each do |resource| %>
+      <li>
+        <%= link_to_remote h(truncate(resource.title, :length => 20)),
+          :html => {:title => resource.title},
+          :url => "/resources/#{resource.id}", :method => :get,
+          :complete => "javascript:showResource(500,500);" %><br/>
+        发布时间：<%= resource.created_at.strftime '%Y.%m.%d' %><br/>
+        下载次数：<%= resource.downloads %>
+      </li>
+    <% end if hot_resources %>
+  </ul>
+</div>
+<!--热门下载栏目结束-->
+<div class="clear"></div>

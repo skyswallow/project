@@ -1,0 +1,64 @@
+<script type="text/javascript">
+  function show_rank_info(obj,len){
+    for(var i=0;i<len;i++){
+      if(i==obj){
+        $("li_"+i).addClassName("list_banga");
+        $("rank_"+i).style.display = "";
+        for(var j=0;j<len;j++){
+          if(obj!=j){
+            $("li_"+j).removeClassName("list_banga");
+            $("li_"+j).addClassName("list_bangb");
+            $("rank_"+j).style.display = "none";
+          }else{
+            $("li_"+j).removeClassName("list_bangb");
+          }
+        }
+      }
+    }
+  }
+</script>
+<ul>
+  <li><a href="javascript:void();" hidefocus="true" class="list_banga" id="li_0" onclick="show_rank_info(0,2)">最新上传</a></li>
+  <li><a href="javascript:void();" hidefocus="true" class="list_bangb" id="li_1" onclick="show_rank_info(1,2)">人气征文</a></li>
+</ul>
+<table class="zw_bang" id="rank_0">
+  <colgroup>
+    <col width="48%" />
+    <col width="27%" />
+    <col width="25%" />
+  </colgroup>
+  <tr>
+    <th style="text-align:center;font-weight: bold;">文章标题</th>
+    <th style="text-align:center;font-weight: bold;">作者</th>
+    <th style="text-align:center;font-weight: bold;">上传时间</th>
+  </tr>
+  <% (Article.get_newest_articles || []).each_with_index do |left, l_idx| %>
+    <tr>
+      <td><a href="/book_articles/<%= left.id %>" target="_blank" title="<%= h(left.title.strip) %>"><%= h(truncate(left.title.strip,10,"...")) %></a></td>
+      <td><a href="<%= Constant::URL_PREFIX %>/app/spaces/<%= left.space_id %>" target="_blank" title="<%= h(left.space.nickname) %>"><%= h(truncate(left.space.nickname,6,"...")) %></a></td>
+      <td align="center"><%= left.created_at.strftime("%Y-%m-%d") %></td>
+    </tr>
+  <% end %>
+</table>
+<table class="zw_bang" id="rank_1" style="display:none;">
+  <colgroup>
+    <col width="15%" />
+    <col width="42%" />
+    <col width="23%" />
+    <col width="20%" align="center"/>
+  </colgroup>
+  <tr>
+    <th style="text-align:center;font-weight: bold;">关注度</th>
+    <th style="text-align:center;font-weight: bold;">征文标题</th>
+    <th style="text-align:center;font-weight: bold;">作者</th>
+    <th style="text-align:center;font-weight: bold;">网友评分</th>
+  </tr>
+  <% (Article.get_excellent_articles || []).each_with_index do |excellent_article, excellent_idx| %>
+    <tr>
+      <td align="center"><img src="/images/articles/paihang<%= excellent_idx + 1 %>.gif" /></td>
+      <td><a href="/book_articles/<%= excellent_article.id %>" target="_blank"title="<%= h(excellent_article.title.strip) %>"><%= h(truncate((excellent_article.title.strip),9,"...")) %></a></td>
+      <td><a href="<%= Constant::URL_PREFIX %>/app/spaces/<%= excellent_article.space_id %>" target="_blank" title="<%= h(excellent_article.nickname) %>"><%= h(truncate(excellent_article.nickname,5,"...")) %></a></td>
+      <td align="center"><%= excellent_article.total_score.to_i %></td>
+    </tr>
+  <% end %>
+</table>

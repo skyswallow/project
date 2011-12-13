@@ -1,0 +1,39 @@
+<div class="test-box">
+  <% rts = find_by_parent_id(params[:type]) %>
+  <% form_tag "/resources/search", :id => "search_form", :method => "get" do %>
+    <select name="sub_type" id="sub_type">
+      <option value="0">全部</option>
+      <% rts.each do |item| %>
+        <option value="<%= item.id %>"><%= item.name %></option>
+      <% end if rts %>
+    </select>
+    <span>关键字：</span>
+    <input name="title" id="title" type="text" />
+    <input name="type" id="type" type="hidden" value="<%= params[:type] %>" />
+    <input type="submit" value="搜索" />
+  <% end %>
+  <h2>
+    <%= @parent_name %>
+  </h2>
+  <table width="99%">
+    <colgroup>
+      <col width="10%"/>
+      <col width="80%"/>
+      <col width="10%"/>
+    </colgroup>
+    <% (@resources || []).each do |resource| %>
+      <tr>
+        <td>【<%= resource.name %>】</td>
+        <td><%= link_to_remote h(resource.title),
+            :html => {:title => h(resource.title.strip),:style =>"background-image:none;"},
+            :url => "/resources/#{resource.id}",:method => :get,
+            :complete => "javascript:showResource(500,500);" %></td>
+        <td align="right"><%= resource.created_at.strftime '%Y.%m.%d' -%></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="clear"></div>
+  <%= will_paginate @resources unless @resources.nil? %>
+</div>
+<div class="clear"></div>
+<%= render :partial => "/resources/info" %>

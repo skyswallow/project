@@ -1,0 +1,16 @@
+<div id="top1"></div>
+<div id="top2"></div>
+<div id="nav">
+  <ul>
+    <li><a href="/book_plans/introduction" <% if action_name == "introduction" %>class="focus"<%end%>>活动介绍</a></li>
+    <li><a href="/book_plans" <% if action_name == "index" %>class="focus"<%end%>>赠书活动</a></li>
+    <li><a href="/book_plans/article" <% if action_name == "article" %>class="focus"<%end%>>家庭教育主题征文</a></li>
+    <li><a href="javascript:void(0)" onclick="show_alert_1()">学习调查表</a></li>
+    <li><a href="/book_plans/report" <% if action_name == "report" %>class="focus"<%end%>>活动报告</a></li>
+    <li><a href="/book_plans/award_list" <% if action_name == "award_list" %>class="focus"<%end%>>获奖信息</a></li>
+  </ul>
+</div>
+<div class="tanchu" id="alert_1">
+<span style="font-size:14px;">为了提高南通市网上家长学校的服务质量，现邀请您填写一份关于您孩子学习的调查问卷，页面将自动跳转。</span>
+<a href="#" target="_blank">5秒后页面跳转，如未跳转请点击这里</a>
+</div>

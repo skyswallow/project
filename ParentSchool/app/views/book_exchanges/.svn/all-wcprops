@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/book_exchanges
+END
+_exchange_rules.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/book_exchanges/_exchange_rules.rhtml
+END
+_current_book.erb
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/book_exchanges/_current_book.erb
+END
+_change_book.erb
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/book_exchanges/_change_book.erb
+END
+_bakcup_exchange.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/book_exchanges/_bakcup_exchange.rhtml
+END
+index.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/book_exchanges/index.rhtml
+END
+_alert_div.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/book_exchanges/_alert_div.rhtml
+END

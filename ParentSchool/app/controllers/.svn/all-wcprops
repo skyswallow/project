@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers
+END
+resources_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/resources_controller.rb
+END
+schools_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/schools_controller.rb
+END
+examination_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/examination_controller.rb
+END
+book_tests_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/book_tests_controller.rb
+END
+book_activities_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/book_activities_controller.rb
+END
+book_exchanges_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/book_exchanges_controller.rb
+END
+demo_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/demo_controller.rb
+END
+lectures_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/lectures_controller.rb
+END
+book_plans_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/book_plans_controller.rb
+END
+home_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/home_controller.rb
+END
+foots_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/foots_controller.rb
+END
+areas_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/areas_controller.rb
+END
+welcome_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/welcome_controller.rb
+END
+application.rb
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/application.rb
+END
+net_classes_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/net_classes_controller.rb
+END
+activities_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/activities_controller.rb
+END
+notices_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/notices_controller.rb
+END
+blogs_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/blogs_controller.rb
+END
+news_lines_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/news_lines_controller.rb
+END
+driftages_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/driftages_controller.rb
+END

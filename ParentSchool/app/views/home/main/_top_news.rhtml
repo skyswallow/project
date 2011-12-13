@@ -1,0 +1,10 @@
+<div class="hot-news">
+  <span id="news_status" style="display:block;"></span>
+  <% line = NewsLine.find_by_news_type_and_is_recommended('21',NewsLine::IS_RECOMMENDED[:YES])  %>
+  <% if line %>
+    <h1><%=h line.title %></h1>
+  <span id="summary"><%=h truncate(line.summary,:length => 130) %></span>【<a href="/news_lines/<%=line.id%>" target='_blank'>查看详细</a>】
+  <% end %>
+  <div class="clear"></div>
+</div>
+

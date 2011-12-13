@@ -1,0 +1,12 @@
+<div class="side_box index">
+  <h2 class="side_h2"><span>新闻回放</span></h2>
+  <ul class="artical_list_2">
+    <% now = Time.now %>
+    <% for i in 0..now.strftime('%m').to_i %>
+      <% time = now-i.month %>
+      <% if time.strftime('%Y').to_i == now.strftime('%Y').to_i %>
+        <li><a href="/news_lines/<%= time.strftime('%Y%m') %>/month_news"><%= time.strftime("%Y年%m月") -%></a></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

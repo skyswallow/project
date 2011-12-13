@@ -1,0 +1,40 @@
+<ul>
+  <li style="font-weight:normal; font-size:14px;margin:20px;list-style:none;_margin:0px;*margin:0px;" id="return_info"><%= local_str %></li>
+  <li style="_margin-top:-50px;margin-top:-10px;*margin-top:-20px;">
+    <input type="hidden" id="book_user_name" name="username"/></li>
+  <li style="_margin-top:-50px;margin-top:-10px;*margin-top:-20px;display:none">
+    <input type="hidden" id="jh_or_hz" name="jh_or_hz"/></li>
+  <% book_code =[] %>
+  <% if current_book && [4,5].include?(current_book.status) %>
+    <% book_code << current_book.book_code %>
+  <% end %>
+  <li style="font-weight:normal;">
+    <table>
+       <% (current_book_total ||[]).each do |book| %>
+     <tr><td align="left">
+  <% if book.exchange_type ==0 %>
+          <% book_code << book.reply_book %>
+          <%= User.find_by_target_cellphone(book.apply_user.strip).display_name if User.find_by_target_cellphone(book.apply_user.strip) %>
+          已经拥有《<%=  Constant::All_BOOKS[book.apply_book-1][1] %>》，希望换取
+          《<%=  Constant::All_BOOKS[book.reply_book-1][1] %>》。&nbsp;
+       </td><td> <%= link_to_remote "删除", :url=> { :update => "return_div",  :action => "destroy", :id => book.id},:html=>{:style =>"color:#f00"}, :with => "'search_user_name=' + $('search_user_name').value", :confirm=>"您是否确认要删除？", :update=> "return_div", :method => :delete ,:complete => "alert_div_jh();$('#{ book.id}').remove();" %></td>
+        <% else %>
+          <% book_code << book.apply_book %>
+          <%= User.find_by_target_cellphone(book.apply_user.strip).display_name if User.find_by_target_cellphone(book.apply_user.strip)%>希望获赠
+          《<%=  Constant::All_BOOKS[book.apply_book-1][1] %>》。&nbsp;
+     <td>  <%= link_to_remote "删除", :url=> { :update => "return_div",  :action => "destroy", :id => book.id},:html=>{:style =>"color:#f00"}, :with => "'search_user_name=' + $('search_user_name').value", :confirm=>"您是否确认要删除？", :update=> "return_div", :method => :delete ,:complete => "alert_div_jh();$('#{ book.id}').remove();" %></td>
+        <% end %>
+  </tr>
+      <% end %>  
+    </table>
+  </li>
+  <li style="display:<%= 'none' if book_code.include?(1) %>"><input name="book_name" value="1"  type="radio"   />《独自成长的小幼虫》</li>
+  <li  style="padding-left:65px;display:<%= 'none' if book_code.include?(2) %>"><input name="book_name" value="2"  type="radio" />《有奉献精神的父母培养大人》</li>
+  <li style="display:<%= 'none' if book_code.include?(3) %>"><input name="book_name" value="3"  type="radio" />《英才是怎样造就的》</li>
+  <% if current_book && [4,5].include?(current_book.status) %>
+
+    <li style="display:<%= 'none' if book_code.length==3  %>"><input    type="submit" value="" class="application-bt" onclick="return get_value(1);" id="btnsqjh"/></li>
+  <%elsif current_book && [3,6].include?(current_book.status)%>
+    <li style="display:<%= 'none' if book_code.length==3 %>" ><input   type="submit"  class="application-bt-hz" onclick="return get_value(0);"  value=""/></li>
+    <% end %>
+</ul>

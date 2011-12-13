@@ -1,0 +1,18 @@
+<div class="side_box index">
+  <% lecture = Lecture.find(:first, :order => "created_at desc") %>
+  <% if lecture %>
+    <h2 class="side_h2"><span>视听课堂</span></h2>
+    <img alt="" src="<%= lecture.photo_url %>" width="96" height="72"/>
+    <ul class="side_book_info">
+      <li><span>主题: <%= h lecture.topic %></span></li>
+      <li style="margin-top:10px;"><a href="/lectures/<%=lecture.id%>"><img alt="" src="images/bfan.gif" width="88" height="24"/></a>
+      </li>
+    </ul>
+    <div class="clear"></div>
+    <p style="margin-top:10px;">主讲：<%= h lecture.speaker %></p>
+    <div class="commend_rev">
+      <p>视听课堂：是一支由多方面专家、专业老师组成的队伍，免费为家长答疑解惑。</p>
+    </div>
+  <% end %>
+</div>
+<div class="clear"></div>

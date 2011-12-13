@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/activities
+END
+_normal_activities.erb
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/activities/_normal_activities.erb
+END
+show.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/activities/show.rhtml
+END
+_book_activity.erb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/activities/_book_activity.erb
+END
+index.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/activities/index.rhtml
+END
+new.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/activities/new.rhtml
+END

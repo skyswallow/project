@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  var ext = "*.jpg,*.jpeg,*.png,*.gif,*.bmp"
+  function suff(){
+    var path = document.getElementById("cov")
+    var suff = path.value.replace(/.+\./,"")
+    if(ext.indexOf(suff)==-1)
+    {
+      alert("不允许"+suff+"格式的后缀")
+      return   false
+    }
+
+  }
+
+</script>
+<div id="bd_div">
+<%=render :partial =>"sub_menu"%>
+<%  form_tag "/admin/news_lines/upload", :method => :post, :class => 'required-validate', :multipart => :true, :onsubmit => "return suff();" do%>
+  文件
+  <input type="file" name="file" id="cov" class="required max-length-100"  onkeydown="return false" onkeyup="return false" contenteditable="false" />
+  <%= submit_tag "生成相片" %>
+<% end %>
+  </div>

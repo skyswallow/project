@@ -1,0 +1,12 @@
+<select id="grade_grade_id" name="grade[grade_id]" style="width:150px;"
+        onchange="<%= remote_function(
+          :with => "'parent_id='+value",
+          :update => 'class_select',
+          :url => { :action => :select_class_with_ajax },
+          :style=>"width:150px")%>">
+          <% for grade in @grades %>
+    <option value="<%= grade[1] %>"  title="<%= h grade[0] %>">
+      <%= truncate((h grade[0]),10,"...") %>
+    </option>
+  <% end %>
+</select>

@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  function set_hidden_value(type){
+    if (type == "pre_view") {
+      $('operate_type').value = 0;
+    } else {
+      $('operate_type').value = 1;
+    }
+  }
+</script>
+<p class="title_p">父母学堂页面模板发布</p>
+<div class="clear"></div><br/>
+<%= render :partial => "menu" %>
+<div class="clear"></div><br/>
+<% form_tag "/admin/change_partials", :multipart => true, :name => "new_form", :id => "new_form", :class => 'required-validate', :method => :post, :target => "hidden_frame" do%>
+  <%= partial_tr(["家长互动"], [Constant::JZHD], 3, Constant::JZHD_PICTURE_ARR) %>
+  <iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+  <input type="hidden" name="operate_type" id="operate_type">
+  <input type="hidden" name="page" id="page" value="parent">
+  <div class="clear"></div><br/>
+  <input type="submit" id="pre_view" value="预览" onclick="set_hidden_value('pre_view');">
+  <input type="submit" id="publish" value="发布" onclick="set_hidden_value('publish');">
+<% end %>

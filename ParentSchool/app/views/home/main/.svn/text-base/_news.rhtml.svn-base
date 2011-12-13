@@ -1,0 +1,20 @@
+<div class="newest1">
+  <h2 class="mian_h2">
+    <span>新闻综合</span>
+    <%= link_to("更多", "/news_lines/news", :class => "more-link") %>
+  </h2>
+  <%news = NewsLine.index_news%>
+  <%j=1%>
+  <% (news || []).each do |new| %>
+    <% if news.index(new).to_i == 0 %>
+      <div class="news-pic">   <a href="/news_lines/<%= new.id %>" target="_blank">   <img alt="<%=new.title%>" src="<%=new.head_image%>" width="200" height="135" /><p><%=h  truncate(new.title.to_s.strip,:length=>new.title.to_s.size)%></p></a>    </div>
+      <ul class="news_artical_list">
+      <% else %>
+        <%if news.index(new).to_i == j%>
+          <li><a href="/news_lines/<%= new.id %>" title="<%= new.title %>" target="_blank"><%=h  truncate(new.title.to_s.strip,:length => 21)%></a><span><%= new.created_at.strftime('%Y.%m.%d')  %></span></li>
+        <%end%>
+        <% j += 1 %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

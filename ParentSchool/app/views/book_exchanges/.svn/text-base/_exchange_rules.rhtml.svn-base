@@ -1,0 +1,32 @@
+<div style="text-align:center;margin-bottom:10px;">
+  <a href="javascript:void(0)" id="r_a_1" hidefocus="true" onclick="show_info_1(1,'h')"><img src="/images/zengshu/chakan_h_1.gif"/></a>&nbsp;&nbsp;
+  <a href="javascript:void(0)" id="r_a_2" hidefocus="true" onclick="show_info_1(2,'h')"><img src="/images/zengshu/chakan_h_2.gif"/></a>
+</div>
+<div class="jiaohuan-rules">
+  <ul  id="rules" style="display: none;">
+    <h1></h1>
+    <li>凡是成功获赠图书的学生家长均可参加图书交换。</li>
+    <li>家长可在活动结束前，反复进行图书交换，最终获赠的图书以最后一次成功交换记录为准。</li>
+    <li>您可以在“已发布信息”中查看与自己交换要求相匹配的交换信息，点击【交换】按钮完成图书交换。</li>
+    <li>您可以直接发布图书交换信息，等待其他家长来与您进行图书交换。</li>
+  </ul>
+  <ul  id="circuit" style="display: none;">
+    <h2></h2>
+    <li>未能成功获赠图书的学生家长可以发布获赠申请，申请被赠予图书。</li>
+    <li>已经成功获赠图书的学生家长可以将图书赠予 发布“获赠申请”的学生家长。</li>
+    <li>点击发布信息右侧的【赠予】按钮，您的图书将被赠予发布该条信息的学生家长，点击前请考虑清楚。</li>
+    <li>已经成功获赠图书的学生家长一旦将图书赠予其他家长，可通过再次参加抽奖活动或者发布“获赠申请”来重新获得图书。</li>
+  </ul>
+</div>
+
+<div class="jiaohuan_process">
+  <h1></h1>
+  <ul>
+    <li>第一步：点击活动页面导航栏上的【图书交换】进入“交换与获赠”页面。</li>
+    <li>第二步：在“已发布信息”中，可通过点击上方红色的图书名称，查询与该图书相关的信息，根据自己的实际情况，点击信息右侧的【交换】或【赠予】来完成操作。</li>
+    <li>第三步：若您不清楚自己的图书获赠信息，请在“收到活动短信的手机号码”后的空白框内输入您的手机号码，点击【查询】，即可查看您的图书获赠信息。</li>
+    <li>第四步：您可以发布“交换申请”或“获赠申请”。</li>
+    <li>第五步：点击图书前的<img src="/images/zengshu/choose.gif" height="20" width="25"/>，然后点击【申请获赠】按钮发布申请获赠信息，等待其他家长将图书赠予您。</li>
+    <li>第六步：点击图书前的<img src="/images/zengshu/choose.gif" height="20" width="25"/>，然后点击【申请交换】按钮发布申请交换信息，等待其他家长与您进行图书交换。</li>
+  </ul>
+</div>

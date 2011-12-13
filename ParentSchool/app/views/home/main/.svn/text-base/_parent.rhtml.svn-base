@@ -1,0 +1,108 @@
+<link href="/stylesheets/prototip.css?<%= rand %>" media="screen" rel="stylesheet" type="text/css" />
+<div class="sy_fmxt_class">
+  <h2 class="mian_h2"><span>父母学堂</span></h2>
+  <div class="each_box">
+    <h3>
+      <span>0-3岁儿童</span>
+      <%= link_to("更多", "/news_lines/15/sub_parent_class", :class => "more-link") %>
+    </h3>
+    <% home_educations = NewsLine.newest(6, 5, 15) %>
+    <div class="jzhd-box">
+      <img alt="" src="/images/fmxt1.gif" width="90" height="120"/>
+    </div>
+    <ul>
+      <% (home_educations || []).each do |home_education| %>
+        <li id="h_<%= home_education.id %>">
+          <a href="/news_lines/<%= home_education.id %>" title="<%=  home_education.title %>" target = "_blank"><%= h(truncate(home_education.title, :length => 12)) %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="each_box">
+    <h3>
+      <span>3-6岁儿童</span>
+      <%= link_to("更多", "/news_lines/16/sub_parent_class", :class => "more-link") %>
+    </h3>
+    <% foreign_educations = NewsLine.newest(6, 5, 16) %>
+    <div class="jzhd-box">
+      <img alt="" src="/images/fmxt2.gif" width="90" height="120"/>
+    </div>
+    <ul>
+      <% (foreign_educations || []).each do |foreign_education| %>
+        <li id="f_<%= foreign_education.id %>">
+           <a href="/news_lines/<%= foreign_education.id %>" title="<%=  foreign_education.title %>" target = "_blank"><%= h(truncate(foreign_education.title, :length => 12)) %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div class="each_box">
+    <h3>
+      <span>小学阶段</span>
+      <%= link_to("更多", "/news_lines/17/sub_parent_class", :class => "more-link") %>
+    </h3>
+    <% exam_students = NewsLine.newest 6, 5, 17 %>
+    <div class="jzhd-box">
+      <img alt="" src="/images/fmxt3.gif" width="90" height="120"/>
+    </div>
+    <ul>
+      <% (exam_students || []).each do |exam_student| %>
+        <li id="e_<%= exam_student.id %>">
+          <a href="/news_lines/<%= exam_student.id %>" title="<%= exam_student.title %>" target = "_blank"><%= h(truncate(exam_student.title, :length => 12)) %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="each_box">
+    <h3>
+      <span>初中阶段</span>
+      <%= link_to("更多", "/news_lines/18/sub_parent_class", :class => "more-link") %>
+    </h3>
+    <% experts = NewsLine.newest 6, 5, 18 %>
+    <div class="jzhd-box">
+      <img alt="" src="/images/fmxt4.gif" width="90" height="120"/>
+    </div>
+    <ul>
+      <% (experts || []).each do |expert| %> 
+        <li id="j_<%= expert.id %>">
+           <a href="/news_lines/<%= expert.id %>" title="<%= expert.title %>" target = "_blank"><%= h(truncate(expert.title, :length => 12)) %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div class="each_box">
+    <h3>
+      <span>高中阶段</span>
+      <%= link_to("更多", "/news_lines/19/sub_parent_class", :class => "more-link") %>
+    </h3>
+    <% experts = NewsLine.newest 6, 5, 19 %>
+    <div class="jzhd-box">
+      <img alt="" src="/images/fmxt5.gif" width="90" height="120"/>
+    </div>
+    <ul>
+      <% (experts || []).each do |expert| %>  
+        <li id="j_<%= expert.id %>">
+           <a href="/news_lines/<%= expert.id %>" title="<%= expert.title %>" target = "_blank"><%= h(truncate(expert.title, :length => 12)) %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="each_box">
+    <h3>
+      <span>特殊家庭教育</span>
+      <%= link_to("更多", "/news_lines/20/sub_parent_class", :class => "more-link") %>
+    </h3>
+    <% experts = NewsLine.newest 6, 5, 20 %>
+    <div class="jzhd-box">
+      <img alt="" src="/images/fmxt6.gif" width="90" height="120"/>
+    </div>
+    <ul>
+      <% (experts || []).each do |expert| %>
+        <li id="j_<%= expert.id %>">
+          <a href="/news_lines/<%= expert.id %>" title="<%= expert.title %>" target = "_blank"><%= h(truncate(expert.title, :length => 12)) %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

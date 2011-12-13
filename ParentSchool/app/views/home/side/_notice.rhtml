@@ -1,0 +1,21 @@
+<div class="side_box index">
+  <h2 class="side_gonggao_h2"><span>公告栏</span></h2>
+  <div class="side_gongao_box">
+    <marquee width="275" height="160" direction="up" scrollamount="1" onmouseover="this.stop()" onmouseout="this.start()" >
+      <table class="marquee_table" width="95%">
+        <colgroup>
+          <col width="30%" />
+          <col width="70%" />
+        </colgroup>
+        <% ((NewsLine.find :all, :conditions => ["news_type='22' and status=1"], :order => "created_at desc") || []).each do |notice| %>
+          <tr>
+            <td><%= notice.created_at.strftime('%Y.%m.%d') -%></td>
+            <td valign="top">
+              <a target="_blank" href="/news_lines/<%= notice.id %>" title="<%= notice.title %>"><%= h notice.title %></a>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </marquee>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin
+END
+resources_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/resources_controller.rb
+END
+base_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/base_controller.rb
+END
+activity_users_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/activity_users_controller.rb
+END
+book_activities_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/book_activities_controller.rb
+END
+incoming_pages_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/incoming_pages_controller.rb
+END
+change_partials_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/change_partials_controller.rb
+END
+lectures_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/lectures_controller.rb
+END
+menus_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/menus_controller.rb
+END
+page_records_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/page_records_controller.rb
+END
+action_records_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/action_records_controller.rb
+END
+user_records_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/user_records_controller.rb
+END
+contributions_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/contributions_controller.rb
+END
+notices_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/notices_controller.rb
+END
+activities_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/activities_controller.rb
+END
+news_lines_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/news_lines_controller.rb
+END
+time_statistics_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/controllers/admin/time_statistics_controller.rb
+END

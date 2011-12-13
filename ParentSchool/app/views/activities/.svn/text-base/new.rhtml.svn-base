@@ -1,0 +1,80 @@
+<div style="width:950px; margin:0 auto;">
+  <div style="width:950px; height:43px; background:url(/images/baoming-bj1.gif) no-repeat;"></div>
+  <div style="width:930px; background:url(/images/baoming-bj2.gif) repeat-y;padding:10px; text-align:center;">
+    <h1 style="width:850px; text-align:center; background:#f6f6f6; color:#ae0000; margin:0 auto;"><%= h @activity.name %></h1>
+    <style type="text/css">
+      .baoming-table td{
+        line-height:60px;
+        border:#CCC 0px solid;
+        padding-right:10px;
+      }
+      .baoming-table button{
+        margin:25px 0 25px 0;
+      }
+    </style>
+    <% form_tag("/activities", :method => :post, :id => 'activity_form', :name =>"activity_form", :class => 'required-validate', :onsubmit => "return checkForm();") do %>
+      <table class="baoming-table" style=" border:#CCC 0px solid; margin:0 auto; margin-top:25px;">
+        <colgroup>
+          <col width="20%"/>
+          <col width="50%"/>
+          <col width="30%"/>
+        </colgroup>
+        <tr>
+          <td align="right"><span style="color:#F00;">*</span>您的姓名:</td>
+          <td align="right"><input style="width:220px;" id="name" name="activity_apply[name]" type="text" class="required max-length-20" /></td>
+          <td align="left">（20字以内）</td>
+        </tr>
+        <tr>
+          <td align="right"><span style="color:#F00;">*</span>所在学校:</td>
+          <td align="right"><input style="width:220px;" id="school" name="activity_apply[school]" type="text" class="required max-length-50" /></td>
+          <td align="left">（50字以内）</td>
+        </tr>
+        <tr>
+          <td align="right"><span style="color:#F00;">*</span>年级:</td>
+          <td align="right"><input style="width:220px;" id="grade" name="activity_apply[grade]" type="text" class="required max-length-20" /></td>
+          <td align="left">（20字以内）</td>
+        </tr>
+        <tr>
+          <td align="right"><span style="color:#F00;">*</span>班级:</td>
+          <td align="right"><input style="width:220px;" id="user_class" name="activity_apply[user_class]" type="text" class="required max-length-20" /></td>
+          <td align="left">（20字以内）</td>
+        </tr>
+        <tr>
+          <td align="right">联系电话:</td>
+          <td align="right"><input style="width:220px;" id="contact_number" name="activity_apply[contact_number]" type="text" class="max-length-20" /></td>
+          <td align="left">（20字以内）</td>
+        </tr>
+        <tr>
+          <td align="right">E-mail:</td>
+          <td align="right"><input style="width:220px;" id="contact_email" name="activity_apply[contact_email]" type="text" class="max-length-50" /></td>
+          <td align="left">（50字以内）</td>
+        </tr>
+        <tr>
+          <td align="right"></td>
+          <td align="center">
+            <input type="hidden" id="activity_id" name="activity_apply[activity_id]" value="<%= @activity.id %>"/>
+            <input type="hidden" id="created_ip" name="activity_apply[created_ip]" value="<%= request.remote_ip %>"/>
+            <input type="submit" id="sub_btn" style="background: url(/images/bm-an1.gif) no-repeat; border:0; width:85px; height:32px; cursor:pointer;" value=""></input>
+            <input type="button" onclick="window.location.reload();" value="" id="reset_btn" style="background: url(/images/bm-an2.gif) no-repeat; border:0; width:85px; height:32px; cursor:pointer;"></input></td>
+          <td align="left"></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+  <div style="width:950px; height:45px; background:url(/images/baoming-bj3.gif) no-repeat;"></div>
+</div>
+<script type="text/javascript">
+  function checkForm(){
+    var valid = new Validation('activity_form', {onSubmit:false});
+    var result = valid.validate();
+    if(result){
+      $("reset_btn").disable();
+      $("sub_btn").disable();
+      return true;
+    }else{
+      $("reset_btn").enable();
+      $("sub_btn").enable();
+      return false;
+    }
+  }
+</script>

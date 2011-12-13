@@ -1,0 +1,75 @@
+<div id="bd_div">
+  <%= render :partial => "sub_menu" %>
+  <table style="padding-top:20px;width:98%;">
+    <colgroup>
+      <col width="14%"/>
+      <col width="10%"/>
+      <col width="30%"/>
+      <col width="8%"/>
+      <col width="8%"/>
+      <col width="8%"/>
+      <col width="10%"/>
+      <col width="10%"/>
+    </colgroup>
+    <tr style=" text-align:center;">
+      <td><b>标题</b></td>
+      <td><b>新闻类型</b></td>
+      <td><b>路径</b></td>
+      <td><b>提交人</b></td>
+      <td><b>预览</b></td>
+      <td><b>发布</b></td>
+      <td><b>创建日期</b></td>
+      <td><b>操作</b></td>
+    </tr>
+      <% unless @lines.blank? -%>
+        <% for line in @lines %>
+          <tr id="line_<%= line.id %>" style="height: 40px;border-bottom: 1px dashed #ccc; text-align: center;">
+            <td title="<%= line.title.to_s.strip if line.title %>" style=" text-align: left;">
+              <%= h truncate(line.title.to_s.strip, :length => 6) if line.title %>
+            </td>
+            <td><%= h NewsType.get_parent_name(line.news_type) %></td>
+            <td style="text-align:left;">
+              <%=h line.path  if line.path %>
+            </td>
+            <td style="" title="<%= line.nickname.to_s.strip if line.nickname %>" >
+              <%= h truncate(line.nickname.to_s.strip, :length =>4) if line.nickname %>
+            </td>
+            <td style="">
+              <a id="link_<%= line.id %>"  href="/admin/news_lines/<%= line.id %>" target="_blank">预览</a>
+            </td>
+            <td style="">
+              <% if  line.status == NewsLine::STATUS[:NEW] %>
+                <a  href="/admin/news_lines/<%= line.id %>/release" >发布</a>
+              <% else %>
+                已发布
+              <% end %>
+            </td>
+            <td title="<%= line.created_at.strftime("%Y-%m-%d %H:%M:%S") if line.created_at %>">
+              <%= line.created_at.strftime("%Y-%m-%d") if line.created_at %>
+            </td>
+            <td>
+              <% if  line.status == NewsLine::STATUS[:NEW] %>
+                <a  href="/admin/news_lines/<%= line.id %>/edit" >重新提交</a>
+              <% else %>
+                <% if  (line.parent_id.to_i == 1 or line.news_type.to_i == 21) and line.status == NewsLine::STATUS[:NOMAL] %>
+                  <%if line.is_recommended == NewsLine::IS_RECOMMENDED[:NO]%>
+                    <a  href="/admin/news_lines/<%= line.id %>/recommend" >推荐</a>
+                  <%else%>
+                    <a  href="/admin/news_lines/<%= line.id %>/cancle_recommend" >取消推荐</a>
+                  <%end%>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr style="padding-top:5px;">
+          <td style="text-align:center" colspan="8">暂无信息</td>
+        </tr>
+      <% end %>
+    </table>
+  <div class='flickr_pagination'>
+    <%= will_paginate @lines if @lines %>
+  </div>
+  <div class="clear"></div>
+</div>

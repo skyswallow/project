@@ -1,0 +1,98 @@
+<%= javascript_include_tag :defaults  %>
+<a href="/admin/page_records" class="rigth">简单查询</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/page_records/high_search">高级查询</a><p/>
+当前时间：<%= Date.today.to_s('yyyy-mm-dd') %>
+<form action="/admin/page_records" method="get">
+  &nbsp;&nbsp;<a href="/admin/page_records?time=0" class="<%= 'rigth' if params[:time].blank? || params[:time].to_i ==0 %>" id="a0" onclick="return demo(0);">当日</a>
+  &nbsp;&nbsp;<a href="/admin/page_records?time=1" id="a1" onclick=" return demo(1);" class="<%= 'rigth' if  params[:time].to_i ==1 %>">昨日</a>
+  &nbsp;&nbsp;<a href="/admin/page_records?time=6" id="a6" onclick="return demo(6);" class="<%= 'rigth' if  params[:time].to_i ==6 %>">最近7天</a>
+  &nbsp;&nbsp;<a href="/admin/page_records?time=29" id="a29" onclick="return demo(29);" class="<%= 'rigth' if  params[:time].to_i ==29 %>">最近30天</a>
+  <input type="hidden" value="<%= params[:time] %>" name="time" id="time"></input>
+  网页地址：<input type="text" name="search_addr" id="search_addr" value="<%= params[:search_addr] %>"></input><input type="submit" value="查询"/>
+</form>
+<br/>
+<table border="1" class="page1">
+  <colgroup>
+    <col width="30%"></col>
+    <col width="15%"></col>
+    <col width="10%"></col>
+    <col width="10%"></col>
+    <col width="10%"></col>
+    <col width="10%"></col>
+    <col width="5%"></col>
+    <col width="5%"></col>
+    <col width="5%"></col>
+  </colgroup>
+  <tr>
+    <td>受访页面</td><td><%= sort_link_helper('PV', (params[:sort].blank? ? 'pv_reverse' : 'pv')) %></td>
+    <td><%= sort_link_helper('UV', 'uv') %></td><td><%= sort_link_helper('IP', 'ip') %></td>
+    <td><%= sort_link_helper('人均浏览次数', 'num') %></td><td><%= sort_link_helper('人均浏览时间（秒）', 'stay_date') %>
+    </td><td>历史</td><td>分时统计</td>
+    <td>来路统计</td></tr>
+  <% (@page_recordes || []).each do |recorde| %>
+    <tr>
+      <td><a href="<%= recorde.url %>" target  ="_blank" title="<%= recorde.url %>"><%= recorde.url.to_s %></a></td>
+      <td><%= recorde.pv.to_i %></td>
+      <td><%= recorde.uv.to_i %></td>
+      <td><%= recorde.ip.to_i %></td>
+      <td><%= recorde.num %></td>
+      <td><%= recorde.stay_date.to_i  %></td>
+      <td><a href="#" onclick="javascript:window.open('/admin/page_records/page_history?url='+escape('<%= (recorde.url) %>'));" >历史</a></td>
+      <td><a href="#" onclick="javascirpt:window.open('/admin/time_statistics?url='+escape('<%= recorde.url %>'));" >分时统计</a></td>
+      <td><a href="#" onclick="javascript:window.open('/admin/incoming_pages?url='+escape('<%= recorde.url %>'));" >来路统计</a></td>
+    </tr>
+  <% end %>
+</table>
+
+<% if @page_recordes.total_pages ==1 || params[:page].blank? ||  params[:page] =='1' %>
+  首页
+<% else %>
+  <a href="/admin/page_records?page=1<%= '&sort='+params[:sort] if params[:sort]%>&time=<%= params[:time] %>&search_addr=<%= params[:search_addr] %>">首页</a>
+<% end %>
+<%= will_paginate @page_recordes, :previous_label=> '上一页', :next_label => '下一页',:container=>false  %>
+第<%= if params[:page].blank? then  '1' else  params[:page] end %>/<%=  @page_recordes.total_pages %>页 &nbsp;
+<% total = (1..@page_recordes.total_pages) %>
+<% if @page_recordes.total_pages ==1 ||  @page_recordes.total_pages == params[:page].to_i %>
+  尾页
+<% else %>
+  <a href="/admin/page_records?page=<%= @page_recordes.total_pages %><%= '&sort='+params[:sort] if params[:sort]%>&time=<%= params[:time] %>&search_addr=<%= params[:search_addr] %>">尾页</a>
+<% end %>
+跳到<select id="page" name="page" onchange="javascript:window.location.href='/admin/page_records?page='+this.value+'<%= '&sort='+params[:sort] if params[:sort]%>'+'&time='+'<%= params[:time] %>'+'&search_addr='+'<%= params[:search_addr] %>';">
+  <% total.each do |i| %>
+    <option value="<%= i  %>" <%= 'selected'  if params[:page].to_i == i.to_i %>>第<%= i %>页</option>
+  <% end %>
+</select>页&nbsp;共<%= @page_recordes.total_entries %>条记录
+<% if !@page_recordes.blank? %>
+  <input type="button" value="导出列表" onclick="return to_excel();"></input>
+<% end %>
+<div id="alert_info"></div>
+
+<style type="text/css">
+  .rigth{
+    background:#00A8E6;
+    font-size:18px;
+  }
+  .page1 td{
+    border: 1px solid #666666;
+    padding: 2px;
+  }
+  .page1 {
+    border: 1px solid #666666;
+  }
+</style>
+<script type="text/javascript">
+  function to_excel(){
+    if(confirm('你确定要导出当前查询的结果吗？')){
+      window.location.href= '/admin/page_records/to_excel?time=<%= params[:time] %>&sort=<%= params[:sort] %>&search_addr=<%= params[:search_addr] %>';
+    }
+  }
+  function demo(value){
+    document.getElementById('a0').className='';
+    document.getElementById('a1').className='';
+    document.getElementById('a6').className='';
+    document.getElementById('a29').className='';
+    document.getElementById('a'+value).className='rigth';
+    document.getElementById('time').value=value;
+
+  }
+
+</script>

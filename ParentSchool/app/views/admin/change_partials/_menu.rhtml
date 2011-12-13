@@ -1,0 +1,14 @@
+
+<div class="tab">
+  <ul>
+    <li><a id="index" href="/admin/change_partials" class="<% if @controller.action_name == "index" %>selected<% end %>">首页</a></li>
+    <li><a id="parent" href="/admin/change_partials/parent" class=<% if @controller.action_name == "parent" %>selected<% end %>>父母学堂页面</a></li>
+    <li><a id="exam" href="/admin/change_partials/exam" class=<% if @controller.action_name == "exam" %>selected<% end %>>招考信息页面</a></li>
+    <li><a id="class" href="/admin/change_partials/class" class=<% if @controller.action_name == "class" %>selected<% end %>>网络班级页面</a></li>
+    <li><a id="blog" href="/admin/change_partials/blog" class=<% if @controller.action_name == "blog" %>selected<% end %>>博客空间页面</a></li>
+    <li><a id="school" href="/admin/change_partials/school" class=<% if @controller.action_name == "school" %>selected<% end %>>分校首页</a></li>
+  </ul>
+  <div class="clear"></div>
+  <div class="tab-line"></div>
+  <div class="clear"></div>
+</div>

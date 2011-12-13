@@ -1,0 +1,29 @@
+<ul id="change_box"  class="change-line">
+  <% (@book_exchange ||[]).each do |book_exchange| %>
+    <% if book_exchange.is_finished ==0 %>
+      <% if book_exchange.exchange_type ==0 %>
+        <li id="<%= book_exchange.id %>"><span style="float:left;"><%= @current_book_exchange[book_exchange.id] %>
+            已经拥有《<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>》，希望换取
+            《<%=  Constant::All_BOOKS[book_exchange.reply_book-1][1] %>》。
+          </span>
+          <button  class="jiaohuan-bt" onclick="set_exchange(1,'<%= book_exchange.id %>','<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>','<%=  Constant::All_BOOKS[book_exchange.reply_book-1][1] %>');"></button>
+        </li>
+        <div class="clear" ></div>
+      <% else %>
+        <li id="<%= book_exchange.id %>"><span style="float:left;"><%= @current_book_exchange[book_exchange.id] %>希望获赠《<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>》。</span>
+          <button  class="zengyu-bt" onclick="set_exchange(0,'<%= book_exchange.id %>','<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>');"></button></li>
+        <div class="clear" ></div>
+      <% end %>
+    <%else%>
+      <% if book_exchange.exchange_type ==0 %>
+        <li><span style="float:left;"><%= @current_book_exchange[book_exchange.id] %>已经拥有《<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>》，希望换取《<%=  Constant::All_BOOKS[book_exchange.reply_book-1][1] %>》。</span><button class="wancheng-bt"></button></li>
+       <div class="clear" ></div>
+    <% else %>
+        <li><span style="float:left;"><%= @current_book_exchange[book_exchange.id] %>希望获赠《<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>》。</span><button  class="wancheng-bt"></button></li>
+       <div class="clear" ></div>
+    <% end %>
+    <% end %>
+  <% end %>
+</ul>
+<div class="clear"></div>
+<div align="center"> <%= will_paginate_remote(@book_exchange, :param_name => 'page', :update=>'change_box', :url=>"/book_exchanges/select_book") %></div>

@@ -1,0 +1,47 @@
+<div class="side_box index">
+  <h2 class="side_fx-search"><span>站内搜索</span></h2>
+  <div class="fx-search-box">
+    <% form_tag("/areas/result", :method => :get) do -%>
+      <table width="90%" border="0" align="center">
+        <colgroup>
+        <col width="30%"/>
+        <col width="40%"/>
+        <col width="30%"/>
+        </colgroup>
+        <tr>
+          <td>
+            关键字：
+          </td>
+          <td>
+            <input id="news_title" name="news_title" onfocus="if(this.value == '请输入新闻标题...'){this.value=''}"
+                   onblur="if(this.value == ''){this.value='请输入新闻标题...'}"
+                   value="请输入新闻标题..." style="color:#7F7F7F" />
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            地区：
+          </td>
+          <td>
+            <select id="area" name="area" style="color:#7F7F7F">
+              <option value="10" selected>全部地区</option>
+              <option value="1">崇川区</option>
+              <option value="2">港闸区</option>
+              <option value="3">开发区</option>
+              <option value="4">通州</option>
+              <option value="5">海门</option>
+              <option value="6">启东</option>
+              <option value="7">如皋</option>
+              <option value="8">如东</option>
+              <option value="9">海安</option>
+            </select><input type="hidden" id="type" name="type" value="1"/>
+          </td>
+          <td align="right">
+            <button type="submit"></button>
+          </td>
+        </tr>
+      </table>
+    <% end -%>
+  </div>
+</div>

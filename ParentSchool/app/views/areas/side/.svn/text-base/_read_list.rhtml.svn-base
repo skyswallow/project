@@ -1,0 +1,9 @@
+<div class="side_box index">
+  <div class="read-phb">
+    <ul>
+      <% (@read_list || []).each do |area_new| %>
+      <li><a href="/areas/<%= area_new.id %>" target="_blank"  title="<%= h area_new.news_title %>"><%= h truncate(area_new.news_title.strip, :length =>17) %></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

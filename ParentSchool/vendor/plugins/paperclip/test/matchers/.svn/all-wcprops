@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/matchers
+END
+validate_attachment_size_matcher_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/matchers/validate_attachment_size_matcher_test.rb
+END
+validate_attachment_content_type_matcher_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 185
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/matchers/validate_attachment_content_type_matcher_test.rb
+END
+have_attached_file_matcher_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/matchers/have_attached_file_matcher_test.rb
+END
+validate_attachment_presence_matcher_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 181
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/matchers/validate_attachment_presence_matcher_test.rb
+END

@@ -1,0 +1,55 @@
+<script type="text/javascript">
+  function show_rank(obj,len){
+    for(var i=0;i<len;i++){
+      if(i==obj){
+        $("li_"+i).addClassName("list_banga");
+        $("rank_"+i).style.display = "";
+        for(var j=0;j<len;j++){
+          if(obj!=j){
+            $("li_"+j).removeClassName("list_banga");
+            $("li_"+j).addClassName("list_bangb");
+            $("rank_"+j).style.display = "none";
+          }else{
+            $("li_"+j).removeClassName("list_bangb");
+          }
+        }
+      }
+    }
+  }
+</script>
+<ul>
+  <li><a href="javascript:void();" hidefocus="true" class="list_banga" id="li_0" onclick="show_rank_info(0,2)">最新话题</a></li>
+  <li><a href="javascript:void();" hidefocus="true" class="list_bangb" id="li_1" onclick="show_rank_info(1,2)">人气话题</a></li>
+</ul>
+<table class="zw_bang" id="rank_0">
+  <colgroup>
+    <col width="73%" />
+    <col width="27%" />
+  </colgroup>
+  <tr>
+    <th style="text-align:center;font-weight: bold;">话题</th>
+    <th style="text-align:center;font-weight: bold;">回复</th>
+  </tr>
+  <% (GroupTopic.get_top_topics || []).each_with_index do |left, l_idx| %>
+    <tr>
+      <td><a href="/topic_book_relations/<%= left.id %>" target="_blank" title="<%= h(left.title.strip) %>"><%= h(truncate(left.title.strip,20,"...")) %></a></td>
+      <td><%= left.group_topic_comments.normal.length %></td>
+    </tr>
+  <% end %>
+</table>
+<table class="zw_bang" id="rank_1" style="display:none;">
+  <colgroup>
+    <col width="73%" />
+    <col width="27%" />
+  </colgroup>
+  <tr>
+    <th style="text-align:center;font-weight: bold;">话题</th>
+    <th style="text-align:center;font-weight: bold;">回复</th>
+  </tr>
+  <% (GroupTopic.get_excellent_topics || []).each_with_index do |topic, excellent_idx| %>
+    <tr>
+      <td><a href="/topic_book_relations/<%= topic.id %>" target="_blank" title="<%= h(topic.title.strip) %>"><%= h(truncate(topic.title.strip,20,"...")) %></a></td>
+      <td><%= topic.group_topic_comments.normal.length %></td>
+    </tr>
+  <% end %>
+</table>

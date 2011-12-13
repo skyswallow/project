@@ -1,0 +1,268 @@
+<script type="text/javascript">
+  function checkLoginForm(){
+    var valid = new Validation('login_form', {
+      onSubmit:false
+    });
+    var result = valid.validate();
+    if(!result)
+    {
+      return false;
+    }
+  }
+
+  function str_to_num(str_in) {
+    num_out = "";
+    var array=new Array();
+    if(str_in != "")
+    {
+      for(var i = 0; i < str_in.length; i++) {
+        array[i]=str_in.charCodeAt(i)+i;
+      }
+      for(i=0;i<array.length;++i)
+      {
+        num_out+=array[i]+'%';
+      }
+    }
+    return num_out;
+  }
+
+  function jxt_login(username, password){
+    username_p = str_to_num(username);
+    password_p = str_to_num(password);
+    window.open(encodeURI("http://teacher.ntjxt.net/AuroraESchool.html#eschool30="+username_p+";eschool31="+password_p),"","scrollbars=yes,toolbar=yes, menubar=yes, resizable=yes,location=yes, status=yes");
+    return false;
+  }
+
+  function login(){
+    alert("您未登陆，请先登陆");
+    $('passport').focus();
+    return false;
+  }
+
+  function showWindow(width,height){
+    location.href="#";
+    var windowstr= document.getElementById("popLayer").innerHTML;
+    document.getElementById("infoDiv").innerHTML=windowstr;
+    document.getElementById("infoDiv").style.left=((document.body.clientWidth-width)>0?(document.body.clientWidth-width):0)/2+"px";
+    document.getElementById("infoDiv").style.top=100+"px";
+    document.getElementById("infoDiv").style.zIndex=10001;
+    document.getElementById("infoDiv").style.width=width+"px";
+    document.getElementById("infoDiv").style.height=height+"px";
+    document.getElementById("tranDiv").style.height=document.body.clientHeight+ "px";
+    document.getElementById("tranDiv").style.width=document.body.clientWidth+ "px";
+    document.getElementById("tranDiv").style.display="";
+    document.getElementById("tranDivBack").style.display="";
+    document.getElementById("tranDivBack").style.zIndex=10000;
+    document.getElementById("infoDiv").style.display="";
+  }
+
+  function jxt_user_login(username, password){
+    if(document.getElementById('hidden_name').value == ""){
+      document.getElementById('check_spaces').style.display = "block"
+      return;
+    }
+    username_p = str_to_num(username);
+    password_p = str_to_num(password);
+    closeWindow();
+    window.open(encodeURI("http://teacher.ntjxt.net/AuroraESchool.html#eschool30="+username_p+";eschool31="+password_p),"","scrollbars=yes,toolbar=yes, menubar=yes, resizable=yes,location=yes, status=yes");
+    return false;
+  }
+
+  function closeWindow(){
+    document.getElementById("tranDiv").style.display="none";
+  }
+
+  function showWindows(width,height){
+    location.href="#";
+    var windowstr= document.getElementById("popLayer1").innerHTML;
+    document.getElementById("infoDiv1").innerHTML=windowstr;
+    document.getElementById("infoDiv1").style.left=((document.body.clientWidth-width)>0?(document.body.clientWidth-width):0)/2+"px";
+    document.getElementById("infoDiv1").style.top=100+"px";
+    document.getElementById("infoDiv1").style.zIndex=10001;
+    document.getElementById("infoDiv1").style.width=width+"px";
+    document.getElementById("infoDiv1").style.height=height+"px";
+    document.getElementById("tranDiv1").style.height=document.body.clientHeight+ "px";
+    document.getElementById("tranDiv1").style.width=document.body.clientWidth+ "px";
+    document.getElementById("tranDiv1").style.display="";
+    document.getElementById("tranDivBack1").style.display="";
+    document.getElementById("tranDivBack1").style.zIndex=10000;
+    document.getElementById("infoDiv1").style.display="";
+  }
+
+  function closeWindows(){
+    document.getElementById("tranDiv1").style.display="none";
+  }
+</script>
+<style type="text/css">
+  #tranDiv, #tranDiv1 {
+    position:absolute;
+    left:0px;
+    top:0px;
+  }
+  #tranDivBack, #tranDivBack1 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    filter:alpha(Opacity=30);
+    -moz-opacity:0.3;
+    opacity:0.3;
+  }
+  #infoDiv, #infoDiv1 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    text-align:center;
+  }
+  .pop_box {
+    background:#FFF;
+    padding:10px;
+  }
+  .pop_table_box{
+    width:500px;
+    margin:0 auto;
+  }
+  .pop_table_box td{
+    padding:5px;
+    border:#ebebeb 1px solid;
+  }
+</style>
+<div class="top-box">
+  <div class="top-login">
+    <% if cookies[:space_id] %>
+      <% space = Space.find_by_id(cookies[:space_id]) if cookies[:space_id] %>
+      <%=h space.nickname if space %>，南通网上家长学校欢迎您！
+      <img src="/images/jrkj.gif"/><a style="color:#900;" href="<%= CONFIG[:xuexi6_url] %>/app/spaces/<%= cookies[:space_id] %>" target="_blank">进入我的空间</a>
+      <% if is_admin? %>
+        <img style="margin-right:3px; "src="/images/073.gif" height="12" width="21" alt=""/><a style="color: #C30; font-weight:bold;" href="/admin/news_lines">后台管理</a>&nbsp;|&nbsp;
+      <% elsif is_area_admin? %>
+        <img style="margin-right:3px;"src="/images/073.gif" height="12" width="21" alt=""/><a style="color: #C30; font-weight:bold;" href="javascript:viod(0);" onclick="window.open('/manage/news')">后台管理</a>&nbsp;|&nbsp;
+      <% end %>
+      <a href="javascript:window.location.href='<%= CONFIG[:xuexi6_url] %>/community/sessions/del_cookies?back_url=<%= CONFIG[:parent_school_url] %>/home/logout';">退出</a>
+    <% else %>
+      <% form_tag "/home", :method => :post, :id => "login_form", :name => "login_form", :class => 'required-validate', :onsubmit=>"return checkLoginForm()" do %>
+        用户名：
+        <input type="text" id="passport" name="passport" class="required min-length-6 max-length-40" style="width:150px;"/>
+        密码：
+        <input type="password" id="password" name="password" class="required max-length-30" style="width:150px;"/>
+        验证码：
+        <input type="text" name="proof_code" id="proof_code" class="required min-length-4 max-length-4" style="width:60px;"/>
+        <span id="proofcode" style="cursor:pointer; background:#ebebeb; height:24px; line-height:24px; padding:1px 7px 1px 7px; color:orange; font-weight:bold; font-size:16px;"  title="看不清楚？可以点击此处换一张"
+              onclick="<%= remote_function :update => :proofcode, :method => :get, :url => "/home/get_proof_code"  %>">
+                <%= session[:proof_code] %>
+        </span>
+        <button type="submit">登录</button>&nbsp;&nbsp;
+        <a class="blue_link" href="<%= CONFIG[:xuexi6_url] %>/community/sessions/forget">忘记密码？</a>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="top-link">
+    <% space = Space.find_by_id(cookies[:space_id]) if cookies[:space_id] %>
+    <% user = User.find_all_by_person_id_and_user_type(space.user_id, User::USER_TYPE_TEACHER, :conditions => ["status != 40"]) if space %>
+    <% if cookies[:space_id] %>
+      <% if user and user.size == 1 %>
+        <a class="jxt-link" href="javascript:void(0);" onclick="jxt_login('<%= User.find_by_person_id_and_user_type(space.user_id, User::USER_TYPE_TEACHER, :conditions => ["status != 40"]).username %>', '<%= User.find_by_person_id_and_user_type(space.user_id, User::USER_TYPE_TEACHER, :conditions => ["status != 40"]).password %>');">家校通</a>
+      <% elsif user and user.size > 1 %>
+        <a class="jxt-link" href="javascript:showWindow(600,600);">家校通</a>
+      <% else %>
+        <a class="jxt-link" href="javascript:void(0);" onclick="jxt_login('', '');">家校通</a>
+      <% end %>
+    <% else %>
+      <a class="jxt-link" href="javascript:void(0);" onclick="login();">家校通</a>
+    <% end %>
+    <% if cookies[:space_id] %>
+      <% get_user_school(cookies[:space_id]) %>
+      <% if @school and @school.size > 1 %>
+        |<a class="bjztc-link" href="javascript:showWindows(600,600);">班级直通车</a>
+      <% elsif @school and @school.size == 1 %>
+        |<a class="bjztc-link" href="<%= CONFIG[:net_school_url] %>/schools/set_cookies?school_id=<%= @school[0].id %>&space_id=<%= cookies[:space_id] %>" target="_blank">班级直通车</a>
+      <% end %>
+    <% else %>
+      |<a class="bjztc-link" href="javascript:void(0);" onclick="login();">班级直通车</a>
+    <% end %>
+  </div>
+</div>
+<div class="clear"></div>
+<div id="popLayer" style="display:none;">
+  <div class="pop_box">
+    <% if @users and @users.size > 1 %>
+      <table class="pop_table_box">
+        <tr>
+          <td colspan="4" style="color:red;">
+            请选择您要登录的用户：
+          </td>
+        </tr>
+        <tr>
+          <td><b>选择</b></td>
+          <td><b>用户名</b></td>
+          <td><b>昵称</b></td>
+          <td><b>角色</b></td>
+        </tr>
+        <% for user in @users %>
+          <tr>
+            <td><input type="radio" id="operate" name="operate" value="<%= user.username %>;<%= user.password %>" onclick="javascript:document.getElementById('hidden_name').value=this.value.split(';')[0];document.getElementById('hidden_password').value=this.value.split(';')[1];"/></td>
+            <td><%=h user.username %></td>
+            <td><%=h user.display_name %></td>
+            <td>
+              <% if user.user_type == User::USER_TYPE_USER %>普通用户
+              <% elsif user.user_type == User::USER_TYPE_TEACHER %>教师
+              <% elsif user.user_type == User::USER_TYPE_STUDENT %>学生
+              <% elsif user.user_type == User::USER_TYPE_PARENT %>家长
+              <% elsif user.user_type == User::USER_TYPE_EMPLOYEE %>员工
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+    <br />
+    <div id="check_spaces" style="display:none;" align="center"><span style="color:red;vertical-align:center;">请选择一个用户！</span></div>
+    <div class="clear"></div><br />
+    <div align="center">
+      <input type="hidden" id="hidden_name" value=""/>
+      <input type="hidden" id="hidden_password" value=""/>
+      <button id="btn" onclick="javascript:jxt_user_login(document.getElementById('hidden_name').value,document.getElementById('hidden_password').value);">确定</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button onClick="closeWindow();">关闭</button>
+    </div>
+  </div>
+</div>
+<div id="tranDiv" style="display:none;">
+  <div id="tranDivBack"></div>
+  <div id="infoDiv"></div>
+</div>
+<div id="popLayer1" style="display:none;">
+  <div class="pop_box">
+    <% if @school and @school.size > 1 %>
+      <table class="pop_table_box">
+        <tr>
+          <td colspan="4" style="color:red;">
+            请选择您要进入的网校：
+          </td>
+        </tr>
+        <% for school in @school %>
+          <tr>
+            <td>
+              <a href="<%= CONFIG[:net_school_url] %>/schools/set_cookies/?school_id=<%= school.id %>&space_id=<%= cookies[:space_id] %>" target="_blank" onclick="closeWindows();">
+                <%= school.name %>
+              </a>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+    <br />
+    <div class="clear"></div><br />
+    <div align="center">
+      <button onClick="closeWindows();">关闭</button>
+    </div>
+  </div>
+</div>
+<div id="tranDiv1" style="display:none;">
+  <div id="tranDivBack1"></div>
+  <div id="infoDiv1"></div>
+</div>

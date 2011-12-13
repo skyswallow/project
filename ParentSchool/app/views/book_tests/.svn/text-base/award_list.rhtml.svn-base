@@ -1,0 +1,13 @@
+<%= render :partial => "head" %>
+<div id="main">
+  <div class="huojiangxinxi">
+    <h1></h1>
+    <div class="huojiangxinxi-box">
+      <h2>图书受赠家长名单</h2>
+      <div class="huojiangxinxi-box2"><span>图书受赠家长名单</span><a class="xiazai" href="<%=Constant::SITE_URL%>/data/users_list.xls">下载</a></div>
+      <%#*<h2>征文获奖名单</h2>%>
+      <%#*<div class="huojiangxinxi-box2"><span>图书受赠家长名单</span><a class="xiazai" href="#">下载</a></div>%>
+    </div>
+  </div>
+</div>
+<%= render :partial => "alert_div" %>

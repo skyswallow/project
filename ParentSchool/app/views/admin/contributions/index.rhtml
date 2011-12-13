@@ -1,0 +1,59 @@
+<script type="text/javascript">
+  function selectType(){
+    document.getElementById('select_form').submit();
+  }
+</script>
+
+<div  id="bd_div">
+  <p class="title_p">校园新闻投稿列表</p>
+  <table id="tab_list">
+    <colgroup>
+      <col width="20%"/>
+      <col width="20%"/>
+      <col width="15%"/>
+      <col width="10%"/>
+      <col width="20%"/>
+      <col width="15%"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <th>标题</th>
+        <th>学校</th>
+        <th>投稿人</th>
+        <th>
+          <% form_tag "/admin/contributions/select_type", :id => :select_form, :name => :select_form do %>
+            <select name="status" id="status" onchange="selectType()">
+              <option value="-1" <%if @type.to_s == "-1"%>selected<%end%>>全部</option>
+              <option value="0" <%if @type.to_s == "0"%>selected<%end%>>已申请</option>
+              <option value="1" <%if @type.to_s == "1"%>selected<%end%>>未发布</option>
+              <option value="2" <%if @type.to_s == "2"%>selected<%end%>>已发布</option>
+            </select>
+          <%end%>
+        </th>
+        <th>投稿日期</th>
+        <th>操作</th>
+      </tr>
+      <%(@contributions || []).each do |contribution|%>
+        <tr class="<%=cycle('list-odd','list-even')%>">
+          <td>
+            <a href="/admin/contributions/<%= contribution.id %>" title="点击查看"><%=truncate(h(contribution.title), :length =>20)%></a>
+          </td>
+          <td><%=h contribution.name%></td>
+          <td><%=h contribution.nickname%></td>
+          <td><%=Contribution.get_status(contribution.status)%></td>
+          <td><%=contribution.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+          <td>
+            <%if contribution.status == Contribution::STATUS[:APPLY]%>
+              <%=link_to "未发布", "/admin/contributions/#{contribution.id}/set_undo", :confirm =>"确定要把标题为【#{h(contribution.title)}】的投稿设置为未发布？"%> |
+              <%=link_to "已发布", "/admin/contributions/#{contribution.id}/set_do", :confirm =>"确定要把标题为【#{h(contribution.title)}】的投稿设置为已发布？"%>
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+  <p style="text-align:center;">
+    <%=will_paginate @contributions unless @contributions.nil?%>
+  </p>
+</div>
+

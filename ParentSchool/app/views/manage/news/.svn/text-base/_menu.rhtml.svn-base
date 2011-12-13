@@ -1,0 +1,5 @@
+<h1>新闻管理</h1>
+<div class="clear"></div>
+<h4>
+  <input type="button" style="height: 20px;line-height: 17px;margin-left: 5px;" onclick="javascript:window.location.href='/manage/news'" value="返回新闻列表"/>
+</h4>

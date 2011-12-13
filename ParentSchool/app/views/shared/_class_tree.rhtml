@@ -1,0 +1,176 @@
+<style type="text/css">
+  #menuBar {position: absolute; left: -1200px; width: 1200px; height:100%; z-index:99; top:0px;}
+  #glider {position: absolute; left: 0px; width: 55px; top: 0px;}
+  #glider_close { position: absolute; left: 0; width: 0px; top: 0px; z-index:999; display: none;}
+  .fixed{position:fixed;height:100%;left:0px;top:0px;z-index:99999999999999999999999;}
+  * html .fixed {position:absolute;bottom:auto;top:expression(eval(document.documentElement.scrollTop));}
+  #menuBar iframe{position:absolute; z-index:-1; top:0; left:0; width:1200px; height:300px; float:left; filter:alpha(opacity=0);}
+</style>
+<div class="fixed">
+  <a id="glider_close" style="display:none;" href="javascript:;" onClick="Proj7GlideOut(); return false" onFocus="if(this.blur)this.blur()"><img src="/tree/close.png" /></a>
+  <a id="glider" href="javascript:;" onClick="Proj7GlideBack(); return false" onFocus="if(this.blur)this.blur()"><img src="/tree/open.gif" /></a>
+  <div id="menuBar">
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+            id="ClassTree" width="100%" height="100%">
+      <param name="movie" value="/tree/ClassTree.swf" />
+      <param name="quality" value="high" />
+      <param name="bgcolor" value="#869ca7" />
+      <param name="wmode" value="transparent" />
+      <param name="allowScriptAccess" value="sameDomain" />
+      <embed src="/tree/ClassTree.swf" quality="high" bgcolor="#869ca7"
+             width="100%" height="100%" name="ClassTree" align="middle"
+             play="true"
+             loop="false"
+             quality="high"
+             allowScriptAccess="sameDomain"
+             type="application/x-shockwave-flash"
+             wmode="transparent">
+      </embed>
+    </object>
+    <!--[if IE 6]>
+    <iframe scroll="none" frameborder="0"></iframe>
+    <![endif]-->
+  </div>
+</div>
+<script language="JavaScript">
+  var lastScrollY = -50;
+  var pee = -1200;
+  var drec = 100;
+  var speed = 0.1;
+  var open_flag = false;
+  //Don't touch!
+  var l = pee;
+  var firstScrollHeight;
+  function float_pic(){
+    var diffY ;
+    if(document.documentElement && document.documentElement.scrollTop ) {
+      diffY = document.documentElement.scrollTop;
+    } else {
+      diffY = document.body.scrollTop;
+    }
+    var percent = 0.1*(diffY-lastScrollY);
+    if(percent>0){
+      percent = Math.ceil(percent);
+    } else {
+      percent=Math.floor(percent);
+    }
+    if (open_flag == false) {
+      if (percent > 0 && parseInt(document.getElementById("menuBar").style.top,10) < firstScrollHeight ) {
+        document.getElementById("menuBar").style.top = (parseInt(document.getElementById("menuBar").style.top,10)+percent)+"px";
+        lastScrollY = lastScrollY + percent;
+      }
+      if (percent < 0) {
+        document.getElementById("menuBar").style.top = (parseInt(document.getElementById("menuBar").style.top,10)+percent)+"px";
+        lastScrollY = lastScrollY + percent;
+      }
+    }
+  }
+
+  function Proj7GlideBack () {
+    document.getElementById("glider").style.display = "none";
+    l += drec;
+    if (document.layers) {
+      document.getElementById("menuBar").style.left = l;
+    }
+    else if (document.all) {
+      document.getElementById("menuBar").style.pixelLeft = l;
+    }
+    else if (document.getElementById) {
+      document.getElementById('menuBar').style.left = l + 'px';
+    }
+    if (l < 0)
+      setTimeout('Proj7GlideBack()', speed);
+    else {
+      loadClassTreeData();
+      if (document.layers) {
+        var html = '';
+        html += '<A HREF="javascript:;"';
+        html += 'onClick="Proj7GlideOut(); return false;"';
+        html += 'Class="glideText"';
+        html += 'close'+ '<br>';
+        html += 'close'+ '<Br>';
+        html += '<\/A>';
+        var a = window.document.menuBar.document.glider;
+        a.document.open();
+        a.document.write(html);
+        a.document.close();
+      }
+      else if (document.all) {
+        document.getElementById("glider_close").style.display = "none";
+      }
+      else if (document.getElementById) {
+        document.getElementById("glider_close").style.display = "none";
+      }
+    }
+    open_flag = true;
+  }
+  //Don't touch. This is the function that opens the menu
+  function Proj7GlideOut () {
+    document.getElementById("glider_close").style.display = "none";
+    l -= drec;
+    if (document.layers) {
+      document.getElementById("menuBar").style.left = l;
+    }
+    else if (document.all) {
+      document.getElementById("menuBar").style.pixelLeft = l;
+    }
+    else if (document.getElementById) {
+      document.getElementById('menuBar').style.left = l + 'px';
+    }
+    if (l > pee)
+      setTimeout('Proj7GlideOut()', speed);
+    else {
+      if (document.layers) {
+        var html = '';
+        html += '<A HREF="javascript:;"';
+        html += 'onclick="Proj7GlideBack(); return false;"';
+        html += 'Class="glideText"';
+        html += 'menu'+ '<Br>';
+        html += 'menu'+ '<Br>';
+        html += '<\/A>';
+        var a = window.document.menuBar.document.glider;
+        a.document.open();
+        a.document.write(html);
+        a.document.close();
+      }
+      else if (document.all) {
+        document.getElementById("glider").style.display = "";
+      }
+      else if (document.getElementById) {
+        document.getElementById("glider").style.display = "";
+      }
+    }
+    open_flag = false;
+  }
+
+  function moveIn () {
+    Proj7GlideOut();return false;
+  }
+
+  function moveOut() {
+    Proj7GlideBack();return false;
+  }
+  //NNresizeFix Reloads the page to workaround a Netscape Bug
+  if (document.layers) {
+    origWidth = innerWidth;
+    origHeight = innerHeight;
+  }
+  function reDo() {
+    if (innerWidth != origWidth || innerHeight != origHeight)
+      location.reload();
+  }
+  function findSWF(movieName) {
+    if (navigator.appName.indexOf("Microsoft")!= -1) {
+      return window[movieName];
+    } else {
+      return document[movieName];
+    }
+  }
+
+  function loadClassTreeData() {
+    var class_tree_swf = findSWF('ClassTree');
+    class_tree_swf.loadAllData(0);
+  }
+  if (document.layers) onresize = redo;
+  setInterval("float_pic()",10);
+</script>

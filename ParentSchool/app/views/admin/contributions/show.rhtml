@@ -1,0 +1,97 @@
+<div class="new-table-con">
+  <table id="new-table">
+    <colgroup>
+      <col width="10%" />
+      <col width="80%" />
+    </colgroup>
+    <tr>
+      <td align=middle colSpan=2>
+        <table>
+          <colgroup>
+            <col width="15%" />
+            <col width="85%" />
+          </colgroup>
+          <tr>
+            <td bgcolor="#ecf7f9"><b>标题</b></td>
+            <td class="biaoti"><%=h @contribution.title%></td>
+          </tr>
+          <tr>
+            <td bgcolor="#ecf7f9"><b>内容</b></td>
+            <td height="150px"><%=@contribution.content%></td>
+          </tr>
+          <tr>
+            <td bgcolor="#ecf7f9"><b>投稿备注</b></td>
+            <td height="50px">
+              <%if @contribution.remark and @contribution.remark != ""%>
+                <%=h @contribution.remark%>
+              <%end%>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#ecf7f9"><b>下载附件</b></td>
+            <td>
+              <%if @contribution.attach_path and @contribution.attach_path != ""%>
+                <a href="/admin/contributions/download/<%=@contribution.id%>">下载附件</a>
+              <%end%>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#f5f5f5" colspan="2" align="center">
+              &nbsp;
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p style="text-align:right;margin-top: 20px;">
+    <%=link_to ">>返回投稿列表", "/admin/contributions" %>
+  </p>
+</div>
+
+<style type="text/css">
+  .new-table-con{
+    width:680px;
+    float:left;
+  }
+  .new-table-con input{
+    margin-top:10px;
+    width:60px;
+    height:20px;
+    background:#fff;
+  }
+
+  #new-table{
+    width:680px;
+
+  }
+
+  #new-table table{
+    width:100%;
+  }
+  #new-table table a{
+    color:#F00;
+  }
+  #new-table table a:hover{
+    text-decoration:underline;
+  }
+
+  #new-table table td{
+    border:#ddd 1px solid;
+    border-bottom:0;
+    padding-left:10px;
+    vertical-align:top;
+    text-align:left;
+  }
+
+  #new-table TD SPAN {
+    FONT-SIZE: 13px
+  }
+  #new-table TR {
+    LINE-HEIGHT: 25px
+  }
+
+  .biaoti{
+    font-weight:bold;
+  }
+</style>

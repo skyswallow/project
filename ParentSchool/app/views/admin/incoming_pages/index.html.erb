@@ -1,0 +1,74 @@
+<%= javascript_include_tag :defaults  %>
+<p>
+  <a href="#"onclick="javascirpt:window.location.href='/admin/incoming_pages?url='+escape('<%= params[:url] %>');"  style="font-weight: bold">简单查询</a>
+  <a href="#" onclick="javascirpt:window.location.href='/admin/incoming_pages/show?url='+escape('<%= params[:url] %>');" >高级查询</a>
+</p><br/>
+<p>受访页面：<a href="<%= params[:url] %>" target="blank"><%= params[:url] %></a></p><br/>
+<p>
+  当前日期：<%= Date.today(:db) %>&nbsp;&nbsp;&nbsp;
+  <a <%= selected_option(@i, 0) %> href="#" onclick="javascirpt:window.location.href='/admin/incoming_pages?find_date=0&url='+escape('<%= params[:url] %>');" >当日</a>&nbsp;&nbsp;&nbsp;<a <%= selected_option(@i, 1) %> href="#"onclick="javascirpt:window.location.href='/admin/incoming_pages?find_date=1&url='+escape('<%= params[:url] %>');" >昨日</a>&nbsp;&nbsp;&nbsp;
+  <a <%= selected_option(@i, 2) %> href="#"onclick="javascirpt:window.location.href='/admin/incoming_pages?find_date=2&url='+escape('<%= params[:url] %>');">最近7天</a>&nbsp;&nbsp;&nbsp;<a <%= selected_option(@i, 3) %> href="#"onclick="javascirpt:window.location.href='/admin/incoming_pages?find_date=3&url='+escape('<%= params[:url] %>');">最近30天</a>&nbsp;&nbsp;&nbsp;
+  <br/>
+<form action="/admin/incoming_pages">
+  来路地址：
+  <input type="text" name="find_url" value="<%= params[:find_url] %>" style="width: 260px;"/>
+  <input type="hidden" name="url" value="<%= params[:url] %>"/>
+  <input type="hidden" name="find_date" value="today" id="find_date"/>
+  <input type="submit" value=" 查 询 "/><br/>
+</form>
+</p><br/>
+<table width="100%" border="1"class="page1">
+  <tr align="center" >
+    <td style="width: 500px">来路页面</td>
+    <td style="width:80px"  <%= sort_td_class_helper "pv" %>>
+      <%= sort_link_helper "来访次数", (params[:sort].blank? ? "pv_reverse" : "pv") %>
+    </td>
+    <td style="width: 80px"<%= sort_td_class_helper "uv" %>>
+      <%= sort_link_helper "UV", "uv" %>
+    </td>
+    <td style="width: 80px"<%= sort_td_class_helper "ip" %>>
+      <%= sort_link_helper "IP", "ip" %>
+    </td>
+  </tr>
+  <% (@incomming_history || []).each do |ih|   %>
+    <tr align="center" style="border: 1px solid black">
+      <td><a href="<%= ih.referer %>" target="blank"><%= ih.referer %></a></td>
+      <td><%= ih.pv.to_i %></td>
+      <td><%= ih.uv.to_i %></td>
+      <td><%= ih.ip.to_i %></td>
+    </tr>
+  <% end %>
+</table>
+<div style="margin-top:15px;float: left; width: 730px;"><div style="float:left">
+    <% if @incomming_history.total_pages ==1 || params[:page].blank? ||  params[:page] =='1' %>
+      首页
+    <% else %>
+      <a href="#" onclick="javascirpt:window.location.href='/admin/incoming_pages?page=1&sort=<%= params['sort'] if params['sort'] %>&find_date=<%= params[:find_date] %>&find_url=<%= params[:find_url] %>&url='+escape('<%= params[:url] %>');">首页</a>
+    <% end %>
+    <%= will_paginate @incomming_history, :prev_label => '上一页', :next_label => '下一页',:container=>false  %>
+    第<%= params[:page] %><%= '1' if params[:page].blank? %>/<%=  @incomming_history.total_pages %>页 &nbsp;
+    <% if @incomming_history.total_pages ==1 ||  @incomming_history.total_pages == params[:page].to_i %>
+      尾页
+    <% else %>
+      <a href="#" onclick="javascirpt:window.location.href='/admin/incoming_pages?page=<%= @incomming_history.total_pages %>&sort=<%= params['sort'] if params['sort'] %>&find_date=<%= params[:find_date] %>&find_url=<%= params[:find_url] %>&url='+escape('<%= params[:url] %>');">尾页</a>
+    <% end %>
+    <% total = (1..@incomming_history.total_pages) %>
+    共<%= @incomming_history.total_entries %>条记录&nbsp;
+    跳到<select id="page" name="page" onchange="javascript:window.location.href='/admin/incoming_pages?page='+this.value+'<%= '&sort='+params['sort'] if params['sort'] %>'+'&find_date='+'<%= params[:find_date] %>'+'&find_url='+'<%= params[:find_url] %>'+'&url='+escape('<%= params[:url] %>');">
+      <% total.each do |i| %>
+        <option value="<%= i  %>" <%= 'selected'  if params[:page].to_i == i.to_i %>>第<%= i %>页</option>
+      <% end %>
+    </select>页</div>
+  <div style="width: 65px; float: left;margin-left:5px;">
+    <%= button_to "导出列表", {:action => :create, :url => params[:url], :find_date => params[:find_date], :find_url => params[:find_url], :sort => params[:sort]}, {:disabled => @incomming_history.blank? ? true : false}%>
+  </div>
+</div>
+<style type="text/css">
+  .page1 td{
+    border: 1px solid #666666;
+    padding: 2px;
+  }
+  .page1 {
+    border: 1px solid #666666;
+  }
+</style>

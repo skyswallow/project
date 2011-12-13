@@ -1,0 +1,46 @@
+<% form_tag "/admin/messages", :method => "post" do %>
+<span>地区：</span>&nbsp;&nbsp;<span><select id="friend_level2" name="friend_level2[provice_id]"
+                                onchange="<%=  remote_function(
+                                  :with => "'parent_id='+value",
+                                  :update => 'school_select',
+                                  :complete => remote_function(
+                                    :with => "'parent_id='+value",
+                                    :update => 'grade_select',
+                                    :complete => remote_function(
+                                      :with => "'parent_id='+value",
+                                      :update => 'class_select',
+                                      :url => { :action => :select_class_with_ajax },
+                                      :style=>"width:150px") ,
+                                    :url => { :action => :select_grade_with_ajax },
+                                    :style=>"width:150px") ,
+                                  :url => { :action => :select_school_with_ajax },
+                                  :style=>"width:150px")
+                              %>">
+                                  <% for group in get_area_select_options %>
+        <option value="<%= group[1] %>"  title="<%= h group[0] %>">
+          <%= truncate((h group[0]),10,"...") %>
+        </option>
+      <% end %>
+    </select>
+  </span>
+  <div class="clear"></div>
+  <span>学校：</span><span id='school_select'>
+    <select>
+      <option>请选择</option>
+    </select>
+  </span>
+  <div class="clear"></div>
+  <span>年级：</span><span id='grade_select'>
+    <select>
+      <option>请选择</option>
+    </select>
+  </span>
+  <div class="clear"></div>
+  <span>班级：</span><span id='class_select'>
+    <select>
+      <option>请选择</option>
+    </select>
+  </span>
+  <div class="clear"></div><br/>
+  <input type="submit" value="立即发送"/>
+<% end %>

@@ -1,0 +1,168 @@
+<script type="text/javascript">
+  function check_notice_form(){
+    var valid = new Validation('notice_form', {onSubmit:false});
+    var result = valid.validate();
+    if(result)
+    {
+      $("btn_submit").disable();
+      $("btn_reset").disable();
+      $("btn_show").disable();
+      return true;
+    }else{
+      $("btn_submit").enable();
+      $("btn_reset").enable();
+      $("btn_show").enable();
+      return false;
+    }
+  }
+</script>
+<%=render :partial =>"/admin/common"%>
+<div class="clear"></div>
+<div id="bd_div">
+  <p class="title_p">公告</p>
+  <%form_tag "/admin/notices", :class =>"required-validate",:style=>"width:680px;", :id =>"notice_form", :name =>"notice_form", :onsubmit =>"return check_notice_form();" do%>
+    <table id="tab_notice">
+      <colgroup>
+        <col width="10%"/><col width="80%"/>
+      </colgroup>
+      <tr>
+        <th colspan="2">新建公告</th>
+      </tr>
+      <tr>
+        <td><span>标题：<font color="red">*</font></span></td><td><input type="text" id="n_title" name="n_title" class="required max-length-20" style="width:300px;"/></td>
+      </tr>
+      <tr>
+        <td valign="top"><span>内容：<font color="red">*</font></span></td><td><textarea id="n_content" name="n_content" class="required max-length-200" cols="65" rows="13"></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <%= button_to_remote("预 览",
+            :url => "notices/preview",
+            :method => :get,
+            :html => {:id => "btn_show", :name => "btn_show", :class => "btn_tab"},
+            :complete => "javascript:showBulletin(500,500);") %>&nbsp;&nbsp;
+          <input type="submit" id="btn_submit" name="btn_submit" value="发 布"/>&nbsp;&nbsp;
+          <input type="button" id="btn_reset" name="btn_reset" value="重 置" onclick="javascript:window.location.href='/admin/notices'"/>
+        </td>
+      </tr>
+    </table>
+  <%end%>
+  <br/><br/>
+  <table id="tab_list">
+    <colgroup>
+      <col width="8%"/><col width="50%"/><col width="22%"/><col width="10%"/><col width="10%"/>
+    </colgroup>
+    <tr>
+      <th>编号</th><th>标题</th><th>创建时间</th><th>创建人</th><th>操作</th>
+    </tr>
+    <%for notice in @notices%>
+      <tr class="<%=cycle('list-odd','list-even')%>">
+        <td><%=notice.id%></td>
+        <td>
+          <%= link_to_remote h(notice.title),
+            :url => "notices/#{notice.id}",:method => :get,
+            :complete => "javascript:showNotice(500,500);" %>
+        </td>
+        <td><%=notice.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+        <td><%=notice.space.nickname unless notice.space.nickname.nil?%></td>
+        <td>
+          <%=link_to "删 除", admin_notice_path(notice), :method =>:delete, :confirm =>"确定要删除该公告？"%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+  <p style="text-align:center;">
+    <%=will_paginate @notices%>
+  </p>
+</div>
+<style type="text/css">
+  #n_tran,#n_tran1 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+  }
+  #n_back,#n_back1 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    filter:alpha(Opacity=30);
+    -moz-opacity:0.3;
+    opacity:0.3;
+  }
+  #n_info,#n_info1 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    text-align:center;
+  }
+  .pop_box {
+    background:#FFF;
+    padding:20px;
+    border:#666 8px solid;
+  }
+  .pop_box table td {
+    border:#ebebeb 1px solid;
+    padding:5px;
+  }
+</style>
+<script type="text/javascript">
+  function showNotice(width,height){
+    var windowstr= document.getElementById("n_layer").innerHTML;
+    var infoDiv = document.getElementById("n_info");
+    var tranDiv = document.getElementById("n_tran");
+    var tranDivBack = document.getElementById("n_back");
+    var st = document.body.scrollTop;
+    var dst = document.documentElement.scrollTop;
+    var s_top = st!=0?st:dst;
+    infoDiv.innerHTML=windowstr;
+    infoDiv.style.left=((document.body.clientWidth-width)>0?(document.body.clientWidth-width):0)/2+"px";
+    infoDiv.style.top=(s_top+180)+"px";
+    infoDiv.style.zIndex=10001;
+    infoDiv.style.width=width+"px";
+    infoDiv.style.height=height+"px";
+    tranDiv.style.height=document.body.clientHeight+ "px";
+    tranDiv.style.width=document.body.clientWidth+ "px";
+    tranDiv.style.display="";
+    tranDivBack.style.display="";
+    tranDivBack.style.zIndex=10000;
+    infoDiv.style.display="";
+  }
+  function showBulletin(width,height){
+    var windowstr= document.getElementById("n_layer1").innerHTML;
+    var infoDiv = document.getElementById("n_info1");
+    var tranDiv = document.getElementById("n_tran1");
+    var tranDivBack = document.getElementById("n_back1");
+    var st = document.body.scrollTop;
+    var dst = document.documentElement.scrollTop;
+    var s_top = st!=0?st:dst;
+    infoDiv.innerHTML=windowstr;
+    infoDiv.style.left=((document.body.clientWidth-width)>0?(document.body.clientWidth-width):0)/2+"px";
+    infoDiv.style.top=(s_top+180)+"px";
+    infoDiv.style.zIndex=10001;
+    infoDiv.style.width=width+"px";
+    infoDiv.style.height=height+"px";
+    tranDiv.style.height=document.body.clientHeight+ "px";
+    tranDiv.style.width=document.body.clientWidth+ "px";
+    tranDiv.style.display="";
+    tranDivBack.style.display="";
+    tranDivBack.style.zIndex=10000;
+    infoDiv.style.display="";
+  }
+  function closeBulletin(){
+    document.getElementById("n_tran1").style.display="none";
+  }
+  function closeNotice(){
+    document.getElementById("n_tran").style.display="none";
+  }
+</script>
+<div id="n_tran" style="display:none;"><div id="n_back"></div><div id="n_info"></div></div>
+<div id="n_layer" style="display:none;"></div>
+<div id="n_tran1" style="display:none;"><div id="n_back1"></div><div id="n_info1"></div></div>
+<div id="n_layer1" style="display:none;"></div>

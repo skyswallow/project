@@ -1,0 +1,7 @@
+<div id="main">
+  <%= render :partial => "video" -%>
+  <%= render :partial => "comment_list" -%>
+</div>
+<div id="side">
+  <%= render :partial => "lecture_list" -%>
+</div>

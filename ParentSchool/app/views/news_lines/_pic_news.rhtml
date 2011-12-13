@@ -1,0 +1,13 @@
+<% for line in @lines %>
+  <div class="newest">
+    <img alt="南通网上家长学校" src="<%=h line.head_image %>" width="200" height="135" />
+    <ul>
+      <li><a href="/news_lines/<%= line.id %>" title="<%=h line.title %>" target="_blank"><%=h truncate(line.title,:length => 20) %></a></li>
+      <li style="color:#960;">发表时间：<%= line.created_at.strftime '%Y.%m.%d' %>&nbsp;&nbsp;&nbsp;&nbsp;发表人：南通网上家长学校&nbsp;&nbsp;<%= line.nickname %></li>
+      <li><%=h truncate(line.summary,:length => 100) %></li>
+      <li><a class="read_all_btn" href="/news_lines/<%= line.id %>" target="_blank">查看全文</a></li>
+    </ul>
+  </div>
+<% end %>
+<div class="clear"></div>
+<%= will_paginate @lines %>

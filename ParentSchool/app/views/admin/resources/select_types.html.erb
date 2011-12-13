@@ -1,0 +1,11 @@
+<% if @rts %>
+  <td>
+    <span>科目：<font color="red">*</font></span>
+  </td>
+  <td>
+    <%= select("resource", "resource_type", @rts, {}, {}) %>
+  </td>
+<% else %>
+  <td></td>
+  <td></td>
+<% end %>

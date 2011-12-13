@@ -1,0 +1,6 @@
+<% if @area_id.nil? %>
+  <%= render :partial => "/areas/main/news" %>
+<% else %>
+<%= render :partial => "/areas/main/area_news" %>
+<% end %>
+<%= render :partial => "/areas/main/dynamics" %>

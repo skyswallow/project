@@ -1,0 +1,9 @@
+<% cache(:index_page, 30.minutes.from_now) do %>
+  <div id="main">
+    <%= render :partial => "main" %>
+  </div>
+  <div id="side">
+    <%= render :partial => "side" %>
+  </div>
+<% end %>
+<%= render :partial=>"#{File.expand_path(RAILS_ROOT)}/public/uploads/online_service.erb" %>

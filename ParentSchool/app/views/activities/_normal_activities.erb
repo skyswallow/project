@@ -1,0 +1,11 @@
+<% (@activities || []).each do |activity| %>
+  <div class="huodong-list" id="activity_<%= activity.id %>">
+    <ul>
+      <li class="huodong-title"><%= h activity.name %></li>
+      <li><%= h activity.summary %></li>
+      <li><span style="font-weight:bold">活动日期：</span><%= activity.start_date.to_s(:activity_date) %>至<%= activity.end_date.to_s(:activity_date) %></li>
+      <li><a class="huodong-an" href="/activities/<%= activity.id %>" target="_blank">查看活动详细信息</a></li>
+    </ul>
+  </div>
+<% end %>
+<%= will_paginate @activities if @activities %>

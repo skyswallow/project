@@ -1,0 +1,67 @@
+<%= render :partial => "head" %>
+<div id="main">
+  <%= render :partial => "start" %>
+  <div class="huojiangxinxi">
+    <div class="huojiang_search">
+      <% form_remote_tag :url => "/book_activities/award_search",:html => {:name => "search_form",
+        :id => "search_form",:class => "required-validate"}, :method => :post, :condition => "checkSearchForm()" do %>
+        <span>收到活动短信的手机号码:</span><input type="text" id="username" name="username" />&nbsp;
+        <button type="submit">查询</button>
+      <% end %>
+    </div>
+    <h1></h1>
+    <div class="huojiangxinxi-box">
+      <h2>图书受赠家长名单</h2>
+      <% @i = 0 %>
+      <% (@award_list || []).each do |list| %>
+        <div class="huojiangxinxi-box2">
+          <span>图书受赠家长名单(<%= list[0].strftime("%Y.%m.%d") %>-<%= list[1].strftime("%Y.%m.%d") %>)</span>
+          <a class="xiazai" href="javascript:void(0);" onclick="show_info('<%= @i %>')" name="r_<%= @i %>">查看</a>
+        </div>
+      <div id="date_<%= @i %>" style="display: none" >
+        <table width="100%">
+          <colgroup>
+            <col width="30%"></col>
+            <col width="40%"></col>
+            <col width="30%"></col>
+          </colgroup>
+            <tr>
+              <th style="font-weight:bold">地区</th>
+              <th style="font-weight:bold">家长昵称</th>
+              <th style="font-weight:bold">受赠图书</th>
+            </tr>
+            <% (award_list(list[0], list[1]) || []).each do |ba| %>
+              <tr>
+                <td><%= ba.area_name %></td>
+                <td><%= ba.name %></td>
+                <td>《<%= Constant::All_BOOKS[ba.book_code.to_i - 1][1] %>》</td>
+              </tr>
+            <% end %>
+          </table>
+        <a href="#r_<%= @i %>" class="top"><img src="/images/zengshu/z_top.gif"/></a>
+        </div>
+      <% @i += 1 %>
+      <% end %>  
+    </div>
+  </div>
+</div>
+<%= render :partial => "alert_div" %>
+
+<script type="text/javascript">
+  function show_info(num){
+   var num_length =  <%= @award_list.size %>
+    var obj = $("date_"+num);
+    for(var x=0;x<num_length;x++){
+        if(x!=num){
+            $("date_"+x).style.display = "none";
+        }
+        else{
+            if(obj.style.display == "none"){
+                obj.style.display = "block";
+            }else{
+                obj.style.display = "none";
+            }
+        }
+    }
+}
+</script>

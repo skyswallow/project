@@ -1,0 +1,47 @@
+<div id="topics">
+  <a href="javascript:void(0)" onclick="display_explain('explain', this)">点击显示活动规则</a><br/><br/>
+<div style="display:none;" id="explain">
+  规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则<br/>
+  规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则<br/>
+  规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则<br/>
+</div>
+  <br/><br/>
+  <div>
+    活动步骤活动步骤活动步骤活动步骤活动步骤活动步骤活动步骤活动步骤活动步骤活动步骤活动步骤活动步骤活动步骤
+  </div>
+  <table border="1">
+  <tr>
+    <th>话题</th>
+    <th>话题图书</th>
+    <th>最新回复人</th>
+    <th>最新回复时间</th>
+    <th>回复</th>
+    <th>操作</th>
+  </tr>
+  <% (@topics || []).each do |t| %>
+    <tr>
+      <td><a href="show/<%= t.g_id %>" target="_blank" title="<%=h t.title %>"><%= truncate((h t.title),20,"...")%></a></td>
+      <td><a href="<%= t.b_id %>" target="_blank" >《<%=h t.name %>》</a></td>
+      <td><a href="<%= t.s_id %>" target="_blank"><%=h t.nickname %></a></td>
+      <td><%= t.new_time.strftime("%Y.%m.%d %H:%M:%S") %></td>
+      <td>(<%= t.group_topic_comments_count %>)</td>
+      <td><a href="show/<%= t.g_id %>" target="_blank">点击阅读</a></td>
+    </tr>
+  <% end %>
+      <%= will_paginate @topics if @topics %>
+</table>
+</div>
+<div id="topic_panel">
+  <%= render :partial => "topic_panel"%>
+</div>
+<script type="text/javascript">
+  function display_explain(explain,obj){
+    if ($(explain).style.display == 'block'){
+      obj.innerHTML="点击显示活动规则";
+      $(explain).style.display = 'none';
+    }else{
+       obj.innerHTML="点击关闭活动规则";
+      $(explain).style.display = 'block';
+    }
+  }
+</script>

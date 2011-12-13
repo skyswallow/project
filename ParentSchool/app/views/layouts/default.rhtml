@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>南通网上家长学校</title>
+    <link href="/stylesheets/ntjxw.css" rel="stylesheet" />
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "png" %>
+    <%= use_validate_js_tooltip %>
+    <%= use_css %>
+    <!--[if IE 6]>
+        <link href="stylesheets/default/ntjxw_ie6.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/png.js" ></script>
+        <script type="text/javascript">
+          DD_belatedPNG.fix('*');
+        </script>
+    <![endif]-->
+    <!--[if IE 7]>
+         <link href="stylesheets/default/ntjxw_ie7.css" rel="stylesheet" />
+    <![endif]-->
+    <!--[if IE 8]>
+         <link href="stylesheets/default/ntjxw_ie8.css" rel="stylesheet" />
+    <![endif]-->
+  </head>
+  <body>
+    <% if cookies[:space_id] %>
+      <% if cookies[:space_id] and (is_net_class_teacher_member? or ((is_net_class_student? or is_net_class_parent?) and is_charge_user?)) %>
+        <%= render :partial=>"/shared/class_tree" %>
+      <% end %>
+    <% end %>
+    <div id="index-top">
+      <%= render :partial => "/shared/top_head" -%>
+    </div>
+    <div id="page_bg">
+      <div id="container">
+        <div id="hd">
+          <%= render :partial => "/shared/head" -%>
+        </div>
+        <div id="bd">
+          <%= display_flash %>
+          <%= yield :layout -%>
+        </div>
+        <div class="clear"></div>
+        <%= render :partial => "/shared/foot" -%>
+        <div style="display:none;"><script src="http://s19.cnzz.com/stat.php?id=1962242&web_id=1962242" language="JavaScript"></script></div>
+      </div>
+    </div>
+    <%= hidden_field_tag("page_record", Page_history.create_page_record(session.session_id,
+        request,
+        cookies[:space_id])) %>
+  </body>
+</html>

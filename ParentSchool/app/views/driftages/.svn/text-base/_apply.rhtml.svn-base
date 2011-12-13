@@ -1,0 +1,43 @@
+<a href="javascript:void(0)" onclick="display_explain('explain')">怎样才能成为下一个领到漂流图书的班级呢？</a><br/><br/>
+<div style="display:none;" id="explain">
+  规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则<br/>
+  规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则<br/>
+  规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则规则<br/>
+</div>
+<% unless is_apply %>
+  <input type="button" value=" 申请图书漂流权 " onclick="apply(this, 'apply2')" id="apply1"/>
+<% end %>
+<% if is_apply %>
+  <label style="font-weight: bold">您已经完成了图书漂流申<br/>请，感谢您的参与，请关<br/>注您班级的申请动态。</label>
+<% else %>
+  <input type="button" value=" 我要申请 " onclick="apply(this, 'apply1')" id="apply2"/>
+<% end %>
+<a href="#">看看有些什么书</a><br/><br/><br/>
+<label style="color: red;">还在等什么？赶快点击下面的【我要申请】按钮，让你的班级成为下一个领到漂流图书的班级吧！看看有些什么书</label><br/><br/><br/>
+<label style="font-weight: bold">哇，很多班级都在积极的申请呢，赶快看下，有你的班级吗？</label><br/><br/>
+
+<input type="button" value="点击体验" onclick="test()"/>
+<script type="text/javascript">
+  function apply(obj, apply){
+    if (<%= logged_in? %>){
+      obj.disabled=true;
+      $(apply).disabled=true;
+      new Ajax.Request('/driftages/add_apply', {asynchronous:true, evalScripts:true, method:'get', onComplete:function(request)
+        {alert("恭喜，您已经成功提交申请，谢谢您参与活动！");window.location.reload();}}); return false;
+    }else{
+      alert("请先登录！");
+      return false;}
+  }
+
+  function display_explain(explain){
+    if ($(explain).style.display == 'block'){
+      $(explain).style.display = 'none';
+    }else{
+      $(explain).style.display = 'block';
+    }
+  }
+
+  function test(){
+    window.location.href="/driftages/";
+  }
+</script>

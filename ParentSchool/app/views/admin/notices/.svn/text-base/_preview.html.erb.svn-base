@@ -1,0 +1,38 @@
+<script type="text/javascript">
+  function getValue()
+  {
+    var title = window.document.getElementById("n_title").value;
+    var v_title = document.getElementById("show_title");
+    v_title.innerText = title;
+    var content = window.document.getElementById("n_content").value;
+    var v_content = document.getElementById("show_content");
+    v_content.innerText = content;
+  }
+  getValue();
+</script>
+<div class="pop_box">
+  <table width="100%" style="table-layout:fixed;">
+    <tr>
+      <td style="word-break:break-all;" colspan="2" align="center">
+        <b>
+          <div id="show_title"></div>
+        </b>
+      </td>
+    </tr>
+    <tr>
+      <td style="word-break:break-all;" colspan="2" align="left">
+        <div id="show_content"></div>
+      </td>
+    </tr>
+    <tr>
+      <td align="left">
+        发布时间：<%= Time.now.strftime("%Y.%m.%d") %>
+      </td>
+      <td align="right">
+        ——南通网上家长学校
+      </td>
+    </tr>
+  </table>
+  <div class="clear">&nbsp;</div>
+  <button onClick="closeBulletin();">关闭</button>
+</div>

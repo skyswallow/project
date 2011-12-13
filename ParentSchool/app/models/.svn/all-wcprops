@@ -1,0 +1,251 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models
+END
+area_new.rb
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/area_new.rb
+END
+online_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/online_user.rb
+END
+news_line.rb
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/news_line.rb
+END
+article.rb
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/article.rb
+END
+lecture_comment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/lecture_comment.rb
+END
+resource.rb
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/resource.rb
+END
+school.rb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/school.rb
+END
+user_activity_relation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/user_activity_relation.rb
+END
+resource_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/resource_type.rb
+END
+group_topic.rb
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/group_topic.rb
+END
+book_article.rb
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/book_article.rb
+END
+entry_category.rb
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/entry_category.rb
+END
+lottery_setting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/lottery_setting.rb
+END
+lecture.rb
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/lecture.rb
+END
+news_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/news_type.rb
+END
+user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/user.rb
+END
+contribution.rb
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/contribution.rb
+END
+notice.rb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/notice.rb
+END
+group_member.rb
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/group_member.rb
+END
+book_listing.rb
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/book_listing.rb
+END
+message.rb
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/message.rb
+END
+book_activity_award.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/book_activity_award.rb
+END
+topic_book_relation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/topic_book_relation.rb
+END
+book_setting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/book_setting.rb
+END
+book.rb
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/book.rb
+END
+user_group.rb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/user_group.rb
+END
+space.rb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/space.rb
+END
+group.rb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/group.rb
+END
+activity.rb
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/activity.rb
+END
+book_exchange.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/book_exchange.rb
+END
+lottery_record.rb
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/lottery_record.rb
+END
+activity_apply.rb
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/activity_apply.rb
+END
+entry.rb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/entry.rb
+END
+area_manager.rb
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/area_manager.rb
+END
+index_setting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/index_setting.rb
+END
+article_comment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/article_comment.rb
+END
+book_activity.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/book_activity.rb
+END
+waiting_message.rb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/waiting_message.rb
+END
+page_record.rb
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/page_record.rb
+END
+action_record.rb
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/action_record.rb
+END
+group_topic_comment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/models/group_topic_comment.rb
+END

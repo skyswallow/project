@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/admin/action_records
+END
+search_class_name.erb
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/admin/action_records/search_class_name.erb
+END
+search_message_type.erb
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/admin/action_records/search_message_type.erb
+END
+search_school_name.erb
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/admin/action_records/search_school_name.erb
+END
+index.erb
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/app/views/admin/action_records/index.erb
+END

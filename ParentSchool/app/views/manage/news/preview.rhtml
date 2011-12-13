@@ -1,0 +1,45 @@
+<script type="text/javascript">
+  window.onload = function(){
+    var title = window.document.getElementById("title");
+    var content = window.document.getElementById("content");
+    if(navigator.appName=="Netscape"){
+      title.textContent = window.opener.document.getElementById("news_title").value;
+      content.textContent = window.opener.frames["myEditor"].document.frames["editor_body_area"].document.body.innerHTML;
+      if (title.textContent == "" || title.textContent.length > 20 || (window.opener.frames["myEditor"].document.frames["editor_body_area"].document.body.innerText.replace(/(^\s*)|(\s*$)/g,"") == "" && window.opener.frames["myEditor"].document.frames["editor_body_area"].document.body.innerHTML.indexOf("<IMG") == -1) || window.opener.frames["myEditor"].document.frames["editor_body_area"].document.body.innerText.length > 12000){
+        $("sub_btn").style.display = "";
+        $("cancel_btn").style.display = "";
+      }else{
+        $("sub_btn").style.display = "none";
+        $("cancel_btn").style.display = "";
+      }
+    }else{
+      title.innerText = window.opener.document.getElementById("news_title").value;
+      content.innerHTML = window.opener.frames["myEditor"].document.frames["editor_body_area"].document.body.innerHTML;
+      if (title.innerText == "" || title.innerText.length > 20 || (window.opener.frames["myEditor"].document.frames["editor_body_area"].document.body.innerText.replace(/(^\s*)|(\s*$)/g,"") == "" && window.opener.frames["myEditor"].document.frames["editor_body_area"].document.body.innerHTML.indexOf("<IMG") == -1) || window.opener.frames["myEditor"].document.frames["editor_body_area"].document.body.innerText.length > 12000){
+        $("sub_btn").style.display = "none";
+        $("cancel_btn").style.display = "";
+      }else{
+        $("sub_btn").style.display = "";
+        $("cancel_btn").style.display = "";
+      }
+    }
+  }
+
+  function preview_submit(){
+    window.opener.content_error.innerHTML = "";
+    window.opener.news_form.preview_btn.disable();
+    window.opener.news_form.sub_btn.disable();
+    window.opener.news_form.f_btn.disable();
+    window.opener.news_form.submit();
+    window.close();
+  }
+</script>
+<div class="artical_particular">
+  <h2 id="title"></h2>
+  <h3>发表时间：<%= Time.now.strftime("%Y.%m.%d") %>&nbsp;&nbsp;&nbsp;&nbsp;发表人：南通网上家长学校&nbsp;&nbsp;<%=h Space.find_by_id(cookies[:space_id]).nickname if Space.find_by_id(cookies[:space_id]) %></h3>
+  <div id="content"></div>
+  <div style="text-align:center;">
+    <input id="sub_btn" name="sub_btn" type="button" onclick="javascript:preview_submit();" style="height: 20px;line-height: 17px;margin-left: 5px;display: none;" value="发布"/>
+    <input id="cancel_btn" name="cancel_btn" type="button" onclick="javascript:window.close();" style="height: 20px;line-height: 17px;margin-left: 5px;display: none;" value="取消"/>
+  </div>
+</div>

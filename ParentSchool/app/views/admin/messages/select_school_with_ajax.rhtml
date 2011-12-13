@@ -1,0 +1,13 @@
+<select id="friend_level2_city_id" name="friend_level2[city_id]" style="width:150px;"
+        onchange="<%=  remote_function(
+          :with => "'parent_id='+value",
+          :update => 'grade_select',
+          :url => { :action => :select_grade_with_ajax },
+          :style=>"width:150px")
+      %>">
+          <% for group in @schools %>
+    <option value="<%= group[1] %>"  title="<%= h group[0] %>">
+      <%= truncate((h group[0]),10,"...") %>
+    </option>
+  <% end %>
+</select>

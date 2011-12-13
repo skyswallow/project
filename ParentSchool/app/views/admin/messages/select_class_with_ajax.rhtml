@@ -1,0 +1,7 @@
+<select id="class_group_id" name="class[group_id]" style="width:150px;">
+  <% for group in @classes %>
+    <option value="<%= group[1] %>"  title="<%= h group[0] %>">
+      <%= truncate((h group[0]),10,"...") %>
+    </option>
+  <% end %>
+</select>

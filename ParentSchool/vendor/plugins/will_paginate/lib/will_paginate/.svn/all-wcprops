@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate
+END
+named_scope.rb
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate/named_scope.rb
+END
+array.rb
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate/array.rb
+END
+version.rb
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate/version.rb
+END
+finder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate/finder.rb
+END
+core_ext.rb
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate/core_ext.rb
+END
+collection.rb
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate/collection.rb
+END
+named_scope_patch.rb
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate/named_scope_patch.rb
+END
+view_helpers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/will_paginate/lib/will_paginate/view_helpers.rb
+END

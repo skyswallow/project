@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.school_link_list li{
+ background-position:left 5px;
+ padding-left:15px;
+ border-bottom:#CCC 1px solid;
+ padding-bottom:3px;
+ margin-bottom:5px;
+ }

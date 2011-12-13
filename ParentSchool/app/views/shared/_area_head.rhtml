@@ -1,0 +1,21 @@
+<div id="head_top_new">
+  <a href="/"></a>
+  <div style="float:right;">
+    <object>
+    <embed src="/swf/flash.swf" quality="high" width="400" height="188" wmode="Transparent"/>
+    </object>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="fx_nav_new">
+  <ul>
+    <li class="active"><a class="sy" href="/areas">分校首页</a></li>
+    <% AreaNew::AREA.each do |area| %>
+      <% if area[0].to_i != 9 %>
+        <li><a class="jydt" href="/areas?area_id=<%= area[0] %>"><%= area[1] %></a></li>
+      <% else %>
+        <li style="margin-right: 0px;"><a class="jydt" href="/areas?area_id=<%= area[0] %>"><%= area[1] %></a></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

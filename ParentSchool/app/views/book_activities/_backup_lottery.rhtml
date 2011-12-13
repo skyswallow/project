@@ -1,0 +1,35 @@
+<script type="text/javascript">
+  var site_url = "<%= Constant::SITE_URL %>";
+</script>
+<%= render :partial => "head" %>
+<div id="main">
+  <%= render :partial => "start" %>
+  <%= render :partial => "rule_1" %>
+  <%= render :partial => "books_1" %>
+  <%= render :partial => "introduction" %>
+  <div id="survey" style="display: none">
+    <%= render :partial => "survey" %>
+  </div>
+  <% form_remote_tag :url => "/book_activities/do_lottery", :html => {:name => "lottery_form",
+    :id => "lottery_form",:class => "required-validate"}, :method => :post, :condition => "checkLotteryForm()", :before => "$('btn_sub').disabled=true;", :after => "$('btn_sub').disabled=false;" do %>
+    <div class="hour" id="hour">
+      <ul>
+        <% if Time.now.strftime("%Y%m%d").to_i > 20101231 %>
+          <li>在线赠书活动全部结束，谢谢您的参与！</li>
+        <% else %>
+          <li style="display:block;margin: 10px;"></li>
+          <li><input type="hidden" id="is_survey" name="is_survey" value="1"/>&nbsp;</li>
+          <li id="name_input">收到活动短信的手机号码:<input type="text" id="username" name="username" /></li>
+          <li id="btn_doing"><button class="lijichoujiang_bt" type="submit" id="btn_sub" ></button></li>
+          <span id="user_status" style="display: none;"></span>
+          <%= observe_field "username", :url => "/book_activities/get_user_status",
+            :frequency => 0.5,
+            :update => "user_status",
+            :with => "username" %>
+        <% end %>
+      </ul>
+      <div class="goto-cj"><a href="/book_exchanges"><img src="/images/zengshu/quhuanshu.gif" /></a></div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "alert_div" %>

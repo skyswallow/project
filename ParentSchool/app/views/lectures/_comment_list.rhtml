@@ -1,0 +1,33 @@
+<script type="text/javascript">
+  function cleanForm(){
+    if(document.getElementById('error').innerHTML==''){
+      document.getElementById("user_name").value="";
+      document.getElementById("proof_code1").value="";
+      document.getElementById("content").value="";
+      new Ajax.Updater('proofcode1', '/lectures/get_proof_code',
+      {asynchronous:true, evalScripts:true, method:'get', parameters:'authenticity_token=' + encodeURIComponent('5ff575c7f6c449b7ded5e48e1eaf6e6213347344')});
+      return false;
+    }
+  }
+</script>
+<div class="banjishow_class" id="banjishow_class">
+  <h2 class="mian_h2"><span>发表评论</span></h2>
+  <div class="comment" id="comment">
+    <% form_tag "/lectures", :id =>"lecture_form", :name =>"lecture_form"  do %>
+      <div>发表人：<input style="width:150px;" type="text" id="user_name" name="user_name"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;验证码：<input style="width:50px;" type="text" name="proof_code1" id="proof_code1" />
+        <span id="proofcode1" style="cursor:pointer; background:#ebebeb; height:24px; line-height:24px; padding:1px 7px 1px 7px; color:orange; font-weight:bold; font-size:16px;"  title="看不清楚？可以点击此处换一张"
+              onclick="<%= remote_function :update => :proofcode1, :method => :get, :url => "/lectures/get_proof_code"  %>">
+                <%= session[:proof_code1] %>
+        </span>
+      </div>
+      <div><textarea id="content" name="content" cols="60" rows="5"></textarea></div>
+      <div style="text-align:center">
+        <%= submit_to_remote "btn_submit","提交", :html =>{:class =>"btn_submit", :id =>"btn_submit", :name =>"btn_submit"}, :update => "parent_class", :url =>{:action =>"create"}, :complete =>"cleanForm()"%>
+        &nbsp;<input class="btn_submit" id="reset_btn" name="reset_btn" type="reset" value="重置" onclick="javascript:document.getElementById('error').innerHTML='';"/><input type="hidden" id="lecture_id" name="lecture_id" value="<%= params[:id] %>"/></div>
+    <% end %>
+  </div>
+  <div class="parent_class" id="parent_class">
+    <%= render :partial =>"list_comment" %>
+  </div>
+</div>
+<div class="clear"></div>

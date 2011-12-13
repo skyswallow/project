@@ -1,0 +1,117 @@
+<style type="text/css">
+  #admin_panel {width:100%;font-weight:bold;background:#EEF4F8;padding:0px 0px 15px 0px}
+  #admin_panel h2{background:#C3D8DF;color:#333;font-size:120%;padding:6px;margin:0;font-weight:bold;}
+  #admin_panel ul{padding:0px 0px 0px 20px;}
+  #admin_panel li{padding:5px 0px 0px 0px;}
+  #admin_panel a{padding:0px;}
+  #admin_panel img{vertical-align:middle;}
+  a.current_nav{color:red;}
+</style>
+<div id="admin_panel">
+  <h2>管理菜单</h2>
+  <ul>
+    <li>
+      <a <%= "class='current_nav'" if %w{news_lines}.include? @controller_name %> href="/admin/news_lines/new">>>新闻发布</a>
+    </li>
+    <li>
+      <a <%= "class='current_nav'" if %w{book_activities}.include? @controller_name %> href="/admin/book_activities">>>图书活动</a>
+    </li>
+    <% if cookies[:space_id] != "1516845" %>
+      <li>
+        <a <%= "class='current_nav'" if %w{change_partials}.include? @controller_name %> href="/admin/change_partials">>>模板发布</a>
+      </li>
+      <li>
+        <a <%= "class='current_nav'" if %w{notices}.include? @controller_name %> href="/admin/notices">>>公告发布</a>
+      </li>
+      <li>
+        <a <%= "class='current_nav'" if %w{resources}.include? @controller_name %> href="/admin/resources">>>学习资源发布</a>
+      </li>
+      <li>
+        <a <%= "class='current_nav'" if %w{contributions}.include? @controller_name %> href="/admin/contributions?link=0">>>校园新闻投稿列表</a>
+      </li>
+      <li>
+        <a <%= "class='current_nav'" if %w{lectures}.include? @controller_name %> href="/admin/lectures">>>讲座列表</a>
+      </li>
+      <li>
+        <a <%= "class='current_nav'" if %w{activities activity_users}.include? @controller_name %> href="/admin/activities">>>活动管理</a>
+      </li>
+    <% end %>
+    <li>
+      <a <%= "class='current_nav'" if @controller.action_name == "message" %> href="/admin/menus/message">>>短信发送</a>
+    </li>
+    <li>
+      <a <%= "class='current_nav'" if @controller.action_name == "message_reports" %> href="/admin/menus/message_reports">>>活动短信发送</a>
+    </li>
+    <li>
+      <a <%= "class='current_nav'" if @controller.action_name == "passwords" %> href="/admin/menus/passwords">>>发送用户密码</a>
+    </li>
+    <li><a href="javascript:void(0);" onclick="show('net_class');">>>网班管理</a></li>
+    <ul id="net_class">
+      <% if cookies[:space_id] != "1516845" %>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "topics" %> href="/admin/menus/topics">>>班级话题管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "topic_comments" %> href="/admin/menus/topic_comments">>>班级话题回复管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "albums" %> href="/admin/menus/albums">>>班级相册管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "pictures" %> href="/admin/menus/pictures">>>班级相册图片管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "group_resources" %> href="/admin/menus/group_resources">>>试题集锦</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "class_log_comments" %> href="/admin/menus/class_log_comments">>>网班日志评论管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "class_resources" %> href="/admin/menus/class_resources">>>班级共享管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "entry_applications" %> href="/admin/menus/entry_applications">>>班级博客推荐管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "entries" %> href="/admin/menus/entries">>>日志管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "entry_comments" %> href="/admin/menus/entry_comments">>>日志评论管理</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "pic_comments" %> href="/admin/menus/pic_comments">>>图片评论管理</a></li>
+      <% end %>
+      <li><a <%= "class='current_nav'" if @controller.action_name == "help_comments" %> href="/admin/menus/help_comments">>>帮助回复管理</a></li>
+      <li><a <%= "class='current_nav'" if @controller.action_name == "class_roles" %> href="/admin/menus/class_roles">>>网班权限管理</a></li>
+    </ul>
+    <li><a href="javascript:void(0);" onclick="show('net_class_report');">>>报表管理</a></li>
+    <ul id="net_class_report">
+      <% if cookies[:space_id] != "1516845" %>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "teacher_login_reports" %> href="/admin/menus/teacher_login_reports">>>教师登陆查询功能</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "parent_login_reports" %> href="/admin/menus/parent_login_reports">>>家长登陆查询功能</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "notice_reports" %> href="/admin/menus/notice_reports">>>班级公告查询功能</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "net_class_reports" %> href="/admin/menus/net_class_reports">>>网班登录查询功能</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "class_tree_reports" %> href="/admin/menus/class_tree_reports">>>班级树使用查询功能</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "teacher_login_lists" %> href="/admin/menus/teacher_login_lists">>>教师登陆统计报表</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "parent_login_lists" %> href="/admin/menus/parent_login_lists">>>家长登陆统计报表</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "notice_lists" %> href="/admin/menus/notice_lists">>>班级公告统计报表</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "net_class_lists" %> href="/admin/menus/net_class_lists">>>网班登录统计报表</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "class_tree_lists" %> href="/admin/menus/class_tree_lists">>>班级树使用统计报表</a></li>
+      <% end %>
+      <li><a <%= "class='current_nav'" if @controller.action_name == "reps" %> href="/admin/menus/reps">>>用户行为侦测报表</a></li>
+    </ul>
+    <% if cookies[:space_id] != "1516845" %>
+      <li><a href="javascript:void(0);" onclick="show('books');">>>墨香书屋</a></li>
+      <ul id="books">
+        <li><a <%= "class='current_nav'" if @controller.action_name == "books" %> href="/admin/menus/books">>>图书列表</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "book_reviews" %> href="/admin/menus/book_reviews">>>读书评论管理</a></li>
+      </ul>
+      <li><a href="javascript:void(0);" onclick="show('groups');">>>群组管理</a></li>
+      <ul id="groups">
+        <li><a <%= "class='current_nav'" if @controller.action_name == "groups" %> href="/admin/menus/groups">>>群组列表</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "groups_deleted" %> href="/admin/menus/groups_deleted">>>已关闭群组</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "group_topics" %> href="/admin/menus/group_topics">>>群组话题</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "group_topic_comments" %> href="/admin/menus/group_topic_comments">>>群组话题回复</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "group_albums" %> href="/admin/menus/group_albums">>>群组相册</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "group_pictures" %> href="/admin/menus/group_pictures">>>群组相册图片</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "groups_resources" %> href="/admin/menus/groups_resources">>>群组共享</a></li>
+      </ul>
+       <li><a href="javascript:void(0);" onclick="show('page_records');">>>统计管理</a></li>
+      <ul id="page_records">
+        <li><a <%= "class='current_nav'" if @controller.action_name == "page_records" %> href="/admin/page_records/">>>受访页面</a></li>
+        <li><a <%= "class='current_nav'" if @controller.action_name == "action_records" %> href="/admin/action_records/">>>用户行为统计</a></li>
+      </ul>
+    <% end %>
+  </ul>
+</div>
+<script type="text/javascript">
+  function show(type){
+    if($(type).style.display == "block")
+    {
+      $(type).style.display = "none";
+    }
+    else
+    {
+      $(type).style.display = "block";
+    }
+  }
+</script>

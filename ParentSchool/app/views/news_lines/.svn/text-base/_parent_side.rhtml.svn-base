@@ -1,0 +1,5 @@
+<div class="side_box index">
+  <%= render :partial => "#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::YLSBK]}" %>
+</div>
+<div class="clear"></div>
+<%= render :partial => "#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::JZHD]}" %>

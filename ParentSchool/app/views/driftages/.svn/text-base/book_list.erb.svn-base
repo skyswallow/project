@@ -1,0 +1,27 @@
+<h2>一年级--三年级 漂流图书</h2>
+<hr/>
+<% BookListing.find_grade_type_books('0').each do |book| %>
+<div>
+  <img src="<%= book.image %>"/><br/>
+  <a href="/driftages/book_detail/<%= book.blist_id %>" title="<%= book.name %>"><%=h truncate(book.name.strip, 20, "...") %></a><br/>
+  <a href="/driftages/book_detail/<%= book.blist_id %>">点击查看</a>
+</div>
+<% end %>
+
+<h2>四年级--六年级 漂流图书</h2>
+<hr/>
+<% BookListing.find_grade_type_books('1').each do |book| %>
+
+<% end %>
+
+<h2>初一年级--初三年级 漂流图书</h2>
+<hr/>
+<% BookListing.find_grade_type_books('2').each do |book| %>
+
+<% end %>
+
+<h2>其他图书</h2>
+<hr/>
+<% BookListing.find_grade_type_books('3').each do |book| %>
+
+<% end %>

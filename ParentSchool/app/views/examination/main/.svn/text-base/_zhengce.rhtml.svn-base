@@ -1,0 +1,16 @@
+<div class="main-fmxt">
+  <h2 class="mian_h2"><span>招生政策</span><a href="/news_lines/12/sub_parent_class" class="more-link">更多</a></h2>
+  <%news = NewsLine.zhengce%>
+  <table width="98%">
+    <colgroup>
+      <col width="85%"/>
+      <col width="15%"/>
+    </colgroup>
+    <% news.each { |new|   %>
+      <tr>
+        <td><a target="_blank" href="/news_lines/<%= new.id %>" title="<%=h  new.title.to_s.strip %>"><%=h  truncate(new.title.to_s.strip, :length => 16) %></a> </td>
+        <td align="right"><%= new.created_at.strftime('%Y.%m.%d')  %></td>
+      </tr>
+    <% } %>
+  </table>
+</div>

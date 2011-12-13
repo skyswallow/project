@@ -1,0 +1,3 @@
+<% if @index_hash[Constant::TJBJ] %>
+  <%= render :partial => "#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::TJBJ]}" %>
+<% end %>

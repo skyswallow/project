@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/config/initializers
+END
+inflections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/config/initializers/inflections.rb
+END
+load_domain.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/config/initializers/load_domain.rb
+END
+new_rails_defaults.rb
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/config/initializers/new_rails_defaults.rb
+END
+mime_types.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/config/initializers/mime_types.rb
+END

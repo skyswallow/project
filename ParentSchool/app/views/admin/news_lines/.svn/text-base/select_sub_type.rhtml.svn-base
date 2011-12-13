@@ -1,0 +1,7 @@
+---> <select id="sub_type" name="sub_type" style="width:80px;" onchange="document.getElementById('sub_type').value =this.value;">
+  <% for sub_type in @sub_types %>
+    <option value="<%= sub_type[1] %>">
+      <%= sub_type[0] %>
+    </option>
+  <% end %>
+</select>

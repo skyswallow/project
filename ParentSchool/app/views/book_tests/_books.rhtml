@@ -1,0 +1,47 @@
+<div class="apply">
+  <h1></h1>
+  <ul>
+    <li class="book-box-li">
+      <div class="book1">
+        <div class="oversell"<% if @has_book[0] %> style="display:none;"<% end %>></div>
+        <ul>
+          <li><input style="vertical-align:middle" type="radio" <% if !@has_book[0] or !@has_book[3] %>disabled<%end%> id="book_id_1" value="1" name="book_id"/><img src="/images/zengshu/book1.gif" width="113" height="141"/><div class="clear"></div>
+          </li>
+          <li style="font-weight:bold; color:#cc1e29; margin-top:5px">书名：《独自成长的小幼虫》</li>
+          <li>作者：[韩] 高苏珊娜/著  杨竹君/译</li>
+          <li>出版社：中国城市出版社</li>
+          <li>出版时间：2010-5-1 </li>
+          <li><a href="javascript:void(0)" onclick="show_info(1);Element.scrollTo($('intro_1'));" title="点击查看">查看图书简介>></a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="book-box-li">
+      <div class="book2">
+        <div class="oversell2"<% if @has_book[1] %> style="display:none;"<% end %>></div>
+        <ul>
+          <li><input style=" vertical-align:middle" type="radio" <% if !@has_book[1] or !@has_book[3] %>disabled<%end%> id="book_id_2" value="2" name="book_id"/><img src="/images/zengshu/book2.gif" width="113" height="141"/><div class="clear"></div>
+          </li>
+          <li style="font-weight:bold; color:#cc1e29; margin-top:5px">书名：《有奉献精神的父母培养大人物》</li>
+          <li>作者：[韩]全惠星/著 邵娟/译</li>
+          <li>出版社：中国城市出版社</li>
+          <li>出版时间：2009-9-1</li>
+          <li><a href="javascript:void(0)" onclick="show_info(2);Element.scrollTo($('intro_2'));" title="点击查看">查看图书简介>></a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="book-box-li">
+      <div class="book3">
+        <div class="oversell3"<% if @has_book[2] %> style="display:none;"<% end %>></div>
+        <ul>
+          <li><input style="vertical-align:middle" type="radio" <% if !@has_book[2] or !@has_book[3] %>disabled<%end%> id="book_id_3" value="3" name="book_id"/><img src="/images/zengshu/book3.gif" width="113" height="141"/><div class="clear"></div>
+          </li>
+          <li style="font-weight:bold; color:#cc1e29; margin-top:5px">书名：《英才是怎样造就的》</li>
+          <li>作者：王金战  隋永双/著</li>
+          <li>出版社：重庆出版社 </li>
+          <li>出版时间：2006-11-1 </li>
+          <li><a href="javascript:void(0)" onclick="show_info(3);Element.scrollTo($('intro_3'));" title="点击查看">查看图书简介>></a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

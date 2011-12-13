@@ -1,0 +1,13 @@
+<table width="600">
+  <colgroup width="520" />
+  <colgroup width="80" />
+  <% @resources.each do |resource| %>
+    <tr>
+      <td><%= link_to_remote h(truncate(resource.title,:length => 40)),
+          :html => {:title => h(resource.title.strip)},
+          :url => "/resources/#{resource.id}",:method => :get,
+          :complete => "javascript:showResource(500,500);" %></td>
+      <td><%= resource.created_at.strftime '%Y.%m.%d' %></td>
+    </tr>
+  <% end if @resources %>
+</table>

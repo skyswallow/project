@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>南通网上家长学校--赠书活动</title>
+    <%= javascript_include_tag "prototype", "book_activity", "tooltips","prototip", "validation_cn", :cache => "all" %>
+    <%= stylesheet_link_tag "zengshu", "validates/tooltips", :cache => "all" %>
+  </head>
+  <body>
+    <div id="contains">
+      <%= yield :layout -%>
+    </div>
+    <div style="display:none;"><script src="http://s19.cnzz.com/stat.php?id=1962242&web_id=1962242" language="JavaScript"></script></div>
+    <%= hidden_field_tag("page_record", Page_history.create_page_record(session.session_id,
+        request,
+        cookies[:space_id])) %>
+  </body>
+</html>

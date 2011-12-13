@@ -1,0 +1,56 @@
+<div>
+  <img src="<%= @book.image %>" width="170" height="150"/><%=h @book.subtitle %><br/>
+  <%=h @book.name %>
+</div>
+<center>
+  <div>话题：<%=h @topic.title %></div><br/><br/>
+  <div><%=h @topic.content %></div><br/><br/>
+  <% if logged_in? %>
+    <% form_tag(:action => :create) do %>
+      <%= hidden_field_tag :g_id, params[:id] %>
+      <%= text_area_tag(:content) %><br/>
+      <input type="button" value="发表评论" onclick="return check_content(this)"/>
+    <% end %>
+  <% else %>
+    <input type="button" value="我来说两句" onclick="login()"/>
+  <% end %>
+  <div id="topic_comments">
+    <table>
+      <% if params[:page] %>
+        <% @i  = (@topic_count.to_i) - ((params[:page].to_i-1)*15)%>
+      <% else %>
+        <% @i = @topic_count %>
+      <% end %>
+      <% (@topic_comments || []).each do |c| %>
+        <tr>
+          <td><%=h c.content %></td>
+          <td><%= @i %>楼</td>
+        </tr>
+        <tr>
+          <td>发表人：<%=h c.space.nickname %></td>
+          <td>发表时间：<%=h c.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        </tr>
+        <%@i -= 1%>
+      <% end %>
+    </table>
+    <%= will_paginate @topic_comments %>
+  </div>
+</center>
+<div id="topic_panel">
+  <%= render :partial => "topic_panel"%>
+</div>
+<script type="text/javascript">
+
+  function check_content(obj){
+    if($('content').value.match(/^\s*$/)){
+      alert("请输入您要发表的评论");
+      return false;
+    }
+    obj.disabled=true;
+    new Ajax.Request('/driftages/add_topic', {asynchronous:true, evalScripts:true, method:'get', onComplete:function(request)
+      {alert("您的评论已成功发表，恭喜获得2点积分");window.location.reload();obj.disabled=false;$('content').value = '';}, parameters:'content=' +$('content').value+'&id=' +$('g_id').value}); return false;
+  }
+  function login(){
+    alert("请先登录！");
+  }
+</script>

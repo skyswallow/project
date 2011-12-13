@@ -1,0 +1,14 @@
+<div class="side_box index">
+  <h2 class="side_h2"><span>往期讲座</span></h2>
+  <% @lectures.each do |lecture| %>
+    <% if @lectures.index(lecture) > 0 %><div class="commend_rev"><% end %>
+      <ul class="wqjz">
+        <li>主题：<span style="font-weight:bold; color:#C00;"><%= h lecture.topic %></span></li>
+        <li>主讲：<%= h lecture.speaker %></li>
+        <li>时间：<%= lecture.created_at.strftime("%Y-%m-%d %H:%M:%S") %></li>
+        <li>对象：<%= h lecture.target %></li>
+        <li><a href="/lectures/<%= lecture.id %>" class="wqjz a"></a></li>
+      </ul>
+      <% if @lectures.index(lecture) > 0 %></div><% end %>
+  <% end if @lectures %>
+</div>

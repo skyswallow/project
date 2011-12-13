@@ -1,0 +1,122 @@
+<p class="title_p">图书申领设置</p>
+<% form_tag "/admin/book_activities", :method => :post, :class => 'required-validate' do %>
+  <table border="1">
+    <colgroup width="245px;"></colgroup>
+    <colgroup width="80px;"></colgroup>
+    <colgroup width="80px;"></colgroup>
+    <colgroup width="80px;"></colgroup>
+    <colgroup width="95px;"></colgroup>
+    <colgroup width="95px;"></colgroup>
+    <colgroup width="95px;"></colgroup>
+    <colgroup width="70px;"></colgroup>
+    <tr align="center">
+      <td>书名</td>
+      <td>图书总量</td>
+      <td>已发量</td>
+      <td>剩余量</td>
+      <td>昨日应发量</td>
+      <td>昨日已发量</td>
+      <td>昨日剩余量</td>
+      <td>今日应发量</td>
+    </tr>
+    <tr align="center">
+      <% bs1a = BookSetting.find :all, :conditions => ["book_code = ? and created_at <= ?", Constant::All_BOOKS[0][0], Date.today] %>
+      <% bs1f = BookSetting.find :first, :conditions => ["book_code = ? and created_at = ?", Constant::All_BOOKS[0][0], Date.today - 1.days] %>
+      <td><%= Constant::All_BOOKS[0][1] %></td>
+      <td><%= Constant::All_BOOKS[0][2] %></td>
+      <td><%= (bs1a.collect { |item| item.real_count.to_i }.sum) rescue 0 %></td>
+      <td><%= (Constant::All_BOOKS[0][2] - bs1a.collect { |item| item.real_count.to_i }.sum) rescue 0 %></td>
+      <td><%= bs1f.total_count.to_i rescue 0 %></td>
+      <td><%= bs1f.real_count.to_i rescue 0 %></td>
+      <td><%= (bs1f.total_count.to_i - bs1f.real_count.to_i) rescue 0 %></td>
+      <td>
+        <input type="text" id="book1" name="book1" class="required validate-integer min-value-1 max-value-<%= (Constant::All_BOOKS[0][2] - bs1a.collect { |item| item.real_count.to_i }.sum) rescue nil %>" value="<%= (BookSetting.find :first, :conditions => ["book_code = ? and created_at = ?", Constant::All_BOOKS[0][0], Date.today]).total_count rescue nil %>"></input>
+      </td>
+    </tr>
+    <tr align="center">
+      <% bs2a = BookSetting.find :all, :conditions => ["book_code = ? and created_at <= ?", Constant::All_BOOKS[1][0], Date.today] %>
+      <% bs2f = BookSetting.find :first, :conditions => ["book_code = ? and created_at = ?", Constant::All_BOOKS[1][0], Date.today - 1.days] %>
+      <td><%= Constant::All_BOOKS[1][1] %></td>
+      <td><%= Constant::All_BOOKS[1][2] %></td>
+      <td><%= (bs2a.collect { |item| item.real_count.to_i }.sum) rescue 0 %></td>
+      <td><%= (Constant::All_BOOKS[1][2] - bs2a.collect { |item| item.real_count.to_i }.sum) rescue 0 %></td>
+      <td><%= bs2f.total_count.to_i rescue 0 %></td>
+      <td><%= bs2f.real_count.to_i rescue 0 %></td>
+      <td><%= (bs2f.total_count.to_i - bs2f.real_count.to_i) rescue 0 %></td>
+      <td>
+        <input type="text" id="book2" name="book2" class="required validate-integer min-value-1 max-value-<%= (Constant::All_BOOKS[1][2] - bs2a.collect { |item| item.real_count.to_i }.sum) rescue nil %>" value="<%= (BookSetting.find :first, :conditions => ["book_code = ? and created_at = ?", Constant::All_BOOKS[1][0], Date.today]).total_count rescue nil %>"></input>
+      </td>
+    </tr>
+    <tr align="center">
+      <% bs3a = BookSetting.find :all, :conditions => ["book_code = ? and created_at <= ?", Constant::All_BOOKS[2][0], Date.today] %>
+      <% bs3f = BookSetting.find :first, :conditions => ["book_code = ? and created_at = ?", Constant::All_BOOKS[2][0], Date.today - 1.days] %>
+      <td><%= Constant::All_BOOKS[2][1] %></td>
+      <td><%= Constant::All_BOOKS[2][2] %></td>
+      <td><%= (bs3a.collect { |item| item.real_count.to_i }.sum) rescue 0 %></td>
+      <td><%= (Constant::All_BOOKS[2][2] - bs3a.collect { |item| item.real_count.to_i }.sum) rescue 0 %></td>
+      <td><%= bs3f.total_count.to_i rescue 0 %></td>
+      <td><%= bs3f.real_count.to_i rescue 0 %></td>
+      <td><%= (bs3f.total_count.to_i - bs3f.real_count.to_i) rescue 0 %></td>
+      <td>
+        <input type="text" id="book3" name="book3" class="required validate-integer min-value-1 max-value-<%= (Constant::All_BOOKS[2][2] - bs3a.collect { |item| item.real_count.to_i }.sum) rescue nil %>" value="<%= (BookSetting.find :first, :conditions => ["book_code = ? and created_at = ?", Constant::All_BOOKS[2][0], Date.today]).total_count rescue nil %>"></input>
+      </td>
+    </tr>
+    <% if Time.now <= Time.mktime(Date.today.year, Date.today.month, Date.today.day, 19, 0, 0) %>
+      <tr align="center">
+        <td colspan="8">
+          <input type="submit" value="确定"></input>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<br/><br/>
+<p class="title_p">图书抽奖设置</p>
+<% form_tag "/admin/book_activities/lottery", :method => :post, :class => 'required-validate' do %>
+  <table border="1">
+    <colgroup width="245px;"></colgroup>
+    <colgroup width="80px;"></colgroup>
+    <colgroup width="80px;"></colgroup>
+    <colgroup width="80px;"></colgroup>
+    <colgroup width="95px;"></colgroup>
+    <colgroup width="95px;"></colgroup>
+    <colgroup width="70px;"></colgroup>
+    <tr align="center">
+      <td>书名</td>
+      <td>今日应发量</td>
+      <td>今日实发量</td>
+      <td>今日PV量</td>
+      <td>今日中奖值</td>
+      <td>明日应发量</td>
+      <td>明日PV量</td>
+    </tr>
+    <% ls = LotterySetting.find_by_active_date(Date.today) %>
+    <% today_ls = LotterySetting.find_by_active_date Date.today + 1 %>
+    <tr align="center">
+      <td><%= Constant::All_BOOKS[0][1] %></td>
+      <td><%= ls.s_count if ls %></td>
+      <td><%= ls.s_real_count.to_i if ls %></td>
+      <td rowspan="3"><%= ls.pv_count if ls %></td>
+      <td rowspan="3"><%= ls.pv_count/(ls.s_count+ls.b_count+ls.e_count) if ls %></td>
+      <td><input type="text" id="s_count" name="s_count" class="required validate-integer" value="<%= today_ls.s_count if today_ls%>"/></td>
+      <td rowspan="3"><input type="text" id="pv_count" name="pv_count" class="required validate-integer" value="<%= today_ls.pv_count if today_ls%>"/></td>
+    </tr>
+    <tr align="center">
+      <td><%= Constant::All_BOOKS[1][1] %></td>
+      <td><%= ls.b_count if ls %></td>
+      <td><%= ls.b_real_count.to_i if ls %></td>
+      <td><input type="text" id="b_count" name="b_count" class="required validate-integer" value="<%= today_ls.b_count if today_ls%>"/></td>
+    </tr>
+    <tr align="center">
+      <td><%= Constant::All_BOOKS[2][1] %></td>
+      <td><%= ls.e_count if ls %></td>
+      <td><%= ls.e_real_count.to_i if ls %></td>
+      <td><input type="text" id="e_count" name="e_count" class="required validate-integer" value="<%= today_ls.e_count if today_ls%>"/></td>
+    </tr>
+    <tr align="center">
+      <td colspan="7">
+        <input type="submit" value="确定"></input>
+      </td>
+    </tr>
+  </table>
+<% end %>

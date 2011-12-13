@@ -1,0 +1,41 @@
+<script type="text/javascript">
+  function alert_div(){
+    var info = $("error1").innerHTML;
+    $("alert_info_"+info.split(":")[0]).innerHTML = info.split(":")[2];
+    $("alert_"+info.split(":")[0]).removeClassName("tanchu");
+    $("alert_"+info.split(":")[0]).addClassName("show_alert");
+    if(info.split(":")[1] == 1){
+      $("alert_p_"+info.split(":")[0]).style.display = "block";
+      setTimeout('goto_url(5)', 5000);
+    }
+  }
+</script>
+<%= render :partial => "head" %>
+<div id="main">
+  <%= render :partial => "rule" %>
+  <% form_remote_tag :url => "/book_plans/apply", :html => {:name => "book_form", :id => "book_form",:class => "required-validate"}, :method => :post,
+    :condition => "checkForm()", :update => "error1", :complete => "alert_div()" do %>
+    <%= render :partial => "books" %>
+    <%= render :partial => "introduction" %>
+    <div class="hour" id="hour">
+      <ul>
+        <li><h1>申领时间:2010年11月1日至2010年12月31日</h1></li>
+        <% if 20101101 > Time.now.strftime("%Y%m%d").to_i %>
+          <li id="being"><img src="/images/zengshu/weikaishi.gif" width="181" height="31"/></li>
+          <li>申领图书账户名:<input type="text" id="username" name="username" class="required validate-digits max-length-15"/></li>
+          <li id="btn_over" ><button class="shenling-over" id="btn_close" type="button" >&nbsp;</button></li>
+        <% elsif 20101101 <= Time.now.strftime("%Y%m%d").to_i and Time.now.strftime("%Y%m%d").to_i  <= 20101231 %>
+          <li id="doing"><img src="/images/zengshu/jinxingzhong.gif" width="181" height="31"/></li>
+          <li>申领图书账户名:<input type="text" id="username" name="username" class="required validate-digits max-length-15"/></li>
+          <li id="btn_doing"><button class="shenling" type="submit" id="btn_sub">&nbsp;</button></li>
+        <% else %><li id="time_over"><img src="/images/zengshu/time-over.gif" width="505" height="130"/></li>
+          <li>申领图书账户名:<input type="text" id="username" name="username" class="required validate-digits max-length-15"/></li>
+          <li id="btn_over" ><button class="shenling-over" id="btn_close" type="button" >&nbsp;</button></li>
+        <% end %>
+        <li id="over" style="display:none" ><img src="/images/zengshu/over.gif" width="505" height="130"/></li>
+      </ul>
+    </div>
+  <% end %>
+  <span id="error1" style="display: none;"></span>
+  <%= render :partial => "alert_div" %>
+</div>

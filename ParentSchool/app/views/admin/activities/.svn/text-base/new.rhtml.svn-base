@@ -1,0 +1,138 @@
+<%= javascript_include_tag "popupCalendar" %>
+<%= javascript_include_tag "date" %>
+<p class="title_p">活动管理</p>
+<div class="clear"></div>
+<% form_tag("/admin/activities", :method => :post, :id => 'activity_form', :name =>"activity_form", :multipart => true, :class => 'required-validate', :onsubmit => "return checkForm();", :target => "hidden_frame") do %>
+  <iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
+  <table width="100%">
+    <colgroup>
+      <col width="20%"/>
+      <col width="80%"/>
+    </colgroup>
+    <tr>
+      <td>活动名称<span style="color:red;">*</span></td>
+      <td>
+        <input style="width:617px;" name="name" id="activity_name" class="required max-length-50"/>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align:top;">活动简介<span style="color:red;">*</span></td>
+      <td>
+        <textarea cols="100" rows="10" name="summary" id="activity_summary" class="required max-length-500"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align:top;">活动内容<span style="color:red;">*</span></td>
+      <td>
+        <span id="content_error" style="color:red;font-weight:bold;"></span>
+        <input type="hidden" id="activity_content" name="content"/>
+        <iframe id="myEditor" src="/editor/editor.htm?id=activity_content" frameborder="0" scrolling="no" width="650" height="475"></iframe>
+      </td>
+    </tr>
+    <tr>
+      <td>活动日期<span style="color:red;">*</span></td>
+      <td>
+        <span id="date_error" style="color:red;font-weight:bold;"></span>
+        <div class="clear"></div>
+        开始日期：<input type="text" id="start_date" name="start_date" class="required" style="width:86px;" onblur="check_date()" onclick="getDateString(start_date, oCalendarChs)" readonly>&nbsp;&nbsp;&nbsp;&nbsp;
+        结束日期：<input type="text" id="end_date" name="end_date" class="required" style="width:86px;" onblur="check_date()" onclick="getDateString(end_date, oCalendarChs)" readonly>
+      </td>
+    </tr>
+    <tr>
+      <td>活动图片<span style="color:red;">*</span></td>
+      <td>
+        <input style="width:400px;" type="file" name="photo" id="activity_photo" class="required validate-file-jpg-bmp-png-gif" onkeydown="return false" onkeyup="return false" contenteditable="false" />
+      </td>
+    </tr>
+    <tr>
+      <td>页头图片<span style="color:red;">*</span></td>
+      <td>
+        <input style="width:400px;" type="file" name="top_photo" id="activity_top_photo" class="required validate-file-jpg-bmp-png-gif" onkeydown="return false" onkeyup="return false" contenteditable="false" />
+      </td>
+    </tr>
+    <tr>
+      <td>页脚图片<span style="color:red;">*</span></td>
+      <td>
+        <input style="width:400px;" type="file" name="bottom_photo" id="activity_bottom_photo" class="required validate-file-jpg-bmp-png-gif" onkeydown="return false" onkeyup="return false" contenteditable="false" />
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2">
+        <table border="0" width="100%">
+          <tr align="center">
+            <td align="center" style="width:60%;">
+              <input type="hidden" name="operate_type" id="operate_type"/>
+              <input onclick="previewActivities('pre_view')" id="preview_btn" name="preview_btn" type="submit" style="height: 20px;line-height: 17px;margin-left: 5px;" value="预览"/>
+              <input onclick="previewActivities('publish')" id="sub_btn" name="sub_btn" type="submit" style="height: 20px;line-height: 17px;margin-left: 5px;" value="确定"/>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+<% end %>
+<script type="text/javascript">
+  function checkForm(){
+    $('content_error').innerHTML="";
+    var valid = new Validation('activity_form', {onSubmit:false});
+    var sd = document.getElementById("start_date").value;
+    var ed = document.getElementById("end_date").value;
+    var today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth() + 1;
+    var year = today.getYear();
+    var td = year + "/" + month + "/" + day
+    var ed_date = Date.parse(ed.split('-')[0]+"/"+ed.split('-')[1]+"/"+ed.split('-')[2])
+    var td_date = Date.parse(td)
+    var content = window.frames["myEditor"].document.frames["editor_body_area"].document.body.innerText;
+    var content_length = content.length;
+    var flag = true;
+    if (content.replace(/(^\s*)|(\s*$)/g,"") == "" && window.frames["myEditor"].document.frames["editor_body_area"].document.body.innerHTML.indexOf("<IMG") == -1) {
+      $('content_error').innerHTML="活动内容不能为空";
+      window.frames["myEditor"].document.frames["editor_body_area"].document.body.focus();
+      flag = false;
+    }
+    if(content_length > 2000){
+      $('content_error').innerHTML="活动内容不能超过2000个字符";
+      window.frames["myEditor"].document.frames["editor_body_area"].document.body.focus();
+      flag = false;
+    }
+    if (ed_date < td_date){
+      flag = false;
+      $('date_error').innerHTML ="结束日期不能早于当天！";
+    }
+    if (sd!='' && ed!=''){
+      if (sd>ed){
+        flag = false;
+        $('date_error').innerHTML ="开始日期不能晚于结束日期！";
+      }
+    }
+    var result = valid.validate();
+    if(result&&flag){
+      $('content_error').innerHTML ="";
+      $('date_error').innerHTML ="";
+      if ($('operate_type').value == "1"){
+        $("preview_btn").disable();
+        $("sub_btn").disable();
+      }
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function check_date(){
+    if(document.getElementById("date_error").innerHTML=="开始日期不能晚于结束日期！" || document.getElementById("date_error").innerHTML=="结束日期不能早于当天！"){
+      document.getElementById("date_error").innerHTML="";
+    }
+  }
+
+  function previewActivities(type)
+  {
+    if (type == "pre_view") {
+      $('operate_type').value = 0;
+    } else {
+      $('operate_type').value = 1;
+    }
+  }
+</script>

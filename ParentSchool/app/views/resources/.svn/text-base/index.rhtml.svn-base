@@ -1,0 +1,251 @@
+<script type="text/javascript">
+  function selectTab(type, num, length)
+  {
+    if (type == "xx")
+    {
+      for(var i = 0; i < length; i++)
+      {
+        $('xx_'+ i).removeClassName("selected");
+        if (i == num)
+        {
+          $('xx_'+ num).addClassName("selected");
+        }
+      }
+    }
+    if (type == "cz")
+    {
+      for(var i = 0; i < length; i++)
+      {
+        $('cz_'+ i).removeClassName("selected");
+        if (i == num)
+        {
+          $('cz_'+ num).addClassName("selected");
+        }
+      }
+    }
+    if (type == "gz")
+    {
+      for(var i = 0; i < length; i++)
+      {
+        $('gz_'+ i).removeClassName("selected");
+        if (i == num)
+        {
+          $('gz_'+ num).addClassName("selected");
+        }
+      }
+    }
+  }
+</script>
+<div id="main">
+  <!--小学栏目开始-->
+  <div class="colunm_list_box">
+    <h2 class="mian_h2">
+      <span>小学试卷</span>
+      <%= link_to("更多", "/resources/search?type=" + ResourceType::XIAOXUE, :class => "more-link") %>
+    </h2>
+    <% rts = ResourceType.find_by_parent_id(ResourceType::XIAOXUE) %>
+    <div class="newsearch">
+      <% form_tag "/resources/search", :id => "search_form", :method => "get" do %>
+        <select name="sub_type" id="sub_type">
+          <option value="0">全部</option>
+          <% rts.each do |item| %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+          <% end %>
+        </select>
+        <span>关键字：</span>
+        <input name="title" id="title" type="text" />
+        <input name="type" id="type" type="hidden" value="<%= ResourceType::XIAOXUE %>" />
+        <input type="submit" value="搜索" />
+      <% end %>
+    </div>
+    <div class="clear"></div>
+    <div class="tab" style="width:98%">
+      <ul>
+        <% first = 0 %>
+        <% first_type = -1 %>
+        <% length = rts.length %>
+        <% rts.each do |item| %>
+          <li>
+            <% if first == 0 %>
+              <% first_type = item.id %>
+              <%= link_to_remote(item.name,
+                :update => "sub_xx",
+                :url => { :action => "types", :id => item.id },
+                :html => { :id => "xx_" + first.to_s, :class => "selected" },
+                :complete => "selectTab('xx', " + first.to_s + ", " + length.to_s + ")") %>
+            <% else %>
+              <%= link_to_remote(item.name,
+                :update => "sub_xx",
+                :url => { :action => "types", :id => item.id },
+                :html => { :id => "xx_" + first.to_s },
+                :complete => "selectTab('xx', " + first.to_s + ", " + length.to_s + ")") %>
+            <% end %>
+          </li>
+          <% first += 1 %>
+        <% end %>
+      </ul>
+      <div class="tab-line" style="width:98%"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_xx">
+      <table width="600">
+        <colgroup width="520" />
+        <colgroup width="80" />
+        <% resources = find_by_type(first_type, 10) %>
+        <% resources.each do |resource| %>
+          <tr>
+            <td><%= link_to_remote h(truncate(resource.title,:length => 40)),
+                :html => {:title => h(resource.title.strip)},
+                :url => "/resources/#{resource.id}",:method => :get,
+                :complete => "javascript:showResource(500,500);" %></td>
+            <td><%= resource.created_at.strftime '%Y.%m.%d' %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <!--小学栏目结束-->
+  <div class="clear"></div>
+  <!--初中栏目开始-->
+  <div class="colunm_list_box">
+    <h2 class="mian_h2">
+      <span>初中试卷</span>
+      <%= link_to("更多", "/resources/search?type=" + ResourceType::CHUZHONG, :class => "more-link") %>
+    </h2>
+    <% rts = ResourceType.find_by_parent_id(ResourceType::CHUZHONG) %>
+    <div class="newsearch">
+      <% form_tag "/resources/search", :id=>"search_form", :method =>"get" do %>
+        <select name="sub_type" id="sub_type">
+          <option value="0">全部</option>
+          <% rts.each do |item| %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+          <% end %>
+        </select>
+        <span>关键字：</span>
+        <input name="title" id="title" type="text" />
+        <input name="type" id="type" type="hidden" value="<%= ResourceType::CHUZHONG %>" />
+        <input type="submit" value="搜索" />
+      <% end %>
+    </div>
+    <div class="clear"></div>
+    <div class="tab" style="width:98%">
+      <ul>
+        <% first = 0 %>
+        <% first_type = -1 %>
+        <% length = rts.length %>
+        <% rts.each do |item| %>
+          <li>
+            <% if first == 0 %>
+              <% first_type = item.id %>
+              <%= link_to_remote(item.name,
+                :update => "sub_cz",
+                :url => { :action => "types", :id => item.id },
+                :html => { :id => "cz_" + first.to_s, :class => "selected" },
+                :complete => "selectTab('cz', " + first.to_s + ", " + length.to_s + ")") %>
+            <% else %>
+              <%= link_to_remote(item.name,
+                :update => "sub_cz",
+                :url => { :action => "types", :id => item.id },
+                :html => { :id => "cz_" + first.to_s },
+                :complete => "selectTab('cz', " + first.to_s + ", " + length.to_s + ")") %>
+            <% end %>
+          </li>
+          <% first += 1 %>
+        <% end %>
+      </ul>
+      <div class="tab-line" style="width:98%"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_cz">
+      <table width="600">
+        <colgroup width="520" />
+        <colgroup width="80" />
+        <% resources = find_by_type(first_type, 10) %>
+        <% resources.each do |resource| %>
+          <tr>
+            <td><%= link_to_remote h(truncate(resource.title,:length => 40)),
+                :html => {:title => h(resource.title.strip)},
+                :url => "/resources/#{resource.id}",:method => :get,
+                :complete => "javascript:showResource(500,500);" %></td>
+            <td><%= resource.created_at.strftime '%Y.%m.%d' %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <!--初中栏目结束-->
+  <div class="clear"></div>
+  <!--高中栏目开始-->
+  <div class="colunm_list_box">
+    <h2 class="mian_h2">
+      <span>高中试卷</span>
+      <%= link_to("更多", "/resources/search?type=" + ResourceType::GAOZHONG, :class => "more-link") %>
+    </h2>
+    <% rts = ResourceType.find_by_parent_id(ResourceType::GAOZHONG) %>
+    <div class="newsearch">
+      <% form_tag "/resources/search", :id=>"search_form", :method =>"get" do %>
+        <select name="sub_type" id="sub_type">
+          <option value="0">全部</option>
+          <% rts.each do |item| %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+          <% end %>
+        </select>
+        <span>关键字：</span>
+        <input name="title" id="title" type="text" />
+        <input name="type" id="type" type="hidden" value="<%= ResourceType::GAOZHONG %>" />
+        <input type="submit" value="搜索" />
+      <% end %>
+    </div>
+    <div class="clear"></div>
+    <div class="tab" style="width:98%">
+      <ul>
+        <% first = 0 %>
+        <% first_type = -1 %>
+        <% length = rts.length %>
+        <% rts.each do |item| %>
+          <li>
+            <% if first == 0 %>
+              <% first_type = item.id %>
+              <%= link_to_remote(item.name,
+                :update => "sub_gz",
+                :url => { :action => "types", :id => item.id },
+                :html => { :id => "gz_" + first.to_s, :class => "selected" },
+                :complete => "selectTab('gz', " + first.to_s + ", " + length.to_s + ")") %>
+            <% else %>
+              <%= link_to_remote(item.name,
+                :update => "sub_gz",
+                :url => { :action => "types", :id => item.id },
+                :html => { :id => "gz_" + first.to_s },
+                :complete => "selectTab('gz', " + first.to_s + ", " + length.to_s + ")") %>
+            <% end %>
+          </li>
+          <% first += 1 %>
+        <% end %>
+      </ul>
+      <div class="tab-line" style="width:98%"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_gz">
+      <table width="600">
+        <colgroup width="520" />
+        <colgroup width="80" />
+        <% resources = find_by_type(first_type, 10) %>
+        <% resources.each do |resource| %>
+          <tr>
+            <td><%= link_to_remote h(truncate(resource.title,:length => 40)),
+                :html => {:title => h(resource.title.strip)},
+                :url => "/resources/#{resource.id}",:method => :get,
+                :complete => "javascript:showResource(500,500);" %></td>
+            <td><%= resource.created_at.strftime '%Y.%m.%d' %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <!--高中栏目结束-->
+  <div class="clear"></div>
+</div>
+<div id="side">
+  <%= render :partial => "/resources/resource_side" %>
+  <%= render :partial => "/resources/info" %>
+</div>

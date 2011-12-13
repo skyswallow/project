@@ -1,0 +1,21 @@
+<div class="pop_box">
+  <table width="100%" style="table-layout:fixed;">
+    <% if @notice %>
+      <tr><td style="word-break:break-all;" colspan="2" align="center"><b><%=h @notice.title %></b></td></tr>
+      <tr><td style="word-break:break-all;" colspan="2" align="left"><%= @notice.content %></td></tr>
+      <tr><td align="left">发布时间：<%= @notice.created_at.strftime '%Y.%m.%d' %></td><td align="right">——南通网上家长学校</td></tr>
+    <% else %>
+      <tr>
+        <td style="word-break:break-all;" align="center">
+          您查看的公告已经被删除！
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="clear"></div>
+  <% if @notice %>
+    <button onClick="closeNotice();">关闭</button>
+  <% else %>
+    <button onClick="closeNotice();window.document.location.reload();">关闭</button>
+  <% end %>
+</div>

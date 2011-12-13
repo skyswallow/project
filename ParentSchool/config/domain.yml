@@ -1,0 +1,15 @@
+development:
+  xuexi6_url: http://test.xuexi6.com
+  points_url: http://test2.xuexi6.com
+  group_url: http://group2.xuexi6.com
+  net_class_url: http://test4.xuexi6.com
+  net_school_url: http://192.168.38.7:8500
+  parent_school_url: http://jxw.xuexi6.com
+
+production:
+  xuexi6_url: http://www.xuexi6.com
+  points_url: http://points.xuexi6.com
+  group_url: http://group.xuexi6.com
+  net_school_url: http://webschool.xuexi6.com
+  net_class_url: http://webclass.xuexi6.com
+  parent_school_url: http://start.ntjxt.com

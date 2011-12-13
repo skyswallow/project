@@ -1,0 +1,5 @@
+<div class="side_box index">
+  <% if @index_hash[Constant::YLSBK] %>
+    <%= render :partial => "#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::YLSBK]}" %>
+  <% end %>
+</div>

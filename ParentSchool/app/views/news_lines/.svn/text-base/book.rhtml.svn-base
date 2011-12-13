@@ -1,0 +1,7 @@
+<div id="main">
+  <%= render :partial=>"#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::TJTS]}" %>
+  <%= render :partial=>"#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::TJSP]}" %>
+</div>
+<div id="side">
+  <%= render :partial=>"#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::TSPH]}" %>
+</div>

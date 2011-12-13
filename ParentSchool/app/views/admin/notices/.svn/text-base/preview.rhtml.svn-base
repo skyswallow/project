@@ -1,0 +1,25 @@
+<script type="text/javascript">
+  window.onload = function(){
+    var title = window.document.getElementById("title");
+    var content = window.document.getElementById("content");
+    if(navigator.appName=="Netscape"){
+      title.textContent = window.opener.document.getElementById("n_title").value;
+      content.textContent = window.opener.document.getElementById("n_content").value;
+    }else{
+      title.innerText = window.opener.document.getElementById("n_title").value;
+      content.innerText = window.opener.document.getElementById("n_content").value;
+    }
+  }
+</script>
+<table style="width:700px;" style="table-layout:fixed">
+  <colgroup><col width="10%"/><col width="90%"/></colgroup>
+  <tr><th colspan="2">公告预览</th></tr>
+  <tr>
+    <td><strong>标题：</strong></td>
+    <td style="word-break:break-all;" id="title"></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>内容：</strong></td>
+    <td id="content" style="word-break:break-all;"></td>
+  </tr>
+</table>

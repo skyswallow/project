@@ -1,0 +1,70 @@
+<style type="text/css">
+  #r_tran {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+  }
+  #r_back {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    filter:alpha(Opacity=30);
+    -moz-opacity:0.3;
+    opacity:0.3;
+  }
+  #r_info {
+    position:absolute;
+    left:0px;
+    top:0px;
+    text-align:center;
+  }
+  .pop_box {
+    background:#FFF;
+    padding:10px;
+  }
+  .pop_box table td {
+    border:#ebebeb 1px solid;
+    padding:5px;
+  }
+</style>
+<script type="text/javascript">
+  function showResource(width,height){
+    var windowstr= document.getElementById("p_layer").innerHTML;
+    var r_info = document.getElementById("r_info");
+    var r_tran = document.getElementById("r_tran");
+    var r_back = document.getElementById("r_back");
+    var cw = document.body.clientWidth;
+    var ch = document.body.clientHeight;
+    var st = document.body.scrollTop;
+    var dst = document.documentElement.scrollTop;
+    var s_top = st!=0?st:dst;
+    r_info.innerHTML=windowstr;
+    r_info.style.left=((cw-width)>0?(cw-width):0)/2+"px";
+    r_info.style.top=(s_top+100)+"px";
+    r_info.style.zIndex=10001;
+    r_info.style.width=width+"px";
+    r_info.style.height=height+"px";
+    r_tran.style.height=ch+ "px";
+    r_tran.style.width=cw+ "px";
+    r_tran.style.display="";
+    r_back.style.display="";
+    r_back.style.zIndex=10000;
+    r_info.style.display="";
+  }
+  function closeResource(){
+    document.getElementById("r_tran").style.display="none";
+  }
+</script>
+<div id="r_tran" style="display:none;">
+  <div id="r_back">
+    <iframe style="width:100%;height:100%;filter:Alpha(opacity=0);position:absolute;top:0;left:0;" border="0" frameborder="0"></iframe>
+  </div>
+  <div id="r_info"></div>
+</div>
+<div id="p_layer" style="display:none;">
+</div>

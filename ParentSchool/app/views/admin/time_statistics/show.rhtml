@@ -1,0 +1,71 @@
+<%= javascript_include_tag :defaults  %>
+<%= javascript_include_tag "My97DatePicker/WdatePicker"%>
+<p>
+   <a href="#"onclick="javascirpt:window.location.href='/admin/time_statistics?url='+escape('<%= params[:url] %>');" >简单查询</a>
+  <a href="#"onclick="javascirpt:window.location.href='/admin/time_statistics/show?url='+escape('<%= params[:url] %>');" style="font-weight: bold">高级查询</a>
+</p>
+<br/>
+<p>受访页面：<a href="<%= params[:url] %>"target="blank"><%= params[:url] %></a></p><br/>
+<form action="/admin/time_statistics/show">
+  当前日期：<%= Date.today(:db) %>&nbsp;&nbsp;&nbsp;
+  从<input type="text" readonly id="start_time" value="<%= params[:start_time] %>"
+          name="start_time" class = 'Wdate'
+          onclick="WdatePicker({startDate:'%y-%M-%d %H:%m:%s',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})"/>
+  到<input type="text" readonly id="end_time" value="<%= params[:end_time] %>" class = 'Wdate'
+          name="end_time" onclick="WdatePicker({startDate:'%y-%M-%d %H:%m:%s',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})"/>
+  <input type="hidden" name="url" value="<%= params[:url] %>"/>
+  <input type="submit" value=" 查 询 "/>
+</form><br/>
+<table width="100%" border="1" class="page1">
+  <colgroup>
+    <col widtd="50%"></col>
+    <col widtd="10%"></col>
+    <col widtd="10%"></col>
+    <col widtd="10%"></col>
+    <col widtd="10%"></col>
+    <col widtd="10%"></col>
+  </colgroup>
+  <tr align="center">
+    <td <%= sort_td_class_helper "time_duan" %>>
+      <%= sort_link_helper "时间段", "time_duan" %>
+    </td>
+    <td <%= sort_td_class_helper "pv" %>>
+      <%= sort_link_helper "PV", "pv" %>
+    </td>
+    <td <%= sort_td_class_helper "uv" %>>
+      <%= sort_link_helper "UV", "uv" %>
+    </td>
+    <td <%= sort_td_class_helper "ip" %>>
+      <%= sort_link_helper "IP", "ip" %>
+    </td>
+    <td <%= sort_td_class_helper "num" %>>
+      <%= sort_link_helper "人均浏览次数", "num" %>
+    </td>
+    <td <%= sort_td_class_helper "stay_date" %>>
+      <%= sort_link_helper "人将浏览时间（秒）", "stay_date" %>
+    </td>
+  </tr>
+  <% (@time_statistics || []).each do |i|  %>
+    <tr align="center" <%= "style='color:blue'"  unless i[1][5].blank? %>>
+      <td><%= i[0] %></td>
+      <td><%= i[1][0].to_i %></td>
+      <td><%= i[1][1].to_i %></td>
+      <td><%= i[1][2].to_i %></td>
+      <td><%= i[1][3] %></td>
+      <td><%= i[1][4].to_i%></td>
+    </tr>
+  <% end %>
+</table>
+<br/>
+<div style="width: 65px;float: right;">
+  <%= button_to "导出列表", {:action => :create, :id => 1, :url => params[:url], :sort => params[:sort], :start_time => params[:start_time], :end_time => params[:end_time]}%>
+</div>
+<style type="text/css">
+  .page1 td{
+    border: 1px solid #666666;
+    padding: 2px;
+  }
+  .page1 {
+    border: 1px solid #666666;
+  }
+</style>

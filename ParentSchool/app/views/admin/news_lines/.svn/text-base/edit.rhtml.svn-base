@@ -1,0 +1,89 @@
+<script type="text/javascript">
+  function dispaly_span()
+  {
+    if(document.getElementById('news_parent_type').value == "21" || document.getElementById('news_parent_type').value == "22"){
+      document.getElementById('select_sub_type').style.display = "none";
+    }
+    else{
+      document.getElementById('select_sub_type').style.display = "block";
+    }
+  }
+  function reupone(){
+    var path = document.getElementById("cov");
+    var oldpath = document.getElementById("oldpath").value;
+    var oldext = /[^\/]+$/.exec(oldpath)[0];    //旧文件名
+    var newext =path.value.match(/[^\\]*$/)[0];    //新文件名
+    var flag = true;
+    if(path.value == "") {
+      alert("请提交文件");
+      flag = false;
+    }else if(oldext != newext){
+      alert("新旧文件名不符");
+      flag = false;
+    }
+    if (document.getElementById("news_parent_type").value == ""){
+      alert("请选择分类");
+      flag =  false;
+    }
+    if (document.getElementById("sub_type").value == "" && document.getElementById("news_parent_type").value != "21" && document.getElementById("news_parent_type").value != "22"){
+      alert("请选择子分类");
+      flag = false;
+    }
+    if (document.getElementById("news_parent_type").value == "22"){
+      document.getElementById("gonggao").value = "gonggao";
+    }else{
+      document.getElementById("gonggao").value = "";
+    }
+    if(flag){
+      $('sub_btn').disable();
+    }else{
+      $('sub_btn').enable();
+    }
+    return flag;
+  }
+
+</script>
+<div id="bd_div">
+  <%=render :partial =>"sub_menu"%>
+  <% form_tag "/admin/news_lines/#{@line.id}", :id => "edit_form", :name => "edit_form", :multipart => :true, :class => 'required-validate', :method =>:put, :onsubmit => "return reupone();" do %>
+    <table>
+      <colgroup>
+        <col width="15%"/>
+        <col width="85%"/>
+      </colgroup>
+      <tr style="height: 30px;" valign="top">
+        <td>类型：</td>
+        <td><input type="hidden" id="sub_type" name="sub_type" />
+          <input type="hidden" id="gonggao" name="gonggao" />
+          <%= select("news","parent_type", @news_types, {}, {
+              "onchange" => remote_function(
+                :with => "'parent_id='+value",
+                :update => 'select_sub_type',
+                :url => { :action => :select_sub_type },
+                :complete => 'dispaly_span()',
+                :style=>"width:80px;float: left;"),
+              :style =>"width:80px;float: left;"}
+          )
+        %>
+          <span id='select_sub_type'>
+            ---> <select><option>请选择</option></select>
+          </span>
+        </td>
+      </tr>
+      <tr style="height:30px;">
+        <td>文件：</td>
+        <td>
+          <input type="file" name="file" id="cov" class="required max-length-100"  onkeydown="return false" onkeyup="return false" contenteditable="false" />
+        </td>
+      </tr>
+      <tr style="height: 30px;">
+        <td>原文件路径：</td>
+        <td><%=  @line.path  %><input type="hidden" id="oldpath" value="<%= @line.path if @line.path %>"/></td>
+      </tr>
+      <tr style="height:30px;"><td colspan="2">
+          &nbsp;&nbsp;&nbsp;&nbsp;   <input type="submit" id="sub_btn" value="提交"/>
+        </td
+      </tr>
+    </table>
+  <% end %>
+</div>

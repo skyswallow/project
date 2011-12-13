@@ -1,0 +1,193 @@
+<% if @book.grade_type == 0 %>
+  <h2>一年级--三年级 漂流图书</h2>
+<% elsif @book.grade_type == 1 %>
+  <h2>四年级--六年级 漂流图书</h2>
+<% elsif @book.grade_type == 2 %>
+  <h2>初一年级--初三年级 漂流图书</h2>
+<% elsif @book.grade_type == 3 %>
+  <h2>其他图书</h2>
+<% end %>
+<hr/>
+<img src=""/><br/>
+<%=h @book.name %><br/>
+<%=h @book.description %>
+
+<hr/>
+
+<div id="slidingBlock">
+
+
+  <div id="nav_box">
+    <h4 class="menuOn" id="mod1" onmouSEOver="switchmodTag('mod','slidingList','1');this.blur();">
+      快来看看同学们对于本书的读后感吧，你也可以发表自己的意见哦！</h4><div id="line"></div>
+    <h4 class="menuNo" id="mod2" onmouseover="switchmodTag('mod','slidingList','2');this.blur();">
+      图书话题热议，看看大家都在说什么，也可以和大家分享你的观点哦！</h4><div id="line"></div>
+  </div>
+  <div class="slidingList" id="slidingList1">
+    <table border="1">
+      <tr>
+        <td><b>征文标题</b></td>
+        <td><b>作者</b></td>
+        <td><b>最后更新时间</b></td>
+        <td><b>评论</b></td>
+        <td><b>操作</b></td>
+      </tr>
+      <% @articles.each do |at| %>
+        <tr>
+          <td><a href="#"><%=h at.title %></a></td>
+          <td><a href="#"><%=h at.nickname %></a></td>
+          <td><%=h at.updated_at.strftime "%Y.%m.%d %H:%M:%S" %></td>
+          <td><%=h at.rates_count %></td>
+          <td><a href="#">点击阅读</a></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= will_paginate @articles,
+      :class => 'pagination',
+      :prev_label => '上一页',
+      :next_label => '下一页' %>
+<%# if cookies[:space_id] %>
+     <%= render :partial => "book_detail_file_upload"%>
+<%# else %>
+<%#*<input type="button" value="我要上传"/>%>
+<%# end %>
+  </div>
+  <div class="slidingList_none" id="slidingList2">
+    <table border="1">
+      <tr>
+        <td><b>话题</b></td>
+        <td><b>最新回复人</b></td>
+        <td><b>最新回复时间</b></td>
+        <td><b>回复</b></td>
+        <td><b>操作</b></td>
+      </tr>
+      <% @group_topics_list.each do |gtl| %>
+        <tr>
+          <td><a href="#"><%=h gtl.title %></a></td>
+          <td><a href="#"><%=h gtl.nickname %></a></td>
+          <td><%=h gtl.new_time.strftime "%Y.%m.%d %H:%M:%S" %></td>
+          <td><%=h gtl.group_topic_comments_count %></td>
+          <td><a href="#">点击阅读</a></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= will_paginate @group_topics_list,
+      :class => 'pagination',
+      :prev_label => '上一页',
+      :next_label => '下一页' %>
+  </div>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+  function show_info(){
+    if($("introduction").style.display=="block"){
+      $("introduction").style.display="none";
+      $("upload_rule").innerHTML="上传的文件格式为doc、docx,点击查看详细说明";
+      window.frameElement.height   =   document.body.scrollHeight;
+    }else{
+      $("introduction").style.display="block";
+      $("upload_rule").innerHTML="上传的文件格式为doc、docx,点击关闭详细说明";
+      window.frameElement.height   =   document.body.scrollHeight;
+    }
+  }
+
+  function cls(){
+    //捕获触发事件的对象，并设置为以下语句的默认对象
+    with(event.srcElement)
+    //如果当前值为默认值，则清空
+    if(value==defaultValue) value=""
+  }
+  function res(){
+    //捕获触发事件的对象，并设置为以下语句的默认对象
+    with(event.srcElement)
+    //如果当前值为空，则重置为默认值
+    if(value=="") value=defaultValue
+  }
+</script>
+
+<script type="text/javascript">
+  function switchmodTag(modtag,modcontent,modk) {
+    for(i=1; i <13; i++) {
+      if (i==modk) {
+        document.getElementById(modtag+i).className="menuOn";document.getElementById(modcontent+i).className="slidingList";}
+      else {
+        document.getElementById(modtag+i).className="menuNo";document.getElementById(modcontent+i).className="slidingList_none";}
+    }
+  }
+</script>
+<style type="text/css">
+  h4,div,ul,li,span{ padding:0px; margin:0px}
+  /* 最外面DIV的样式 */
+  #slidingBlock {
+    width:980px;
+    over-flow:hidden;
+    margin:auto;
+    height:60px;
+    border:#ccc solid 1px;
+    background-image: url(http://www.dlstu.cn/code/attachments/month_0810/12008102915655.jpg);
+    background-repeat: repeat-x;
+    background-position: top;
+  }
+  #nav_box{
+    height:33px;
+    width:958px;
+    text-align:center;
+    margin-left: 11px;
+  }
+  #slidingBlock a{ color:#000;
+  }
+  #slidingBlock h4 {
+    float:left;
+    width:78px;
+    height:33px;
+    line-height:33px;
+    text-align:center;
+    font-size:12px;
+    over-flow:hidden;
+    float:left;
+    background-image: url(http://www.dlstu.cn/code/attachments/month_0810/12008102915655.jpg);
+    background-repeat: repeat-x;
+  }
+  #slidingBlock h4.menuNo {
+    font-weight:normal;
+    color: #ccc;
+  }
+  #slidingBlock h4.menuOn {
+    background-image: url(http://www.dlstu.cn/code/attachments/month_0810/q2008102915746.jpg);
+    background-repeat: no-repeat;
+    background-position: 6px bottom;
+    color:#1368c2
+  }
+  #line{ width:2px; height:33px;
+         background-image: url(http://www.dlstu.cn/code/attachments/month_0810/32008102915822.jpg);
+         background-repeat: no-repeat;
+         float:left
+  }
+  #slidingBlock DIV.slidingList_none {
+    display:none
+  }
+  #slidingBlock DIV.slidingList {
+    width:auto;
+    margin:0px;
+    padding:0px;
+    height:27px;
+    clear:both;
+    background-image: url(http://www.dlstu.cn/code/attachments/month_0810/p2008102915853.jpg);
+    background-repeat: repeat-x;
+    line-height:27px
+  }
+  #slidingBlock DIV.slidingList ul {
+    margin:0px;padding:0px; list-style:none;
+  }
+  #slidingBlock DIV.slidingList li {
+    float:left;
+    height:20px;
+    line-height:20px;
+    font-size:12px;
+    text-indent:20px;
+  }
+</style>

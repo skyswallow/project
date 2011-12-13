@@ -1,0 +1,8 @@
+<div class="side_box index">
+  <h2 class="side_h2"><span>新闻分类</span></h2>
+  <ul class="artical_list_3">
+    <% (NewsType.find_all_by_parent_id(1).sort{|a,b| a.id.to_i <=> b.id.to_i} || []).each do |type| %>
+      <li><a href="/news_lines/<%= type.id %>/sub_news"><%= type.name %></a></li>
+    <% end %>
+  </ul>
+</div>

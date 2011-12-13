@@ -1,0 +1,12 @@
+<%= render :partial => "/home/side/notice" %>
+<div class="clear"></div>
+<%= render :partial => "/home/side/experts_online" %>
+<div class="clear"></div>
+<%= render :partial => "/home/side/blog" %>
+<div class="clear"></div>
+<%= render :partial => "/home/side/parents_bookshelf" %>
+<div class="clear"></div>
+<%= render :partial => "/home/side/school" %>
+<div class="clear"></div>
+<%= render :partial => "/home/side/coper" %>
+<%= render :partial => "/home/side/notice_info" %>

@@ -1,0 +1,64 @@
+<style type="text/css">
+  #n_tran {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+  }
+  #n_back {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    filter:alpha(Opacity=30);
+    -moz-opacity:0.3;
+    opacity:0.3;
+  }
+  #n_info {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    text-align:center;
+  }
+  .pop_box {
+    background:#FFF;
+    padding:10px;
+  }
+  .pop_box table td {
+    border:#ebebeb 1px solid;
+    padding:5px;
+  }
+</style>
+<script type="text/javascript">
+  function showNotice(width,height){
+    var windowstr= document.getElementById("n_layer").innerHTML;
+    var infoDiv = document.getElementById("n_info");
+    var tranDiv = document.getElementById("n_tran");
+    var tranDivBack = document.getElementById("n_back");
+    var st = document.body.scrollTop;
+    var dst = document.documentElement.scrollTop;
+    var s_top = st!=0?st:dst;
+    infoDiv.innerHTML=windowstr;
+    infoDiv.style.left=((document.body.clientWidth-width)>0?(document.body.clientWidth-width):0)/2+"px";
+    infoDiv.style.top=(s_top+100)+"px";
+    infoDiv.style.zIndex=10001;
+    infoDiv.style.width=width+"px";
+    infoDiv.style.height=height+"px";
+    tranDiv.style.height=document.body.clientHeight+ "px";
+    tranDiv.style.width=document.body.clientWidth+ "px";
+    tranDiv.style.display="";
+    tranDivBack.style.display="";
+    tranDivBack.style.zIndex=10000;
+    infoDiv.style.display="";
+  }
+  function closeNotice(){
+    document.getElementById("n_tran").style.display="none";
+  }
+</script>
+<div id="n_tran" style="display:none;"><div id="n_back"></div><div id="n_info"></div></div>
+<div id="n_layer" style="display:none;"></div>

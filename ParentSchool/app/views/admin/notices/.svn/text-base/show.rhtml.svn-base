@@ -1,0 +1,18 @@
+<%=render :partial =>"/admin/common"%>
+<div id="bd_div">
+<p class="title_p">查看公告</p>
+<table style="width:700px;" style="table-layout:fixed" >
+  <colgroup><col width="10%"/><col width="90%"/></colgroup>
+  <tr>
+    <td><strong>标题：</strong></td>
+    <td id="title" style="word-break:break-all;"><%=h(@notice.title)%></td>
+  </tr>
+  <tr>
+    <td><strong>内容：</strong></td>
+    <td id="content" style="word-break:break-all;"><%=h(@notice.content)%></td>
+  </tr>
+</table>
+<p style="text-align:right;margin-top: 20px;">
+    <%=link_to ">>返回公告列表", "/admin/notices" %>
+  </p>
+</div>

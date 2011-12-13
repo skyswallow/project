@@ -1,0 +1,236 @@
+<%= render :partial => "/book_activities/head" %>
+<div id="main">
+  <%= render :partial => "/book_activities/start" %>
+  <%= render :partial => "exchange_rules" %>
+  <div class="jiaohuan" >
+    <h1></h1>
+    <div class="anniu">
+      <%= link_to_remote "",    {:update => "change_box", :url =>{:controller => "book_exchanges", :action => "select_book", :id => 6}},:id => "link0",:class =>'anniu-in0',:hidefocus=>"true" ,:onclick => "return_css(0,0)",:onmouseover =>'return_css(0,2)',:onmouseout =>'return_css(0,1)'%>
+      <%= link_to_remote "查看交换",    {:update => "change_box", :url =>{:controller => "book_exchanges", :action => "select_book", :id => 4}},:id => "link4",:class =>'anniu-in4',:hidefocus=>"true",:onclick => "return_css(4,0)",:onmouseover =>'return_css(4,2)',:onmouseout =>'return_css(4,1)' %>
+      <%= link_to_remote "全部",    {:update => "change_box", :url =>{:controller => "book_exchanges", :action => "select_book", :id => 5}},:id => "link5",:class =>'anniu-in5',:hidefocus=>"true",:onclick => "return_css(5,0)",:onmouseover =>'return_css(5,2)',:onmouseout =>'return_css(5,1)'%>
+    </div>
+    <div  class="change-box">
+      <ul class="tab">
+        <li  id = "tab0" class = "tab1" > <%= link_to_remote "全部",    {:update => "change_box", :url =>{:controller => "book_exchanges", :action => "select_book", :id => 0},:complete => "click_tab_style(0)"},:hidefocus=>"true" %></li>
+        <li id="tab1" class="tab2_normal"> <%= link_to_remote "《独自成长的小幼虫》", {:update => "change_box", :url =>{:controller => "book_exchanges", :action => "select_book", :id => 1},:complete => "click_tab_style(1)"},:hidefocus=>"true" %></li>
+        <li id="tab2" class="tab3_normal"> <%= link_to_remote "《有奉献精神的父母培养大人物》",  {:update => "change_box", :url =>{:controller => "book_exchanges", :action => "select_book", :id => 2},:complete => "click_tab_style(2)"},:hidefocus=>"true" %></li>
+        <li id="tab3" class="tab4_normal"><%= link_to_remote "《英才是怎样造就的》",  {:update => "change_box", :url =>{:controller => "book_exchanges", :action => "select_book", :id => 3},:complete => "click_tab_style(3)"},:hidefocus=>"true" %></li>
+      </ul>
+      <div id="change_box">
+        <ul class="change-line">
+          <% (@book_exchange ||[]).each do |book_exchange| %>
+            <% if book_exchange.is_finished ==0 %>
+              <% if book_exchange.exchange_type ==0 %>
+                <li id="<%= book_exchange.id %>"><span style="float:left;"><%= @current_book_exchange[book_exchange.id]%>
+                    已经拥有《<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>》，希望换取
+                    《<%=  Constant::All_BOOKS[book_exchange.reply_book-1][1] %>》。
+                  </span>
+                  <button  class="jiaohuan-bt" onclick="set_exchange(1,'<%= book_exchange.id %>','<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>','<%=  Constant::All_BOOKS[book_exchange.reply_book-1][1] %>');"></button>
+                </li>
+                <div class="clear" ></div>
+              <% else %>
+                <li id="<%= book_exchange.id %>" ><span style="float:left;"><%= @current_book_exchange[book_exchange.id] %>希望获赠《<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>》。</span>
+                  <button  class="zengyu-bt" onclick="set_exchange(0,'<%= book_exchange.id %>','<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>');"></button>
+                </li>
+                <div class="clear" ></div>
+              <% end %>
+            <%else%>
+              <% if book_exchange.exchange_type ==0 %>
+                <li id="<%= book_exchange.id %>"><span style="float:left;"><%= @current_book_exchange[book_exchange.id] %>
+                    已经拥有《<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>》，希望换取《<%=  Constant::All_BOOKS[book_exchange.reply_book-1][1] %>》。</span><button class="wancheng-bt" ></button>
+
+                </li>
+                <div class="clear" ></div>
+              <% else %>
+                <li><span style="float:left;"><%= @current_book_exchange[book_exchange.id] %>
+                    希望获赠《<%=  Constant::All_BOOKS[book_exchange.apply_book-1][1] %>》。</span><button  class="wancheng-bt"></button>
+                </li>
+                <div class="clear" ></div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </ul>
+        <div class="clear"></div>
+        <div align="center"> <%= will_paginate_remote(@book_exchange, :param_name => 'page', :update=>'change_box', :url=>"/book_exchanges/select_book") %></div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div id="survey" style="display: none">
+    <%= render :partial => "book_activities/survey" %>
+  </div>
+  <div class="application">
+    <ul>
+      <li>
+        <% form_remote_tag :url => "/book_exchanges/search_user_name",:html => {:name => "book_form", :id => "book_form",:class => "required-validate"}, :method => :post,
+          :condition => 'check_Form()',  :update => "alert_info_jh", :complete => "alert_div_jh()" do %>
+          收到活动短信的手机号码:&nbsp;<input name="search_user_name" id="search_user_name" class ="required max-length-15" />&nbsp;
+          <span id="apply_user_status" style="display:none;height:0" ></span>
+          <input type="hidden" id="user_status" name="user_status" value="1" />
+          <%= observe_field "search_user_name", :url => "/book_exchanges/get_user_status",
+            :frequency => 0.5,
+            :update => "apply_user_status",
+            :with => "search_user_name" %>
+          <input id="search_text_submit" type="submit" value="查询您的图书" onclick="return check_value();"></input>
+          <input id="text_submit" type="submit" value="提交" style="display:none;" onclick="return check_Form_and_value();"></input>
+        <% end %>
+      </li>
+      <li style="display: none; height:0">   <span id="alert_info_jh" ></span></li>
+      <li><span id="return_alert_info" style="display: block;"></span> </li>
+      <% form_remote_tag :url => "/book_exchanges/",:html =>{:id => "form2_tj", :name => "form2_tj", :style => "display:none;"}, :method => :post,
+        :update => "alert_info_jh", :complete => "create_alert()" do %>
+        <div id="return_div">
+        </div>
+      <% end %>
+    </ul>
+  </div>
+  <div class="goto-cj" style="margin-top: 50px;"><a href="/book_activities/lottery"><img src="/images/zengshu/quchoujiang.gif" /></a></div>
+</div>
+<%= render :partial => "alert_div" %>
+<script type="text/javascript">
+  var before_monseover = null;
+  function return_css(id,type){
+    if(type == 0){
+      $('link0').removeClassName('anniu-in0-blue').addClassName('anniu-in0');
+      $('link4').removeClassName('anniu-in4-blue').addClassName('anniu-in4');
+      $('link5').removeClassName('anniu-in5-blue').addClassName('anniu-in5');
+      $('link'+id).addClassName('anniu-in'+id+'-blue');
+      if(id ==0){
+        click_tab_style(0);
+      }
+      before_monseover = id
+    }else if(type ==1 && before_monseover !=id){
+      $('link'+id).removeClassName('anniu-in'+id+'-blue').addClassName('anniu-in'+id);
+    }
+    else if(type ==2){
+      $('link'+id).removeClassName('anniu-in'+id).addClassName('anniu-in'+id+'-blue');
+    }
+  }
+  function check_Form_and_value(){
+    if(check_value()){
+      if($("apply_user_status").innerHTML=='0'){
+        if(checkSubmit()){
+          $("user_status").value = $("apply_user_status").innerHTML;
+          $("search_text_submit").style.display="";
+          $("text_submit").style.display="none";
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+  function click_tab_style(num){
+    for(var i=0;i<4;i++){
+      $("tab"+i).className = "tab"+(i+1)+"_normal";
+      if(i==num){
+        $("tab"+i).className = "tab"+(i+1);
+      }
+    }
+  }
+  var timer1 = null;
+  function alert_div_jh(){
+    var info = $("alert_info_jh").innerHTML;
+    if(info == ""){
+      return false;
+    }else{
+      if(info.split(":")[0] =="show"){
+        $("form2_tj").style.display="block";
+        var substr = info.split(":")[1];
+        $("return_alert_info").innerHTML ='';
+        $("survey").style.display="none";
+        new Ajax.Updater("return_div",
+        '/book_exchanges/current_book',
+        { method:'get',
+          parameters:'search_user_name='+$('search_user_name').value+'&str='+substr,
+          asynchronous:true,
+          evalScripts:true});
+
+      }else if(info.split(":").length ==1){
+        $("return_alert_info").innerHTML = info.split(":")[0];
+        $("form2_tj").style.display="none";
+      }else if(info.split(":")[0] =="display"){
+        substr = info.split(":")[1];
+        $("form2_tj").style.display="block";
+        $("return_alert_info").innerHTML ='';
+        new Ajax.Updater("return_div",
+        '/book_exchanges/current_book',
+        { method:'get',
+          parameters:'search_user_name='+$('search_user_name').value+'&str='+substr,
+          asynchronous:true,
+          evalScripts:true});
+
+        $("survey").style.display="none";
+        //   $("return_info").innerHTML = substr;
+      }else if(info.split(":").length ==3){
+        alert(info.split(":")[0]);
+        $("form2_tj").style.display="none";
+        $("survey").style.display="block";
+        $("search_text_submit").style.display="none";
+        $("text_submit").style.display="";
+        return ;
+      }
+    }
+    $("alert_info_jh").innerHTML = "";
+  }
+  function goto_ask(){
+    var info = $("alert_info_jh").innerHTML;
+    window.open("<%= Constant::SITE_URL  %>/book_activities/survey?s="+info.split(":")[2]+"&type=2&name="+info.split(":")[1], "","scrollbars=yes,toolbar=yes, menubar=yes, resizable=yes,location=yes, status=yes");
+    $("alert_info_jh").innerHTML="";
+  }
+  // 验证手机号码
+
+  function check_value(){
+    var val = document.getElementById("search_user_name").value;
+    if(val.replace(/(^\s*)|(\s*$)/g, "").length >7 && val.replace(/(^\s*)|(\s*$)/g, "").length<= 12){
+      if(val.replace(/(^\s*)|(\s*$)/g, "").length ==8){
+        document.getElementById("search_user_name").value = "0513"+val;
+      }
+      return true;
+    }
+    alert("请输入正确的手机号码");
+    return false;
+  }
+  function check_Form()
+  {
+    var valid = new Validation("book_form", {onSubmit:false});
+    var result = valid.validate();
+    if(result)
+    {
+      return true;
+    }
+    return false;
+  }
+  function get_value(type){
+    $("jh_or_hz").value = type;
+    if(check_value()){
+      $("book_user_name").value = $("search_user_name").value;
+      if($("apply_user_status").innerHTML=='0'){
+        if(checkSubmit()){
+          $("ask_form").submit();
+        }
+        return true;
+      }
+      return check_value();
+    }
+  }
+  function create_alert(){
+    var info = $("alert_info_jh").innerHTML;
+    if(info != ""){
+      alert(info);
+      if(info.indexOf("成功")>0){
+        window.location.reload(true);
+      }
+    }
+  }
+  function check_value(){
+    var val = document.getElementById("search_user_name").value;
+    if(val.replace(/(^\s*)|(\s*$)/g, "").length >7 && val.replace(/(^\s*)|(\s*$)/g, "").length<= 12){
+      if(val.replace(/(^\s*)|(\s*$)/g, "").length ==8){
+        document.getElementById("search_user_name").value = "0513"+val;
+      }
+      return true;
+    }
+    alert("请输入正确的手机号码");
+    return false;
+  }
+</script>

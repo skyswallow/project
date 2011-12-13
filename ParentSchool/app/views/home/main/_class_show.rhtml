@@ -1,0 +1,5 @@
+<div class="banjishow_class">
+  <% if @index_hash[Constant::BJX] %>
+    <%= render :partial => "#{File.expand_path(RAILS_ROOT)}/#{@index_hash[Constant::BJX]}" %>
+  <% end %>
+</div>

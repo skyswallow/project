@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AskForm</title>
+<%#*<link href="http://www.askform.cn/css/dv_wnd.css" type="text/css" rel="stylesheet" />%>
+<%#*<script type="text/javascript" src="http://www.askform.cn/script/prototype.js"></script>%>
+<%#*<script type="text/javascript" src="http://www.askform.cn/script/Language.zh-cn.js"></script>%>
+<%#*<script type="text/javascript" src="http://www.askform.cn/script/dv_wnd.js"></script>%>
+<%#*<link href="http://www.askform.cn/css/ui.css" rel="stylesheet" type="text/css" />%>
+<link href="/stylesheets/lottery/lottery.css" rel="stylesheet" type="text/css" />
+<%#*<script type="text/javascript" src="http://www.askform.cn/script/Scriptaculous/scriptaculous.js?load=builder,effects,dragdrop"></script>%>
+</head>
+<body>
+  <form action="http://www.askform.cn/UTF-8CustomFormSubmit.aspx?FormID=113991&UserID=72106" method="post" id="ask_form" name="ask_form">
+<div id="formBackground">
+        <div id="formArea">
+            <%#*<div id="form-logo">%>
+                 <%#*<a rel="home" href="http://www.askform.cn/default.aspx" style="display:none">%>
+                <%#*<img src="http://www.askform.cn/Images/logo.gif" style="border-width: 0px;" /></a>%>
+            <%#*</div>%>
+            <div id="formHeader">
+                <h1 id="title">
+                    课后辅导调查</h1>
+            </div>
+            <div id="formBody">
+                <div id="formPager" class="pager" style="float: right;">
+                </div>
+                <div style="clear: both;">
+                </div>
+                <div class="description">
+                    <asp:Label ID="lblDescription" EnableViewState="false" runat="server"></asp:Label>
+                </div>
+               <div id="fields">
+                    <div class="field"><div class='itemTitle'>1.您所在的地区是？：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1035053" required='true'><select class="form-select-one" name='1035053' onchange='redirectDisplay(1,this.options[this.selectedIndex].redirectstart,this.options[this.selectedIndex].redirectend)'><option value='1' redirectstart='1' redirectend='0'>崇川区<option value='2' redirectstart='1' redirectend='0'>港闸区<option value='3' redirectstart='1' redirectend='0'>南通开发区<option value='4' redirectstart='1' redirectend='0'>通州<option value='5' redirectstart='1' redirectend='0'>海门<option value='6' redirectstart='1' redirectend='0'>海安<option value='7' redirectstart='1' redirectend='0'>如皋<option value='8' redirectstart='1' redirectend='0'>如东<option value='9' redirectstart='1' redirectend='0'>启东</option></select><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>2.您孩子所在年级：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1021026" required='true'><select class="form-select-one" name='1021026' onchange='redirectDisplay(2,this.options[this.selectedIndex].redirectstart,this.options[this.selectedIndex].redirectend)'><option value='1' redirectstart='2' redirectend='0'>幼儿园<option value='2' redirectstart='2' redirectend='0'>一年级<option value='3' redirectstart='2' redirectend='0'>二年级<option value='4' redirectstart='2' redirectend='0'>三年级<option value='5' redirectstart='2' redirectend='0'>四年级<option value='6' redirectstart='2' redirectend='0'>五年级<option value='7' redirectstart='2' redirectend='0'>六年级<option value='8' redirectstart='2' redirectend='0'>初一<option value='9' redirectstart='2' redirectend='0'>初二<option value='10' redirectstart='2' redirectend='0'>初三<option value='11' redirectstart='2' redirectend='0'>高一<option value='12' redirectstart='2' redirectend='0'>高二<option value='13' redirectstart='2' redirectend='0'>高三<option value='14' redirectstart='2' redirectend='0'>其他</option></select><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>3.在孩子学习方面，您最常做的是：：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1035055" required='true'><input type='radio' name='1035055' onclick='redirectDisplay(3,3,0)' value='1'>接送孩子上、放学<br><input type='radio' name='1035055' onclick='redirectDisplay(3,3,0)' value='2'>辅导孩子的功课<br><input type='radio' name='1035055' onclick='redirectDisplay(3,3,0)' value='3'>给孩子买学习资料<br><input type='radio' name='1035055' onclick='redirectDisplay(3,3,0)' value='4'>老师教的不错，不需要我太操心<br><input type='radio' name='1035055' onclick='redirectDisplay(3,3,0)' value='5'>孩子学习不错，很少主动问我<br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>4.孩子每天在家的学习时间是：：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1021071" required='true'><input type='radio' name='1021071' onclick='redirectDisplay(4,4,0)' value='1'>大约15分钟<br><input type='radio' name='1021071' onclick='redirectDisplay(4,4,0)' value='2'>30分钟左右<br><input type='radio' name='1021071' onclick='redirectDisplay(4,4,0)' value='3'>40—60分钟<br><input type='radio' name='1021071' onclick='redirectDisplay(4,4,0)' value='4'>1—1.5小时<br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>5.您认为孩子现阶段最重要的是：：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1032793" required='true'><input type='radio' name='1032793' onclick='redirectDisplay(5,5,0)' value='1'>学习成绩，考入好学校<br><input type='radio' name='1032793' onclick='redirectDisplay(5,5,0)' value='2'>孩子还小，高兴就好，成绩不是关键<br><input type='radio' name='1032793' onclick='redirectDisplay(5,5,0)' value='3'>良好的习惯和性格<br><input type='radio' name='1032793' onclick='redirectDisplay(5,5,0)' value='4'>其它 <input type='text' maxlength='128' name='1032793-4' /><br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>6.培养孩子过程中，您最希望获取哪方面的教育信息？：<label style='color:red'>*</label></div><div class="itemSubTitle">说明：可选1—2个选项。</div><div class="fieldItems" style="padding-left:20px;" id="1021070" required='true' maximum='2' minimum='1'><input type='checkbox' name='1021070' value='1'>老师的教学方法<br><input type='checkbox' name='1021070' value='2'>与孩子择校、升学有关的信息<br><input type='checkbox' name='1021070' value='3'>同类家长的家教经验和方法<br><input type='checkbox' name='1021070' value='4'>教育专家的建议<br><input type='checkbox' name='1021070' value='5'>学习工具、教学产品信息<br><input type='checkbox' name='1021070' value='6'>其它 <input type='text' maxlength='128' name='1021070-6' /><br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>7.您孩子现在的主要课后辅导方式是：：<label style='color:red'>*</label></div><div class="itemSubTitle">说明：可选1—2个选项。</div><div class="fieldItems" style="padding-left:20px;" id="1021072" required='true' maximum='2' minimum='1'><input type='checkbox' name='1021072' value='1'>做课辅参考书的练习题<br><input type='checkbox' name='1021072' value='2'>我亲自辅导<br><input type='checkbox' name='1021072' value='3'>请家教辅导<br><input type='checkbox' name='1021072' value='4'>使用教学软件或网络教学方式<br><input type='checkbox' name='1021072' value='5'>上培训班<br><input type='checkbox' name='1021072' value='6'>其它 <input type='text' maxlength='128' name='1021072-6' /><br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>8.请描述您孩子目前课后辅导中的不足之处：</div><div class="fieldItems" style="padding-left:20px;" id="1021073"><textarea  class='form-field' name='1021073'></textarea><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>9.您自行对孩子辅导时，遇到的最大困难是：：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1021093" required='true'><input type='radio' name='1021093' onclick='redirectDisplay(9,9,0)' value='1'>辅导内容超出了我的知识范围<br><input type='radio' name='1021093' onclick='redirectDisplay(9,9,0)' value='2'>不清楚孩子到底哪里不懂<br><input type='radio' name='1021093' onclick='redirectDisplay(9,9,0)' value='3'>孩子听不懂我的解释<br><input type='radio' name='1021093' onclick='redirectDisplay(9,9,0)' value='4'>工作忙，没时间对孩子辅导<br><input type='radio' name='1021093' onclick='redirectDisplay(9,9,0)' value='5'>其它 <input type='text' maxlength='128' name='1021093-5' /><br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>10.您认为影响孩子学习效果的主要原因是：：<label style='color:red'>*</label></div><div class="itemSubTitle">说明：可选1—2个选项。</div><div class="fieldItems" style="padding-left:20px;" id="1021094" required='true' maximum='2' minimum='1'><input type='checkbox' name='1021094' value='1'>孩子使用的教材不好<br><input type='checkbox' name='1021094' value='2'>孩子不想学<br><input type='checkbox' name='1021094' value='3'>老师教得不够好<br><input type='checkbox' name='1021094' value='4'>孩子做的练习题数量不够多<br><input type='checkbox' name='1021094' value='5'>孩子做的练习题没有针对性<br><input type='checkbox' name='1021094' value='6'>孩子没有弄懂所学的知识点<br><input type='checkbox' name='1021094' value='7'>在需要帮助的时候，没有人对孩子进行辅导<br><input type='checkbox' name='1021094' value='8'>其它 <input type='text' maxlength='128' name='1021094-8' /><br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>11.您所希望的课业辅导方式必须具有：：<label style='color:red'>*</label></div><div class="itemSubTitle">说明：可选1—2个选项。</div><div class="fieldItems" style="padding-left:20px;" id="1021119" required='true' maximum='2' minimum='1'><input type='checkbox' name='1021119' value='1'>有大量的教材供选择<br><input type='checkbox' name='1021119' value='2'>有大量配有答案及讲解的练习题供孩子练习<br><input type='checkbox' name='1021119' value='3'>有大量的模拟考卷供孩子使用，并提供成绩排名<br><input type='checkbox' name='1021119' value='4'>能记录孩子所犯的错误，并提供针对性的练习<br><input type='checkbox' name='1021119' value='5'>家长能获知孩子的学习内容，学习情况及考核结果<br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>12.您为孩子选择学习辅导的主要标准是：：<label style='color:red'>*</label></div><div class="itemSubTitle">说明：可选1—2个选项。</div><div class="fieldItems" style="padding-left:20px;" id="1021140" required='true' maximum='2' minimum='1'><input type='checkbox' name='1021140' value='1'>价格<br><input type='checkbox' name='1021140' value='2'>口碑<br><input type='checkbox' name='1021140' value='3'>老师推荐<br><input type='checkbox' name='1021140' value='4'>孩子是否喜欢<br><input type='checkbox' name='1021140' value='5'>是否方便使用<br><input type='checkbox' name='1021140' value='6'>教学、辅导方式<br><input type='checkbox' name='1021140' value='7'>总辅导时间和每次辅导时间有多长<br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>13.如果为孩子购买学习辅导培训，您认为每学期的合适价格大概是多少元？：</div><div class="fieldItems" style="padding-left:20px;" id="1021141"><input type='text' class='form-text' name='1021141'><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>14.您认为哪种辅导资料对孩子的帮助最大？：</div><div class="fieldItems" style="padding-left:20px;" id="1021142"><input type='radio' name='1021142' onclick='redirectDisplay(14,14,0)' value='1'>与教材同步的单元试卷<br><input type='radio' name='1021142' onclick='redirectDisplay(14,14,0)' value='2'>重要知识点讲解、练习<br><input type='radio' name='1021142' onclick='redirectDisplay(14,14,0)' value='3'>错题的讲解、练习<br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>15.您会根据哪些方面评价辅导资料的好坏？：<label style='color:red'>*</label></div><div class="itemSubTitle">说明：可选1—2个选项。</div><div class="fieldItems" style="padding-left:20px;" id="1021143" required='true' maximum='2' minimum='1'><input type='checkbox' name='1021143' value='1'>资料内容的多少<br><input type='checkbox' name='1021143' value='2'>是否和教材同步<br><input type='checkbox' name='1021143' value='3'>资料有没有答案<br><input type='checkbox' name='1021143' value='4'>有没有针对孩子弱点<br><input type='checkbox' name='1021143' value='5'>难度太深或太浅<br><input type='checkbox' name='1021143' value='6'>是否属于教学、考试重点<br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>16.您平常会和老师交流些什么？：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1035056" required='true'><input type='radio' name='1035056' onclick='redirectDisplay(16,16,0)' value='1'>工作忙，很少联系<br><input type='radio' name='1035056' onclick='redirectDisplay(16,16,0)' value='2'>会主动联系老师询问孩子情况<br><input type='radio' name='1035056' onclick='redirectDisplay(16,16,0)' value='3'>一般都会按老师推荐的做<br><input type='radio' name='1035056' onclick='redirectDisplay(16,16,0)' value='4'>通常自己判断，老师的推荐只做参考<br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>17.您平时上网主要做些什么？：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1021175" required='true'><input type='radio' name='1021175' onclick='redirectDisplay(17,17,0)' value='1'>很少上网<br><input type='radio' name='1021175' onclick='redirectDisplay(17,17,0)' value='2'>上网看新闻<br><input type='radio' name='1021175' onclick='redirectDisplay(17,17,0)' value='3'>上网娱乐（如聊天，看书，看电影，玩游戏等）<br><input type='radio' name='1021175' onclick='redirectDisplay(17,17,0)' value='4'>上网购物（如淘宝网）<br><input type='radio' name='1021175' onclick='redirectDisplay(17,17,0)' value='5'>上网查东西<br><input type='radio' name='1021175' onclick='redirectDisplay(17,17,0)' value='6'>逛网络社区，结交朋友<br><input type='radio' name='1021175' onclick='redirectDisplay(17,17,0)' value='7'>其它 <input type='text' maxlength='128' name='1021175-7' /><br><label style='color:red'></label></div></div><div class="field"><div class='itemTitle'>18.平常主要使用E-mail（电子邮箱）做什么？：<label style='color:red'>*</label></div><div class="fieldItems" style="padding-left:20px;" id="1032795" required='true'><input type='radio' name='1032795' onclick='redirectDisplay(18,18,0)' value='1'>我不用E-mail<br><input type='radio' name='1032795' onclick='redirectDisplay(18,18,0)' value='2'>在工作上经常使用<br><input type='radio' name='1032795' onclick='redirectDisplay(18,18,0)' value='3'>经常用E-mail和朋友联系<br><input type='radio' name='1032795' onclick='redirectDisplay(18,18,0)' value='4'>通过E-mail了解各类促销信息<br><label style='color:red'></label></div></div>
+                </div>
+            </div>
+            <input type="hidden" id="categoryorder" name="categoryorder" />
+            <div class="clear">
+            </div>
+            <div id="actionArea" style="text-align: center;">
+                <input type="hidden" onclick="return checkSubmit();" class="button" value="提交" />
+            </div>
+            <asp:HiddenField ID="hfPassword" runat="server" />
+        </div>
+    </div>
+    </form>
+</body>
+</html>
+
+<script type="text/javascript">
+window.load = initLightBox();
+function initLightBox()
+{
+    if(window.location.href.indexOf("Msg=")>0)
+    {
+        DvWnd.open('',decodeURI(window.location.href.substring(window.location.href.indexOf("Msg=")+4)),300,200,2);
+    }
+}
+
+function redirectDisplay(current, start, end) {
+    if (start > 0) {
+        var lis = $('fields').immediateDescendants();
+        for (var i = current; i < start; i++) {
+            lis[i].style.display = 'none';
+            clearValue(lis[i]);
+            var val = lis[i].immediateDescendants()[lis[i].immediateDescendants().length - 1];
+            val.style.display='none';
+        }
+        if (end == 0) {
+            end = lis.length;
+        }
+        for (var i = start - 1; i < end; i++) {
+            lis[i].style.display = '';
+            var val = lis[i].immediateDescendants()[lis[i].immediateDescendants().length - 1];
+            val.style.display = '';
+        }
+        for (var i = end; i < lis.length; i++) {
+            lis[i].style.display = 'none';
+            clearValue(lis[i]);
+            var val = lis[i].immediateDescendants()[lis[i].immediateDescendants().length - 1];
+            val.style.display = 'none';
+        }
+
+    }
+
+}
+function clearValue(obj) {
+    var inputs = obj.getElementsByTagName("input");
+    for (var i = 0; i < inputs.length; i++) {
+        switch (inputs[i].type) {
+            case "text":
+                inputs[i].value = "";
+                break;
+            case "radio":
+            case "checkbox":
+                inputs[i].checked = false;
+                break;
+        }
+    }
+    var textareas = obj.getElementsByTagName("textarea");
+    for (var i = 0; i < textareas.length; i++) {
+        textareas.value = "";
+    }
+}
+function checkSubmit() {
+    var div;
+    var fields = $("fields");
+    var fieldDivs = fields.immediateDescendants();
+    var result = true;
+    var checked = 0;
+    for(var i =0;i<fieldDivs.length;i++) {
+        var div = fieldDivs[i].immediateDescendants()[fieldDivs[i].immediateDescendants().length-1];
+        var hasValue = false;
+        var checkedCount = 0;
+        checked = 0;
+        var inputs = div.getElementsByTagName("input");
+        var textareas = div.getElementsByTagName("textarea");
+         var info = fieldDivs[i].getElementsByTagName("label");
+         info = info[info.length - 1];
+
+         if (inputs.length > 0 || textareas.length > 0)
+        {
+            for (var k = 0; k < textareas.length; k++) {
+                if (textareas[k].value != "" || !div.getAttribute("required") || div.style.display == 'none') {
+                    hasValue = true;
+                    info.innerHTML = "";
+                }
+
+            }
+            for(var j =0;j<inputs.length;j++)
+            {
+                switch(inputs[j].type)
+                {
+                    case "text":
+                        if( inputs[j].value != "" || !div.getAttribute("required") || div.style.display=='none' )
+                        {
+                            hasValue = true;
+                            info.innerHTML = "";
+                        }
+                        var regex = inputs[j].getAttribute("regex");
+                        if( regex && div.getAttribute("required") )
+                        {
+                            var re = new RegExp(regex,"ig");
+                            if( !re.test(inputs[j].value) )
+                            {
+                                 info.innerHTML = "输入不正确！";
+                                 result = false;
+                            }
+                            else
+                            {
+                                info.innerHTML = "";
+                            }
+                        }
+                        break;
+
+                    case "checkbox":
+                        if (inputs[j].checked || !div.getAttribute("required") || div.style.display == 'none') {
+                            hasValue = true;
+                            info.innerHTML = "";
+                            checkedCount++;
+                        }
+                        break;
+
+                    case "radio":
+                        if (!div.getAttribute("required") || div.style.display == 'none') {
+                            hasValue = true;
+                            info.innerHTML = "";
+                        }
+                        else {
+                            if (inputs[j].checked) {
+                                hasValue = true;
+                                info.innerHTML = "";
+                                checked++;
+                            }
+                        }
+                        break;
+                }
+            }
+
+            if (div.getAttribute("required") && div.style.display != 'none') {
+                var trs = div.getElementsByTagName("tr");
+                if (trs.length > 0) {
+                    if (checked >= trs.length - 1) {
+                        result = true;
+                    }
+                    else {
+                        info.innerHTML = "此矩阵题所有行必选";
+                        result = false;
+                    }
+                }
+                else if( !hasValue )
+                {
+                    info.innerHTML = "此项必填";
+                    info.style.color = "blue";
+                    info.style.fontSize = "24px";
+                    info.style.fontWeight = "bold";
+                    result = false;
+                }
+
+                if (div.getAttribute("maximum") || div.getAttribute("minimum")) {
+
+                    if (checkedCount < Number(div.getAttribute("minimum")) || checkedCount > Number(div.getAttribute("maximum"))) {
+                        info.innerHTML = "请选择" + div.getAttribute("minimum") + "项或" + div.getAttribute("maximum") + "项！";
+                        result = false;
+                    }
+                }
+            }
+        }
+    }
+
+      return result;
+}
+</script>

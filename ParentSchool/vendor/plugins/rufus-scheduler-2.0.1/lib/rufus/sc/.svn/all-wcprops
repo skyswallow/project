@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/rufus-scheduler-2.0.1/lib/rufus/sc
+END
+jobs.rb
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/rufus-scheduler-2.0.1/lib/rufus/sc/jobs.rb
+END
+scheduler.rb
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/rufus-scheduler-2.0.1/lib/rufus/sc/scheduler.rb
+END
+rtime.rb
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/rufus-scheduler-2.0.1/lib/rufus/sc/rtime.rb
+END
+jobqueues.rb
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/rufus-scheduler-2.0.1/lib/rufus/sc/jobqueues.rb
+END
+cronline.rb
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/rufus-scheduler-2.0.1/lib/rufus/sc/cronline.rb
+END

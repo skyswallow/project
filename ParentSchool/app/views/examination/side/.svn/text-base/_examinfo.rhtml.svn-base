@@ -1,0 +1,8 @@
+<div class="side_box index">
+  <h2 class="side_h2"><span>考试信息</span><a class="more-link" href="/news_lines/14/sub_parent_class">更多</a></h2>
+  <ul class="blog_artical_list">
+    <% NewsLine.infolist(14,5).each { |new|   %>
+    <li><a title="<%=h new.title.to_s.strip %>" href="/news_lines/<%= new.id %>" target="_blank"><%= new.created_at.strftime('%Y.%m.%d')  %>&nbsp;&nbsp;&nbsp;&nbsp;<%=h  truncate(new.title.to_s.strip,:length => 13) %></a></li>
+    <% } %>
+  </ul>
+</div>

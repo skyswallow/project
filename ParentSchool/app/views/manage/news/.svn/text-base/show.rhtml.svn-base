@@ -1,0 +1,22 @@
+<div id="fxht-box">
+  <h1>新闻管理</h1>
+  <div class="clear"></div>
+  <table class="fy-edit" width="100%" border="1">
+    <colgroup>
+      <col width="20%"/>
+      <col width="80%"/>
+    </colgroup>
+    <tr>
+      <td style="background:#ededed; font-weight:bold">标题</td>
+      <td><%=h @new.news_title%></td>
+    </tr>
+    <tr style="vertical-align: top;">
+      <td style="background:#ededed; vertical-align:top;font-weight:bold">内容</td>
+      <td>
+        <div style="height:200px;overflow: scroll;word-break:break-all;">
+          <%= @new.news_content%>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

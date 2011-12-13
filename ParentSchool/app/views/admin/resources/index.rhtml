@@ -1,0 +1,130 @@
+<script type="text/javascript">
+  function check_resource_form()
+  {
+    var valid = new Validation('resource_form', {onSubmit:false});
+    var result = valid.validate();
+    var r_type = document.getElementById("resource_main_types").value;
+    var flag = true;
+    if(r_type == "0")
+    {
+      flag = false;
+      $('error').innerText ="请选择栏目！";
+    }
+    else
+    {
+      if($('resource_resource_type').value == "0")
+      {
+        flag = false;
+        $('error').innerText ="请选择科目！";
+      }
+    }
+    
+    if(result && flag)
+    {
+      $('error').innerText ="";
+      $("btn_submit").disable();
+      $("btn_reset").disable();
+      return true;
+    }
+    else
+    {
+      $("btn_submit").enable();
+      $("btn_reset").enable();
+      return false;
+    }
+  }
+</script>
+<div id="bd_div">
+  <p class="title_p">学习资源</p>
+  <% form_tag "/admin/resources", :class =>"required-validate",:multipart => true, :id =>"resource_form", :name =>"resource_form",:method => :post, :onsubmit =>"return check_resource_form();" do %>
+    <table id="tab_notice">
+      <colgroup>
+        <col width="10%"/><col width="80%"/>
+      </colgroup>
+      <tr>
+        <td><span>标题：<font color="red">*</font></span></td><td><input type="text" id="resource_title" name="resource[title]" class="required max-length-50" style="width:300px;"/></td>
+      </tr>
+      <tr>
+        <td><span>文件：<font color="red">*</font></span></td>
+        <td><input type="file" id="resource_attachment" name="resource[attachment]" style="width:305px;height: 20px;" class="required" onkeydown="return false" onkeyup="return false" contenteditable="false" /></td>
+      </tr>
+      <tr>
+        <td><span>栏目：<font color="red">*</font></span></td>
+        <td>
+          <%= select("resource_main", "types", find_top, {}, {
+              "onchange" => remote_function(
+                :with => "'parent_id='+value",
+                :update => 'sub_type',
+                :url => { :action => :select_types })}) %>
+          <span id="error" style="color:red;text-align: center;margin-left: 15px;"></span>
+        </td>
+      </tr>
+      <tr id="sub_type">
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top"><span>描述：<font color="red">*</font></span></td>
+        <td><textarea id="resource_description" name="resource[description]" style="width:500px;height: 130px;" class="required max-length-250" cols="60" rows="6"></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" id="btn_submit" name="btn_submit" class="btn_tab" value="发布"/>&nbsp;&nbsp;
+          <input type="button" id="btn_reset" name="btn_reset" class="btn_tab" value="重置" onclick="javascript:window.location.href='/admin/resources'"/>
+        </td>
+      </tr>
+      <tr><td colspan="2"></td></tr>
+    </table>
+  <% end %>
+  <br/><br/>
+  <table style="width: 100%;">
+    <colgroup>
+      <col width="5%"/>
+      <col width="37%"/>
+      <col width="10%"/>
+      <col width="10%"/>
+      <col width="18%"/>
+      <col width="12%"/>
+      <col width="8%"/>
+    </colgroup>
+    <tr style="background: #dedede; font-weight: bold; text-align: center;">
+      <td>编号</td>
+      <td>标题</td>
+      <td>栏目</td>
+      <td>科目</td>
+      <td>创建时间</td>
+      <td>创建人</td>
+      <td>操作</td>
+    </tr>
+    <% @resources.each do |r| %>
+      <tr>
+        <td>
+          <%= r.id %>
+        </td>
+        <td>
+          <%= h(r.title) %>
+        </td>
+        <td>
+          <%= r.parent_name %>
+        </td>
+        <td>
+          <%= r.name %>
+        </td>
+        <td>
+          <%= r.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+        </td>
+        <td>
+          <%= r.nickname %>
+        </td>
+        <td>
+          <%= link_to("删除", admin_resource_path(r), :method => :delete, :confirm => "确定要删除该资源？") %>
+        </td>
+      </tr>
+    <% end if @resources %>
+  </table>
+  <p style="text-align:center;">
+    <%= will_paginate @resources unless @resources.nil? %>&nbsp;
+  </p>
+</div>

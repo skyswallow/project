@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test
+END
+paperclip_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/paperclip_test.rb
+END
+processor_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/processor_test.rb
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/helper.rb
+END
+database.yml
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/database.yml
+END
+integration_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/integration_test.rb
+END
+iostream_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/iostream_test.rb
+END
+thumbnail_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/thumbnail_test.rb
+END
+storage_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/storage_test.rb
+END
+upfile_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/upfile_test.rb
+END
+attachment_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/attachment_test.rb
+END
+interpolations_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/interpolations_test.rb
+END
+geometry_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/vendor/plugins/paperclip/test/geometry_test.rb
+END

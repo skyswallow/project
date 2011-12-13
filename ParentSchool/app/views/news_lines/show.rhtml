@@ -1,0 +1,19 @@
+<div class="artical_particular">
+  <% if @if_exist %>
+    <h2><%=h @line.title %>
+      <% if @line.sub_title %>
+        <table width="100%">
+          <tr>
+            <td style="width:60%"></td>
+            <td><span style="float:left; font-size:14px;"><%=h @line.sub_title %></span></td>
+          </tr>
+        </table>
+      <% end %>
+    </h2>
+    <h3>发表时间：<%= @line.created_at.strftime("%Y.%m.%d") %>&nbsp;&nbsp;&nbsp;&nbsp;发表人：南通网上家长学校&nbsp;&nbsp;<%=h Space.find_by_id(@line.created_by).nickname if Space.find_by_id(@line.created_by) %></h3>
+    <%  str = IO.read(@real_root)%>
+    <%= str %>
+  <% else %>
+    <center><font size="4">无此页面</font></center><br/>
+  <% end %>
+</div>

@@ -1,0 +1,18 @@
+﻿@charset "utf-8";
+
+/*头部*/
+.hd_right ul li{
+    margin:7px 8px 0px 11px;
+}
+.main_nav_new li{
+    margin-right:38px;
+}
+
+
+.school_link_list li{
+ background-position:left 5px;
+ padding-left:15px;
+ border-bottom:#CCC 1px solid;
+ padding-bottom:3px;
+ margin-bottom:5px;
+ }

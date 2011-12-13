@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div style="width:960px; margin:0 auto;">
+  <div style=" width:960px; height:200px; margin:0 auto;">
+    <%= image_tag @activity.top_photo, :alt => (h @activity.name) %>
+  </div>
+  <div style="padding:5px; font-size:13px; line-height:20px; min-height:500px;_height:500px; word-wrap:break-word;">
+    <div id="title"><h1 style="text-align: center;font-size: 16px;font-weight: bold;color: #900;"><%= h @activity.name %></h1></div>
+    <div class="clear"></div>
+    <div id="content"><%= @activity.content %></div>
+  </div>
+  <div style=" width:960px; height:80px;">
+    <%= image_tag @activity.bottom_photo, :alt => (h @activity.name) %>
+  </div>
+</div>

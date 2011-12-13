@@ -1,0 +1,50 @@
+<%= javascript_include_tag :defaults  %>
+受访页面： <a href="<%= params[:url] %>" target="_blank"><%= params[:url] %></a><br/>
+当前时间：<%= Date.today.to_s('yyyy-mm-dd') %><br/>
+<table border="1" width="100%">
+  <tr><td>日期</td>
+    <td><%= sort_link_helper('PV', 'pv') %></td>
+    <td><%= sort_link_helper('UV', 'uv') %></td>
+    <td><%= sort_link_helper('IP', 'ip') %></td>
+    <td><%= sort_link_helper('人均浏览次数', 'num') %></td>
+    <td><%= sort_link_helper('人均浏览时间（秒）', 'stay_date') %>
+    </td>
+  </tr>
+  <% (@page_recordes || []).each do |recorde| %>
+    <tr> <td><%= recorde.local_time %></td>
+      <td><%= recorde.pv.to_i %></td>
+      <td><%= recorde.uv.to_i %></td>
+      <td><%= recorde.ip.to_i %></td>
+      <td><%= recorde.num %></td>
+      <td><%= recorde.stay_date.to_i   %></td>
+    </tr>
+  <% end %>
+</table>
+<% if @page_recordes %>
+<% if @page_recordes.total_pages ==1 || params[:page].blank? ||  params[:page] =='1' %>
+首页
+<% else %>
+<a href="#" onclick="javascript:window.location.href='/admin/page_records/page_history?page=1<%= '&sort='+params[:sort] if params[:sort]%>&url='+escape('<%= params[:url] if params[:url] %>');">首页</a>
+<% end %>
+  <%= will_paginate @page_recordes, :previous_label=> '上一页', :next_label => '下一页',:container=>false  %>
+<% if @page_recordes.total_pages ==1 ||  @page_recordes.total_pages == params[:page].to_i %>
+尾页
+<% else %>
+<a href="#" onclick="javascript:window.location.href='/admin/page_records/page_history?page=<%=  @page_recordes.total_pages %><%= '&sort='+params[:sort] if params[:sort]%>&url='+escape('<%= params[:url] if params[:url] %>');">尾页</a>
+  <% end %>
+  第<%= params[:page] %><%= '1' if params[:page].blank? %>/<%=  @page_recordes.total_pages %>页 &nbsp;
+  <% total = (1..@page_recordes.total_pages) %>
+  跳到<select id="page" name="page" onchange="javascript:window.location.href='/admin/page_records/page_history?page='+this.value+'<%= '&sort='+params[:sort] if params[:sort]%>&url='+escape('<%= params[:url] if params[:url] %>');">
+    <% total.each do |i| %>
+      <option value="<%= i  %>" <%= 'selected'  if params[:page].to_i == i.to_i %>>第<%= i %>页</option>
+    <% end %>
+  </select>页
+共<%= @page_recordes.total_entries if  @page_recordes %>条记录
+<input type="button" value="导出列表" onclick="return to_excel();"></input><% end %>&nbsp;
+<script type="text/javascript">
+  function to_excel(){
+    if(confirm('你确定要导出当前查询的结果吗？')){
+      window.location.href="/admin/page_records/to_excel_history?&url="+escape('<%= params[:url] %>')+"&sort=<%= params[:sort] %>";
+    }
+  }
+</script>

@@ -1,0 +1,67 @@
+/*分校后台页面*/
+
+#fxht-box{
+    width:934px;
+    padding:8px;
+    float:left;
+    min-height: 500px;
+    _height:500px;
+}
+
+#fxht-box h1{
+    width:919px;
+    font-weight:bold;
+    color:#000;
+    height:25px;
+    background:url(/images/fxtitlebg.jpg) repeat-x;
+    padding-left:15px;
+    padding-top:3px;
+    float:left;
+}
+
+#fxht-box h4{
+    text-align:right;
+    width:100%;
+    margin-top:10px;
+    font-weight:bold;
+    padding-top:3px;
+    float:left;
+    margin-bottom:15px;
+}
+
+.fx-right-link{
+    float:right;
+    display:block;
+    width:60px;
+    text-align:right;
+    color:#069;
+    padding-top:1px;
+    _padding-top:3px;
+    *padding-top:3px;
+
+}
+.fy-table-list{
+    margin-bottom:20px;
+}
+.fy-table-list button{
+    height:25px;
+    line-height:20px;
+}
+.fy-table-list td{
+    border-bottom:#CCC dotted 1px;
+    line-height:30px;
+}
+
+.caozuo1{
+    color:#069;
+}
+.caozuo2{
+    color:#f00;
+}
+.fy-edit{
+    margin-bottom:20px;
+    border:#dedede solid 1px;
+}
+.fy-edit td{
+    padding:5px;
+}

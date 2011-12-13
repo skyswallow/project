@@ -1,0 +1,313 @@
+<%= javascript_include_tag "My97DatePicker/WdatePicker"%>
+<%= javascript_include_tag :defaults  %>
+<a style="font-size: 18px;background:#00A8E6" href="/admin/action_records/">家校通用户</a>&nbsp;&nbsp;&nbsp;
+<a style="font-size: 18px;" href="#">非家校通用户</a>
+<h3 style="font-weight:bold; margin-top: 10px;">用户信息</h3>
+<hr/>
+<form action="/admin/action_records" method="get">
+  地区：<select id="locality_id" name="locality" onchange="change_clear();">
+    <option value="-1">全部</option>
+    <%   (@locality || []).each do |local| %>
+      <option value="<%= local.id %>"  <%=  'selected=true' if params[:locality] ==local.id %>><%= local.name %></option>
+    <% end %>
+  </select>
+  学校类型：<select name="school_type" id="school_type" onchange ="change_clear();" >
+    <option value="-1">全部</option>
+    <option value="0" <%=  'selected=true' if params[:school_type] =='0' %>>城市</option>
+    <option value="1" <%=  'selected=true' if params[:school_type] =='1' %>>城镇 </option>
+    <option value="2" <%=  'selected=true' if params[:school_type] =='2' %> >农村</option>
+  </select>
+  学校种类：<select name="school_kind" id="school_kind" onchange ="change_clear();">
+    <option value="-1">全部</option> <option value="1" <%=  'selected=true' if params[:school_kind] =='1' %>>幼儿园</option>
+    <option value="2" <%=  'selected=true' if params[:school_kind] =='2' %>>小学</option>
+    <option value="3" <%=  'selected=true' if params[:school_kind] =='3' %>>初中</option>
+    <option value="4" <%=  'selected=true' if params[:school_kind] =='4' %>>高中</option>
+    <option value="5" <%=  'selected=true' if params[:school_kind] =='5' %>>其他</option>
+  </select><br/>
+  学校名称：
+  <span id="school_name_span">
+    <select name="school_name" id="school_name" style="height: 40px;WIDTH: 250px; margin-top: 20px" multiple onclick="select_school_name()">
+      <% (@school_name || []).each do |school| %>
+        <option value="<%= school.id %>"><%= school.name %></option>
+      <% end %>
+    </select>
+  </span>
+  <input type="hidden" value="<%= params[:school_name_info]  %>" name="school_name_info" id="school_name_info"/>
+  班级：
+  <span id="class_name_span">
+    <select name="class_name" id="class_name" style=" height: 40px;  WIDTH: 250px; margin-top: 20px" multiple onclick="select_class_name()" >
+      <% (@class_name || []).each do |c| %>
+        <option value="<%= c.id %>"><%= c.class_name %></option>
+      <% end %>
+    </select>
+  </span>
+  <p/>
+  <input type="hidden" name="class_name_info" id="class_name_info" value="<%= params[:class_name_info] %>"/>
+  手机号码：<input type="text" name="phone_num" id="phone_num"></input>
+  <input type="button" value="添加" onclick="add_phone_num();"></input>
+  <select name="phone_name_list" id="phone_name_list" style="height: 40px;WIDTH:150px; margin-top: 20px" multiple>
+    <% if  params[:phone_num_info] %>
+      <% params[:phone_num_info].chop.split(",").each do |phone| %>
+        <option value="<%= phone %>"><%= phone %></option>
+      <% end %>
+    <% end %>
+  </select>
+  <input type="hidden" name="phone_num_info" id="phone_num_info" value=""/>
+  <input type="button" value="删除" onclick="delete_phone_num();"></input>
+  <h3 style="font-weight:bold;margin-top: 10px;">活动信息</h3>
+  <hr/>
+  参与活动时间：&nbsp;&nbsp;&nbsp;&nbsp;从<input type="text" readonly id="start_time"
+                                         name="start_time" 
+                                         value="<%= params[:start_time] %>"
+                                         onclick="WdatePicker({skin:'default', el:'start_time', dateFmt:'yyyy-MM-dd', autoPickDate:true, isShowClear:true, isShowToday:true, autoUpdateOnChanged:true})"/>
+  到<input type="text" readonly id="end_time"
+          name="end_time"
+          value="<%= params[:end_time] %>"
+          onclick="WdatePicker({skin:'default', el:'end_time', dateFmt:'yyyy-MM-dd', autoPickDate:true, isShowClear:true, isShowToday:true, autoUpdateOnChanged:true})"/>
+  <br/> <div  class="page_option">
+    <span>  参与活动类型：</span><select name="action_type" id="action_type" onchange ="change_display();">
+      <option value="-1">全部</option>
+      <option value="0" <%=  'selected=true' if params[:action_type] =='0' %>>秒杀</option>
+      <option value="1" <%=  'selected=true' if params[:action_type] =='1' %>>抽奖</option>
+      <option value="2" <%=  'selected=true' if params[:action_type] =='2' %>>交换</option>
+      <option value="3" <%=  'selected=true' if params[:action_type] =='3' %>>赠予</option>
+      <option value="4" <%=  'selected=true' if params[:action_type] =='4' %>>答卷</option>
+    </select>
+    <select name="action_result0" id="action_result0" style="display:<%=  (params[:action_type] &&  params[:action_type]=='0')? "block" : "none"%>;">
+      <option value="-1">全部</option>
+      <option value="0" <%=  'selected=true' if params[:action_result] =='0' %>>任意一本</option>
+      <option value="1" <%=  'selected=true' if params[:action_result] =='1' %>>独自成长的小幼虫</option>
+      <option value="2" <%=  'selected=true' if params[:action_result] =='2' %>>有奉献精神的父母培养大人物</option>
+      <option value="3" <%=  'selected=true' if params[:action_result] =='3' %>>英才是怎样造就的</option>
+      <option value="4" <%=  'selected=true' if params[:action_result] =='4' %>>未秒到</option>
+    </select>
+    <select name="action_result1" id="action_result1" style="display:<%=  (params[:action_type] &&  params[:action_type]=='1')? "block" : "none"%>;" >
+      <option value="-1">全部</option>
+      <option value="0" <%=  'selected=true' if params[:action_result] =='0' %> >任意一本</option>
+      <option value="1" <%=  'selected=true' if params[:action_result] =='1' %>>独自成长的小幼虫</option>
+      <option value="2" <%=  'selected=true' if params[:action_result] =='2' %>>有奉献精神的父母培养大人物</option>
+      <option value="3" <%=  'selected=true' if params[:action_result] =='3' %>>英才是怎样造就的</option>
+      <option value="4" <%=  'selected=true' if params[:action_result] =='4' %>>未抽到</option>
+    </select>
+    <select name="action_result2" id="action_result2" style="display:<%=  (params[:action_type] &&  params[:action_type]=='2')? "block" : "none"%>;" >
+      <option value="-1">全部</option>
+      <option value="7" <%=  'selected=true' if params[:action_result] =='7' %>>交换成功</option>
+      <option value="6" <%=  'selected=true' if params[:action_result] =='6' %>>交换失败</option>
+    </select>
+    <select name="action_result3" id="action_result3" style="display:<%=  (params[:action_type] &&  params[:action_type]=='3')? "block" : "none"%>;" >
+      <option value="-1">全部</option> <option value="11" <%=  'selected=true' if params[:action_result] =='11' %>>赠予成功</option>
+      <option value="10" <%=  'selected=true' if params[:action_result] =='10' %>>赠予失败</option>
+    </select>
+    <input type="hidden" name="action_result" id="action_result" value=""/>
+  </div>
+  <div class="clear"></div>
+  收到系统邀请短信时间：<input type="text" readonly id="message_time"
+                    name="message_time"
+                    value="<%= params[:message_time] %>"
+                    onclick="WdatePicker({skin:'default', el:'message_time', dateFmt:'yyyy-MM-dd', autoPickDate:true, isShowClear:true, isShowToday:true, autoUpdateOnChanged:true})"/>
+
+  收到系统邀请短信类型:
+  <span id="message_type_span">
+    <select id="message_type" name="message_type" style="height: 40px;WIDTH: 200px" multiple onclick="select_message_type()">
+      <% if !params[:message_type_info].blank?  %>
+        <%  params[:message_type_info].chop.split(",").each do |i| %>
+          <option value="<%= ActionRecord::MESSAGE_TYPE[i.to_i][0] %>"><%= ActionRecord::MESSAGE_TYPE[i.to_i][1] %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </span>
+  <input type="button" value="删除" onclick="delete_message_type()" /><br/>
+  <input type="hidden" id="message_type_info" name="message_type_info" value="<%= params[:message_type_info] %>"/>
+  <div style="margin-top:15px;">收到系统邀请短信次数：<input type="text" id="message_count" name="message_count" value="<%=  params[:message_count] %>"/><br/></div>
+  <center><p/><p/>
+    <input type="hidden" value="" id="is_to_excel" name="is_to_excel"/>
+    <input type="submit" value="查询" onclick="return validate_form()"></input>
+  </center>
+</form>
+<div id="return_div"></div>
+
+<table border="1" width="100%">
+  <tr>
+    <td>序号</td><td>地区</td><td>学校类型</td>
+    <td>学校名称</td><td>班级</td><td>手机号</td><td>家长</td>
+    <td><%=  sort_link_helper('历史', (params[:sort].blank? ? 'history_reverse' : 'history'))%></td>
+  </tr>
+  <% if params[:page] %>
+    <% rows_id = (params[:page].to_i-1)*30+1 %>
+  <% else %>
+    <% rows_id =1 %>
+  <% end %>
+  <% (@action_recordes || []).each do |recorde| %>
+    <tr>
+      <td><%= rows_id %></td><td><%=h recorde.area_name %></td><td><%=h recorde.s_type %></td>
+      <td><%= recorde.s_name %></td><td><%= recorde.class_name %></td><td><%= recorde.cellphone %></td>
+      <td><%= recorde.display_name %></td>
+      <td><a href="/admin/user_records?target_cellphone=<%= recorde.cellphone %>" target="_blank"><%= recorde.r_count.to_i if  recorde.r_count%></a></td>
+    </tr>
+    <% rows_id =rows_id +1 %>
+  <%  end %>
+</table>
+<% if !@action_recordes.blank?  %>
+  <% if @action_recordes.total_pages ==1 || params[:page].blank? ||  params[:page] =='1' %>
+    首页
+  <% else %>
+    <a href="/admin/action_records?page=1&sort=<%= params[:sort] %>&locality=<%= params[:locality] %>&school_type=<%= params[:school_type] %>&school_kind=<%= params[:school_kind] %>&school_name_info=<%= params[:school_name_info] %>&class_name_info=<%= params[:class_name_info] %>&phone_num=<%= params[:phone_num] %>&phone_num_info=<%= params[:phone_num_info] %>&start_time=<%= params[:start_time] %>&end_time=<%= params[:end_time] %>&action_type=<%= params[:action_type] %>&action_result=<%= params[:action_result] %>&message_time=<%= params[:message_time] %>&message_type_info=<%= params[:message_type_info] %>&message_count=<%= params[:message_count] %>">首页</a>
+  <% end %>
+  <%= will_paginate @action_recordes, :previous_label=> '上一页', :next_label => '下一页',:container=>false  %>
+  第<%= if params[:page].blank? then  '1' else  params[:page] end %>/<%=  @action_recordes.total_pages %>页 &nbsp;
+  <% total = (1..@action_recordes.total_pages) %>
+  <% if @action_recordes.total_pages ==1 ||  @action_recordes.total_pages == params[:page].to_i %>
+    尾页
+  <% else %>
+    <a href="/admin/action_records?page=<%=  @action_recordes.total_pages%>&sort=<%= params[:sort] %>&locality=<%= params[:locality] %>&school_type=<%= params[:school_type] %>&school_kind=<%= params[:school_kind] %>&school_name_info=<%= params[:school_name_info] %>&class_name_info=<%= params[:class_name_info] %>&phone_num=<%= params[:phone_num] %>&phone_num_info=<%= params[:phone_num_info] %>&start_time=<%= params[:start_time] %>&end_time=<%= params[:end_time] %>&action_type=<%= params[:action_type] %>&action_result=<%= params[:action_result] %>&message_time=<%= params[:message_time] %>&message_type_info=<%= params[:message_type_info] %>&message_count=<%= params[:message_count] %>">尾页</a>
+  <% end %>
+  跳到<select id="page" name="page" onchange="javascript:window.location.href='/admin/action_records?page='+this.value+'&sort=<%= params[:sort] %>&locality=<%= params[:locality] %>&school_type=<%= params[:school_type] %>&school_kind=<%= params[:school_kind] %>&school_name_info=<%= params[:school_name_info] %>&class_name_info=<%= params[:class_name_info] %>&phone_num=<%= params[:phone_num] %>&phone_num_info=<%= params[:phone_num_info] %>&start_time=<%= params[:start_time] %>&end_time=<%= params[:end_time] %>&action_type=<%= params[:action_type] %>&action_result=<%= params[:action_result] %>&message_time=<%= params[:message_time] %>&message_type_info=<%= params[:message_type_info] %>&message_count=<%= params[:message_count] %>';">
+    <% total.each do |i| %>
+      <option value="<%= i  %>" <%= 'selected'  if params[:page].to_i == i.to_i %>>第<%= i %>页</option>
+    <% end %>
+  </select>页&nbsp;共<%= @action_recordes.total_entries %>条记录
+  <input type="button" value="导出列表" onclick="return to_excel();"></input>
+<% end %>
+<style type="text/css">
+  .page_option{  margin-top: 15px;
+                 float: left;}
+  .page_option select{ float: left; margin-right: 20px;}
+  .page_option span{ float: left;}
+</style>
+<script type="text/javascript">
+  function to_excel(){
+    if(confirm('你确定要导出当前查询的结果吗？')){
+
+      window.location.href= '/admin/action_records/to_excel?sort=<%= params[:sort] %>&locality=<%= params[:locality] %>&school_type=<%= params[:school_type] %>&school_kind=<%= params[:school_kind] %>&school_name_info=<%= params[:school_name_info] %>&class_name_info=<%= params[:class_name_info] %>&phone_num=<%= params[:phone_num] %>&phone_num_info=<%= params[:phone_num_info] %>&start_time=<%= params[:start_time] %>&end_time=<%= params[:end_time] %>&action_type=<%= params[:action_type] %>&action_result=<%= params[:action_result] %>&message_time=<%= params[:message_time] %>&message_type_info=<%= params[:message_type_info] %>&message_count=<%= params[:message_count] %>';
+    }
+  }
+  function select_message_type(){
+    window.open("/admin/action_records/search_message_type");
+  }
+  function delete_message_type(){
+    var message_type_list=document.getElementById("message_type");
+    message_type_list.innerHTML = null;
+    document.getElementById("message_type_info").value="";
+  }
+  function validate_form(){
+    var index = document.getElementById("action_type").value;
+    if(index != -1 && index != 4){
+      document.getElementById("action_result").value =document.getElementById("action_result"+index).value;
+    }
+    if(validate_time() && validate_number()){
+      pass_phone_num();
+      document.getElementById("is_to_excel").value=1;
+      return true;
+    }
+    return false;
+  }
+  function validate_number(){
+    var count=document.getElementById("message_count").value;
+    var re = /^(-?[1-9][0-9]*|0)$/;
+    if (count!= "" && !re.test(count))
+    {
+      alert("请输入数字");
+      count="";
+      return false;
+    }
+    return true;
+  }
+  function validate_time(){
+    var start=document.getElementById("start_time").value;
+    var end=document.getElementById("end_time").value;
+    if((start !="" && end !="") || (start =="" && end =="")){
+      if(start > end){
+        alert("结束时间要大于起始时间");
+        return false;
+      }
+      return true;
+    }else{
+      alert("起始时间和结束时间不能单独有值！");
+      return false;
+    }
+  }
+  function pass_phone_num(){
+    var phone_num=document.getElementById("phone_name_list");
+    var str ="";
+    if(phone_num.options.length!=0){
+      for(var i=0;i<phone_num.options.length;i++){
+        str = str + phone_num.options[i].value;
+        str =str + ",";
+      }
+      document.getElementById("phone_num_info").value=str;
+    }
+  }
+  function change_display(){
+    var index= document.getElementById("action_type").value;
+    for(var i=0;i<4;i++ ){
+      document.getElementById("action_result"+i).style.display="none";
+      if(i==index){
+        document.getElementById("action_result"+i).style.display="block";
+      }
+     
+    }
+  }
+  function select_school_name(){
+    var locality  = document.getElementById("locality_id").value;
+    var school_type  = document.getElementById("school_type").value;
+    var school_kind  = document.getElementById("school_kind").value;
+    window.open("/admin/action_records/search_school_name?locality="+locality+"&school_type="+school_type+"&school_kind="+school_kind);
+  }
+  function select_class_name(){
+    var school_names=document.getElementById("school_name");
+    var str ="";
+    if(school_names.options.length!=0){
+      for(var i=0;i<school_names.options.length;i++){
+        str = str + school_names.options[i].value;
+        str =str + ",";
+      }
+      document.getElementById("school_name_info").value=str;
+      window.open("/admin/action_records/search_class_name?school_name="+str);
+    }else{
+      alert("学校名称列表框至少选择一项!");
+      return false;
+    }
+  }
+  function delete_phone_num(){
+    var phone_name_list=document.getElementById("phone_name_list");
+    if(phone_name_list.options.selectedIndex>=0){
+      phone_name_list.options[phone_name_list.options.selectedIndex] = null;
+    }else
+    {alert("请选中要删除的电话号码！");}
+  }
+  function add_phone_num(){
+    if(validate_value('phone_num')){
+      var phone_num=document.getElementById("phone_num").value;
+      var phone_name_list=document.getElementById("phone_name_list");
+      for (var i = 0; i < phone_name_list.options.length; i++) {
+        if (phone_name_list.options[i].value == phone_num) {
+          alert("该电话号码的已经存在!");
+          return false;
+        }
+      }
+      var varItem = new Option(phone_num, phone_num);
+      phone_name_list.options.add(varItem);
+      alert("成功加入");
+      return true;
+    }
+    return false;
+  }
+  
+  function validate_value(control_name){
+    var val = document.getElementById(control_name).value;
+    if(val.replace(/(^\s*)|(\s*$)/g, "").length >7 && val.replace(/(^\s*)|(\s*$)/g, "").length<= 12){
+      if(val.replace(/(^\s*)|(\s*$)/g, "").length ==8){
+        document.getElementById(control_name).value = "0513"+val;
+      }
+      return true;
+    }
+    alert("请输入正确的手机号码");
+    return false;
+  }
+  function change_clear(){
+    document.getElementById("school_name").innerHTML="";
+    document.getElementById("class_name").innerHTML="";
+    document.getElementById("school_name_info").value="";
+    document.getElementById("class_name_info").value="";
+  }
+</script>

@@ -1,0 +1,80 @@
+<script type="text/javascript">
+  function previewNews()
+  {
+    window.open("/manage/news/preview", "", "height=800, width=1000, top=30, left=200, scrollbars=yes,location=yes, status=yes,resizable=no");
+  }
+
+  function checkNewsForm()
+  {
+    var content = window.frames["myEditor"].document.frames["editor_body_area"].document.body.innerText;
+    var content_length = content.length;
+    var valid = new Validation('news_form', {onSubmit:false});
+    var result = valid.validate();
+    var flag = true;
+    if (content.replace(/(^\s*)|(\s*$)/g,"") == "" && window.frames["myEditor"].document.frames["editor_body_area"].document.body.innerHTML.indexOf("<IMG") == -1) {
+      $('content_error').innerHTML="(内容不能为空)";
+      window.frames["myEditor"].document.frames["editor_body_area"].document.body.focus();
+      flag = false;
+    }
+    if(content_length > 12000){
+      $('content_error').innerHTML="(内容不能超过12000个字符)";
+      window.frames["myEditor"].document.frames["editor_body_area"].document.body.focus();
+      flag = false;
+    }
+    if(result && flag)
+    {
+      $('content_error').innerHTML= "";
+      $('preview_btn').disable();
+      $('sub_btn').disable();
+      $('f_btn').disable();
+    }
+    else
+    {
+      $('preview_btn').enable();
+      $('sub_btn').enable();
+      $('f_btn').enable();
+      return false;
+    }
+  }
+</script>
+<div id="fxht-box">
+  <%= render :partial => "menu" %>
+  <div class="clear"></div>
+  <% form_tag("/manage/news", :method => :post, :id => 'news_form', :name =>"news_form", :multipart => true, :class => 'required-validate', :onsubmit => "return checkNewsForm();") do %>
+    <table class="fy-edit" width="100%" border="1">
+      <colgroup>
+        <col width="20%"/>
+        <col width="80%"/>
+      </colgroup>
+      <tr>
+        <td style="background:#ededed; font-weight:bold">标题<span class="caozuo2">*</span></td>
+        <td>
+          <input style="width:400px;" name="news_title" id="news_title" class="required max-length-30"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="background:#ededed; vertical-align:top;font-weight:bold">内容<span class="caozuo2">*</span></td>
+        <td>
+          <span id="content_error" style="color:red;font-weight:bold;"></span>
+          <input type="hidden" id="news_content" name="news_content"/>
+          <iframe id="myEditor" src="/editor/editor.htm?id=news_content" frameborder="0" scrolling="no" width="650" height="500"></iframe>
+        </td>
+      </tr>
+      <tr>
+        <td style="background:#ededed;" align="center" colspan="2">
+          <table border="0" width="100%">
+            <tr align="right">
+              <td align="right" style="width:60%;">
+                <input onclick="previewNews()" id="preview_btn" name="preview_btn" type="button" style="height: 20px;line-height: 17px;margin-left: 5px;" value="预览"/>
+                <input id="sub_btn" name="sub_btn" type="submit" style="height: 20px;line-height: 17px;margin-left: 5px;" value="发布"/>
+              </td>
+              <td align="right">
+                <input id="f_btn" name="f_btn" style="height: 20px;line-height: 17px;margin-right: -6px;" type="button" onclick="javascript:window.location.href='/manage/news'" value="返回新闻列表"/>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>

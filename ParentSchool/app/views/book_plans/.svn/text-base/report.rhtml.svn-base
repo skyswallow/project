@@ -1,0 +1,14 @@
+<%= render :partial => "head" %>
+<div id="main">
+<div class="baogao">
+<h1></h1>
+<div class="baogao-box">
+<img src="/images/zengshu/report.jpg" height="118" width="170"/>
+<ul><li>
+<h2>为民服务办实事　家庭教育解疑点</h2>
+<p>10月19日，由南通市网上家长学校、市教育为民服务中心、南通市第三中学联合举办，中国城市出版社、南通市电教馆等单位支持的“家庭教育指导讲座”在南通市第三中学阶梯教室举行。家庭教育指导讲座邀请了南通高等师范学校贾真副教授主讲，与广大学在南通市第三中学阶梯教室举行。家庭教育指导讲座邀请了南通高等师范学校贾真副教授主讲，与广大学...【<a href="http://www.ntjxt.com/news_lines/533" target="_blank">查看详细</a>】</p>
+</li>
+</ul>
+</div>
+</div>
+</div>

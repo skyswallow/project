@@ -1,0 +1,52 @@
+<p class="title_p">活动管理</p>
+<div class="clear"></div>
+<table width="100%">
+  <caption>活动名称：<%= h @activity.name %></caption>
+  <colgroup>
+    <col width="10%"/>
+    <col width="20%"/>
+    <col width="15%"/>
+    <col width="15%"/>
+    <col width="20%"/>
+    <col width="20%"/>
+  </colgroup>
+  <tr>
+    <td colspan="5" align="left">
+      <strong>共<%= @activity.activity_applies_count %>人报名</strong>
+    </td>
+    <td align="right">
+      <%= link_to "导出Excel", @down_url if @down_url %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>姓名</strong></td>
+    <td><strong>学校</strong></td>
+    <td><strong>年级</strong></td>
+    <td><strong>班级</strong></td>
+    <td><strong>电话</strong></td>
+    <td><strong>Email</strong></td>
+  </tr>
+  <% (@activity_users || []).each do |user| %>
+    <tr>
+      <td valign="top">
+        <%= h user.name %>
+      </td>
+      <td valign="top">
+        <%= h user.school %>
+      </td>
+      <td valign="top">
+        <%= h user.grade %>
+      </td>
+      <td valign="top">
+        <%= h user.user_class %>
+      </td>
+      <td valign="top">
+        <%= h user.contact_number %>
+      </td>
+      <td valign="top">
+        <%= h user.contact_email %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @activity_users if @activity_users %>

@@ -1,0 +1,12 @@
+<div id="top1"></div>
+<div id="top2"></div>
+<div id="nav">
+  <ul>
+    <li><a href="/book_activities/introduction" <% if action_name == "introduction" %>class="focus"<%end%>>活动介绍</a></li>
+    <li><a href="/book_activities" <% if action_name == "index" and controller_name == "book_activities" %>class="focus"<%end%>>赠书活动</a></li>
+    <li><a href="/book_activities/lottery" <% if action_name == "lottery" %>class="focus"<%end%>>抽奖活动</a></li>
+    <li><a href="/book_exchanges/" <% if controller_name == "book_exchanges" %>class="focus"<%end%>>图书交换</a></li>
+    <li><a href="/book_activities/award_list" <% if action_name == "award_list" %>class="focus"<%end%>>获奖信息</a></li>
+    <li><a href="http://www.xuexi6.com/community/articles/ntjxt_index" <% if action_name == "article" %>class="focus"<%end%>>家庭教育读书征文</a></li>
+  </ul>
+</div>

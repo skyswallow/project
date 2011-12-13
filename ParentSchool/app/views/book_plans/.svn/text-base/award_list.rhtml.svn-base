@@ -1,0 +1,14 @@
+<%= render :partial => "head" %>
+<div id="main">
+<div class="huojiangxinxi">
+<h1></h1>
+<div class="huojiangxinxi-box">
+<h2>图书受赠家长名单</h2>
+<% (@award_list || []).each do |list| %>
+<div class="huojiangxinxi-box2"><span><%= list[0] %>图书受赠家长名单</span><a class="xiazai" href="/book_plans/download?id=<%= list[1] %>">下载</a></div>
+<% end %>
+<h2>征文获奖名单</h2>
+<div class="huojiangxinxi-box2"><span>图书受赠家长名单</span><a class="xiazai" href="#">下载</a></div>
+</div>
+</div>
+</div>

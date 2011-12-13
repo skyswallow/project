@@ -1,0 +1,3 @@
+<%= render :partial => "/examination/main/zhengce" %>
+<div class="clear"></div>
+<%= render :partial => "/examination/main/zhaoshengxinxi" %>

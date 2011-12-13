@@ -1,0 +1,131 @@
+<script type="text/javascript">
+  function dispaly_span()
+  {
+    if(document.getElementById('news_parent_type').value == "21" || document.getElementById('news_parent_type').value == "22"){
+      document.getElementById('select_sub_type').style.display = "none";
+    }
+    else{
+      document.getElementById('select_sub_type').style.display = "block";
+    }
+  }
+
+  function check_form(){
+    var valid = new Validation('new_form', {onSubmit:false});
+    var result = valid.validate();
+    var flag = true;
+    if (document.getElementById("news_parent_type").value == ""){
+      alert("请选择分类");
+      flag = false;
+    }
+    if(document.getElementById("file_span").innerHTML !="" &&(document.getElementById("file_span").innerHTML =="有重名网页,请重新输入！")){
+      flag = false;
+    }
+    if(document.getElementById("img_span").innerHTML !="" &&(document.getElementById("img_span").innerHTML =="有重名图片,请重新输入！")){
+      flag = false;
+    }
+    if (document.getElementById("news_parent_type").value != "" && document.getElementById("news_parent_type").value != "21" && document.getElementById("news_parent_type").value != "22" && document.getElementById("sub_type").value == ""){
+      alert("请选择子分类");
+      flag = false;
+    }
+    if (document.getElementById("news_parent_type").value == "22"){
+      document.getElementById("gonggao").value = "gonggao";
+    }else{
+      document.getElementById("gonggao").value = "";
+    }
+    var content = document.getElementById("content").value;
+    var img_val = document.getElementById("head_image").value;
+    if(flag && document.getElementById("news_parent_type").value == "1" && img_val ==""){
+      alert("新闻综合类型的新闻必须上传图片");
+      flag = false;
+    }
+    if(flag && document.getElementById("news_parent_type").value == "1" && document.getElementById("news_parent_type").value == "21" && content ==""){
+      alert("请输入简介");
+      flag = false;
+    }
+    if(result && flag){
+      $('sub_btn').disable();
+      return true;
+    }else{
+      $('sub_btn').enable();
+      return false;
+    }
+  }
+</script>
+
+<div id="bd_div">
+  <%= render :partial => "sub_menu" %>
+  <table>
+    <colgroup>
+      <col width="15%"/>
+      <col width="85%"/>
+    </colgroup>
+    <%  form_tag "/admin/news_lines",  :multipart => true, :name => "new_form", :id => "new_form", :class => 'required-validate',:method => :post, :onsubmit => "return check_form();" do%>
+      <tr style="height: 30px;">
+        <td >标题 <span style="color:red">*</span></td>
+        <td><input type="text" name="title" id="title" class="required max-length-50"/></td>
+      </tr>
+      <tr style="height: 60px;" valign="top">
+        <td>副标题 </td>
+        <td><input type="text" id="subtitle" name="subtitle" class="max-length-50"  /></td>
+      </tr>
+      <tr style="height: 30px;" valign="top">
+        <td>类型 <span style="color:red">*</span></td>
+        <td>
+          <%= select("news","parent_type", @news_types, {}, {
+              "onchange" => remote_function(
+                :with => "'parent_id='+value",
+                :update => 'select_sub_type',
+                :url => { :action => :select_sub_type },
+                :complete => 'dispaly_span()',
+                :style=>"width:80px;float: left;"),
+              :style =>"width:80px;float: left;"} )
+        %>
+          <span id='select_sub_type'>
+            ---><select><option>请选择</option></select>
+          </span>
+          <input type="hidden" id="sub_type" name="sub_type" />
+          <input type="hidden" id="gonggao" name="gonggao" />
+        </td>
+      </tr>
+      <tr style="height: 30px;">
+        <td >图片 <span style="color:red">*</span></td>
+        <td><input type="file" name="head_image" id="head_image" class="validate-file-jpg-gif max-length-100" onkeydown="return false;" onkeyup="return false;" contenteditable="false" /><span style="color:red"> &nbsp; (图片名请勿用中文)</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span style="color:red" id="img_span"></span>
+          <span id="check_img"><%= observe_field "head_image", :url => "/admin/news_lines/checkimg",
+              :frequency => 1,
+              :update => "img_span",
+              :with => "head_image" %>
+          </span>
+        </td>
+      </tr>
+      <tr style="height: 30px;">
+        <td>文件 <span style="color:red">*</span></td>
+        <td><input type="file" name="file" id="file" class="required max-length-100 validate-file-html-htm" onkeydown="return false;" onkeyup="return false;" contenteditable="false" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span style="color:red" id="file_span"></span>
+          <span id="check_file"><%= observe_field "file", :url => "/admin/news_lines/check",
+              :frequency => 1,
+              :update => "file_span",
+              :with => "file" %>
+          </span>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td >简介</td>
+        <td>
+          <textarea name="content" id="content" cols="60" rows="15" class="max-length-500" ></textarea>
+        </td>
+      </tr>
+      <tr style="height: 30px;"><td></td>
+        <td>
+          <input type="submit" value="提交" id="sub_btn"/>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

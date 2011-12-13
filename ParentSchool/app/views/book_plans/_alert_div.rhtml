@@ -1,0 +1,69 @@
+<% cache(:alert_div_2, 30.minutes.from_now) do %>
+  <div class="tanchu" id="alert_1">
+    <span style="font-size:14px;">为了提高南通市网上家长学校的服务质量，现邀请您填写一份关于您孩子学习的调查问卷，页面将自动跳转。</span>
+    <a href="<%= Constant::SURVEY_URL %>" target="_blank">5秒后页面跳转，如未跳转请点击这里</a>
+  </div>
+  <br/>
+  <div class="tanchu" id="alert_2">
+    <div class="tanchu-icon">
+      <img src="/images/zengshu/biaoqing.jpg"/>
+    </div>
+    <div class="tanchu-box" id="alert_info_2">因赠书采取分批申领，您暂不能参与此批图书申领，请在收悉活动短信后，根据短信上的日期进行图书申领。谢谢！</div>
+    <div class="tanchu-line"></div>
+    <div class="queding">
+      <input type="button" value="确定" onclick="javascript:document.getElementById('alert_2').style.display='none';window.location.reload(true);"/></div>
+  </div>
+  <br/>
+  <br/>
+  <div class="tanchu" id="alert_3">
+    <div class="tanchu-icon">
+      <img src="/images/zengshu/biaoqing.jpg"/>
+    </div>
+    <div class="tanchu-box" id="alert_info_3">您已经申领过图书，因图书数量有限，您不能再次申领，谢谢！</div>
+    <div class="queding">
+      <input type="button" value="确定" onclick="javascript:document.getElementById('alert_3').style.display='none';window.location.reload(true);"/></div>
+  </div>
+  <br/>
+  <br/>
+  <div class="tanchu" id="alert_4">
+    <div class="tanchu-icon">
+      <img src="/images/zengshu/biaoqing.jpg"/>
+    </div>
+    <div class="tanchu-box" id="alert_info_4">您选择的图书已全部被申领。谢谢！</div>
+    <div class="tanchu-line"></div>
+    <p id="alert_p_4" style="display:none" ><span>为了提高南通市网上家长学校的服务质量，现邀请您填写一份关于您孩子学习的调查问卷，页面将自动跳转。</span><br/>
+    <p style=" text-align: center;"><a href="<%= Constant::SURVEY_URL %>" id="ulr_a_4" target="_blank">5秒后页面跳转，如未跳转请点击这里</a></p></p>
+  </div>
+  <br/>
+
+  <br/>
+  <div class="tanchu" id="alert_5">
+    <div class="tanchu-icon">
+      <img src="/images/zengshu/yes.jpg"/>
+    </div>
+    <div class="tanchu-box" id="alert_info_5">恭喜！您已成功申领图书【xxx】，图书将在整个活动结束后，由您孩子所在学校送达。</div>
+    <div class="tanchu-line"></div>
+    <p id="alert_p_5" style="display:none" ><span>为了提高南通市网上家长学校的服务质量，现邀请您填写一份关于您孩子学习的调查问卷，页面将自动跳转。</span><br/>
+    <p style=" text-align: center;"><a href="<%= Constant::SURVEY_URL %>" id="ulr_a_5" target="_blank">5秒后页面跳转，如未跳转请点击这里</a></p></p>
+  </div>
+  <br/>
+
+  <br/>
+  <div class="tanchu" id="alert_6">
+    <div class="tanchu-icon">
+      <img src="/images/zengshu/yes.jpg"/>
+    </div>
+    <div class="tanchu-box" id="alert_info_6">恭喜！您已成功申领图书【xxx】，图书将在整个活动结束后，由您孩子所在学校送达。</div>
+    <div class="queding">
+      <input type="button" value="确定" onclick="javascript:document.getElementById('alert_6').style.display='none';window.location.reload(true);"/></div>
+  </div>
+  <br/>
+  <div class="tanchu" id="alert_7">
+    <div class="tanchu-icon">
+      <img src="/images/zengshu/biaoqing.jpg"/>
+    </div>
+    <div class="tanchu-box" id="alert_info_7">恭喜！您已成功申领图书【xxx】，图书将在整个活动结束后，由您孩子所在学校送达。</div>
+    <div class="queding">
+      <input type="button" value="确定" onclick="javascript:document.getElementById('alert_7').style.display='none';window.location.reload(true);"/></div>
+  </div>
+<% end %>

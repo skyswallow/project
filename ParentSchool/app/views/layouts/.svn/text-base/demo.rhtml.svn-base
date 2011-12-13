@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>南通家长网上学校</title>
+  </head>
+  <body style="background-color: #961017">
+    <%= yield :layout -%>
+    <%= hidden_field_tag("page_record", Page_history.create_page_record(session.session_id,
+        request,
+       cookies[:space_id])) %>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<div class="tanchu-jx" id="tanchu_jx" >
+  <div class="tanchu" id="tanchu_info">
+    <form  action="/book_exchanges/" id = "book2_form" class ="required-validate" method = "get" >
+      <span id="alert_info" style="display: none;"></span>
+      <input type="hidden" id="user_info" name="apply_user_info"/>
+      &nbsp;收到活动短信的手机号码:<input type="hidden" id="confirm_txt" />
+      <input type="text" id="user_name" name="user_name" style="width:160px;height:20px;"/><br/><br/>
+      &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="button" value="确定" onclick="return validate_phone();"/> &nbsp; &nbsp; &nbsp;
+      <input type="button" value="取消" onclick="javascript:$('tanchu_info').style.display ='none';$('user_name').value='';$('confirm_txt').value='';" />
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+  function set_exchange(type,change_id,a_book, r_book){
+    $("confirm_txt").value = "";
+    if(type == 0){
+      $('user_info').value = change_id;
+      $('tanchu_info').style.display = 'block';
+      $('book2_form').action='/book_exchanges/zengyu';
+      $("confirm_txt").value=a_book;
+    }else{
+      $('user_info').value = change_id;
+      $('tanchu_info').style.display = 'block';
+      $('book2_form').action='/book_exchanges/zengyu';
+      $("confirm_txt").value=a_book+":"+r_book;
+    }
+    $("user_name").focus();
+  }
+
+  function confirm_info(){
+    var info = $("confirm_txt").value;
+    var str = "";
+    if(info.split(":").length == 1){
+      str ="1"+":"+ "赠予后，您将不再拥有《"+ info.split(":")[0]+"》，\n只能通过他人赠予和抽奖获得图书。确认赠予？";
+    }else if(info.split(":").length == 2){
+      str ="2"+":"+ "交换后，您将获得《"+ info.split(":")[1]+"》，\n同时不再拥有《"+ info.split(":")[0]+"》，确认交换？";
+    }
+    return str;
+  }
+  function validate_phone(){
+    var val = document.getElementById('user_name').value;
+    if(val.replace(/(^\s*)|(\s*$)/g, "").length >7 && val.replace(/(^\s*)|(\s*$)/g, "").length<= 12){
+      if(val.replace(/(^\s*)|(\s*$)/g, "").length ==8){
+        document.getElementById('user_name').value = "0513"+val;
+      }
+      var zy_or_jh =  confirm_info();
+      if(confirm_info()!="" && confirm(zy_or_jh.split(':')[1])){
+        if(zy_or_jh.split(':')[0] =='1')
+        {
+          new Ajax.Updater("alert_info",
+          '/book_exchanges/zengyu',
+          { method:'post',
+            parameters:'user_name='+$('user_name').value+'&apply_user_info='+$('user_info').value,
+            asynchronous:true,
+            evalScripts:true,
+            onComplete:function(){
+           //  alert($('alert_info').innerHTML);
+             if($('alert_info').innerHTML.indexOf("成功")>0){
+                alert($('alert_info').innerHTML);
+                window.location.reload(true);
+              }else{
+                if($('alert_info').innerHTML.split('||').length ==2){
+                  alert($('alert_info').innerHTML.split('||')[0]);
+                  window.open($('alert_info').innerHTML.split('||')[1], "","scrollbars=yes,toolbar=yes, menubar=yes, resizable=yes,location=yes, status=yes");
+                }else{
+                  alert($('alert_info').innerHTML);
+                }
+              }
+              $('tanchu_info').style.display="none";
+              $('alert_info').innerHTML='';
+              $('user_name').value ='';
+            }});
+        }else{
+          new Ajax.Updater("alert_info",
+          '/book_exchanges/jiaohuan',
+          { method:'post',
+            parameters:'user_name='+$('user_name').value+'&apply_user_info='+$('user_info').value,
+            asynchronous:true,
+            evalScripts:true,
+            onComplete:function(){
+                // alert($('alert_info').innerHTML);
+              if($('alert_info').innerHTML.indexOf("成功")>0){
+                alert($('alert_info').innerHTML);
+                window.location.reload(true);
+              }else{
+                if($('alert_info').innerHTML.split('||').length ==2){
+                  alert($('alert_info').innerHTML.split('||')[0]);
+                  window.open($('alert_info').innerHTML.split('||')[1], "","scrollbars=yes,toolbar=yes, menubar=yes, resizable=yes,location=yes, status=yes");
+                }else{
+                  alert($('alert_info').innerHTML);
+                }
+              }
+              $('tanchu_info').style.display="none";
+              $('alert_info').innerHTML='';
+              $('user_name').value ='';
+            }});
+        }
+        return true;
+      }else{
+        return false;
+      }
+    }
+    alert("请输入正确的手机号码");
+    return false;
+  }
+</script>

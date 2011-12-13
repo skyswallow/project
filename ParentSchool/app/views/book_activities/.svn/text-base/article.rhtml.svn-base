@@ -1,0 +1,11 @@
+<%= render :partial => "head_1" %>
+<div id="main">
+  <% if request.env["HTTP_USER_AGENT"].include?("MSIE") %>
+    <iframe src="<%= Constant::XUEXI6_PREFIX %>/community/articles/ntjxt_index" width="940" height="1200"
+            marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe>
+  <% else %>
+    <iframe src="<%= Constant::XUEXI6_PREFIX %>/community/articles/ntjxt_index_1" width="950" height="1200"
+            marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="auto"></iframe>
+  <% end %>
+</div>
+<%= render :partial => "alert_div" %>

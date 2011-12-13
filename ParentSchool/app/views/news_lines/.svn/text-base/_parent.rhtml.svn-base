@@ -1,0 +1,22 @@
+<link href="/stylesheets/prototip.css?<%= rand %>" media="screen" rel="stylesheet" type="text/css" />
+<% (NewsType.find_all_by_parent_id(6).sort_by{|a| a.id.to_i } || []).each do |type| %>
+  <div class="colunm_list_box">
+    <h2 class="mian_h2"><span><%= type.name %></span><a href="/news_lines/<%= type.id %>/sub_parent_class" class="more-link">更多</a></h2>
+    <% lines = NewsLine.newest 6,5,type.id %>
+    <table width="600">
+      <colgroup width="520" /><colgroup width="80" />
+      <% for line in lines %>
+        <script type='text/javascript'>
+          document.observe('dom:loaded', function() {
+            new Tip('p_<%=line.id%>', '<%=h line.title %>', {className: 'darktip'});
+          });
+        </script>
+        <tr>
+          <td><a href="/news_lines/<%= line.id %>" id="p_<%= line.id %>" target="_blank"><%=h truncate(line.title,:length => 35) %></a></td>
+          <td><%= line.created_at.strftime '%Y.%m.%d' %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+<a href="mailto:<%= Constant::ADMIN_EMAIL %>" class="wyyfb" title="<%= Constant::ADMIN_EMAIL %>">我也要发表</a>

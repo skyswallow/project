@@ -1,0 +1,26 @@
+<div class="tanchu" id="tanchu_info">
+  <div class="tanchu-icon" id="image_info">
+    <img src="/images/zengshu/biaoqing.jpg"/>
+  </div>
+  <div class="tanchu-box" id="alert_info" style="text-align: center"></div>
+  <div class="tanchu-line"></div>
+  <p id="alert_p" style=" text-align: center"><span id="alert_span"></span>
+    <br/>  <a href="javascript:void(0)" id="ulr_a" style="display:none;" target="_blank" onclick="survey();return false;">5秒后页面跳转，如未跳转请点击这里</a></p>
+  <div class="queding" id="confirm_btn" style="display:block;">
+    <input type="button" value="确定" onclick="javascript:document.getElementById('tanchu_info').style.display='none';window.location.reload(true);"/>
+  </div>
+</div>
+
+
+<div class="tanchu" id="lottery_info">
+  <div class="tanchu-icon" id="image_lottery">
+    <img src="/images/zengshu/biaoqing.jpg"/>
+  </div>
+  <div class="tanchu-box" id="alert_lottery" style="text-align: center"></div>
+  <div class="tanchu-line"></div>
+  <p id="lottery_p" style="text-align: center"><span id="lottery_span"></span>
+    <br/>  <a href="javascript:void(0)" id="lottery_a" style="display:none;" target="_blank" onclick="survey();return false;">5秒后页面跳转，如未跳转请点击这里</a></p>
+  <div class="queding" id="lottery_btn" style="display:block;">
+    <input type="button" value="确定" onclick="do_sth()"/>
+  </div>
+</div>

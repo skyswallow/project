@@ -1,0 +1,503 @@
+.tanchu{
+    width:350px;
+    border:#C00 5px solid;
+    padding:20px 5px 15px 15px;
+    display: none;
+    background: #fff;
+}
+.tanchu-jx{
+    position:fixed;
+    top:350px;
+    left:515px;
+    _position:absolute;
+    _top:expression(eval(document.documentElement.scrollTop + 250));
+}
+.tanchu a{
+    font-size:12px;
+    width:350px;
+    text-align:center;
+    display:block;
+}
+.tanchu span{
+    text-indent:8mm;
+    display:block;
+    font-size:12px
+}
+
+.tanchu-icon{
+    text-align:center;
+    width:350px;
+    margin-bottom:15px;
+}
+.tanchu-box{
+    font-weight:bold;
+    text-indent:8mm;
+}
+
+.queding{
+    text-align:center;
+    width:350px;
+    padding-top:20px;
+}
+.queding input{
+    width:50px;
+    height:25px;
+}
+.tanchu-line{
+    background-position:bottom center;
+    padding-bottom:25px;
+    height:8px;
+    _height:5px;
+}
+
+.show_alert{
+    position:fixed;
+    top:350px;
+    left:515px;
+    _position:absolute;
+    _top:expression(eval(document.documentElement.scrollTop + 250));
+    background:#fff;width:350px;
+    border:#C00 5px solid;
+    padding:20px 5px 15px 15px;
+}
+
+.show_alert_1{
+    position:fixed;
+    top:350px;
+    left:515px;
+    _position:absolute;
+    _top:expression(eval(document.documentElement.scrollTop + 250));
+    background:#fff;width:350px;
+    border:#C00 5px solid;
+    padding:20px 5px 15px 15px;
+}
+
+.show_message{
+    position:fixed;
+    top:240px;
+    left:515px;
+    _position:absolute;
+    _top:expression(eval(document.documentElement.scrollTop + 240));
+    background:#fff;width:350px;
+    border:#C00 5px solid;
+    padding:20px 5px 15px 15px;
+}
+
+@charset "utf-8";
+/* CSS Document */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin:0;
+    padding:0;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+td{
+    word-break:break-all;
+}
+fieldset, img {
+    border:0;
+}
+address, caption, cite, code, dfn, th, var {
+    font-style:normal;
+    font-weight:normal;
+}
+ol, ul {
+    list-style:none;
+}
+caption, th {
+    text-align:left;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size:14px;
+    font-weight:normal;
+}
+h3{font-weight:bold;
+   color:#ca1a1a;}
+q:before, q:after {
+    content:'';
+}
+abbr, acronym {
+    border:0;
+}
+.clear {
+    clear:both;
+}
+a{
+    text-decoration:none;
+    color:#ff6600;
+}
+a:hover{
+    text-decoration:underline;
+}
+body{
+    font-size:14px;
+    background:url(/images/piaoliu/bodybj.jpg) repeat-x;
+    background-position:center top;
+    color:#666666;
+}
+
+#contains{
+    width:1121px;
+    margin-left:20px;
+    margin:0 auto;
+}
+#nav{
+    width:650px;
+    height:45px;
+    margin-left:380px;
+    margin-top:19px;
+}
+#nav ul{
+
+}
+#nav li{
+    float:left;
+    margin-left:2px;
+    text-indent:-9999px;
+}
+.a_normal{
+    background:url(/images/piaoliu/a.jpg) no-repeat;
+    display:block;
+    width:72px;
+    height:45px;
+}
+.b_normal{
+    background:url(/images/piaoliu/b.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.c_normal{
+    background:url(/images/piaoliu/c.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.d_normal{
+    background:url(/images/piaoliu/d.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.e_normal{
+    background:url(/images/piaoliu/e.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.f_normal{
+    background:url(/images/piaoliu/f.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.g_normal{
+    background:url(/images/piaoliu/g.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.h_normal{
+    background:url(/images/piaoliu/h.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.a_normal:hover{
+    background:url(/images/piaoliu/a2.jpg) no-repeat;
+    display:block;
+    width:72px;
+    height:45px;
+}
+.b_normal:hover{
+    background:url(/images/piaoliu/b2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.c_normal:hover{
+    background:url(/images/piaoliu/c2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.d_normal:hover{
+    background:url(/images/piaoliu/d2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.e_normal:hover{
+    background:url(/images/piaoliu/e2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.f_normal:hover{
+    background:url(/images/piaoliu/f2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.g_normal:hover{
+    background:url(/images/piaoliu/g2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.h_normal:hover{
+    background:url(/images/piaoliu/h2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.a_focus{
+    background:url(/images/piaoliu/a2.jpg) no-repeat;
+    display:block;
+    width:72px;
+    height:45px;
+}
+.b_focus{
+    background:url(/images/piaoliu/b2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.c_focus{
+    background:url(/images/piaoliu/c2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.d_focus{
+    background:url(/images/piaoliu/d2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.e_focus{
+    background:url(/images/piaoliu/e2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.f_focus{
+    background:url(/images/piaoliu/f2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.g_focus{
+    background:url(/images/piaoliu/g2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+.h_focus{
+    background:url(/images/piaoliu/h2.jpg) no-repeat;
+    display:block;
+    width:80px;
+    height:45px;
+}
+#main{
+    width:1121px;
+    margin:0 auto;
+    min-height:500px;
+    background:url(/images/piaoliu/mainbj.jpg) repeat-y;
+}
+#main_left{
+    width:240px;
+    float:left;
+    margin-left:95px;
+    _display:inline;
+}
+#main_right{
+    width:645px;
+    float:left;
+    margin-left:35px;
+}
+.login{
+    width:234px;
+    height:145px;
+    background:url(/images/piaoliu/login.jpg) no-repeat;
+    padding-top:68px;
+}
+.login p{
+    color:#F60;
+    font-weight:bold;
+    width:50px;
+}
+.login table{
+    margin-left:75px;
+}
+.login table td{
+    padding-bottom:4px;
+}
+.login button{
+    border:0;
+    background:url(/images/piaoliu/loginbutton.jpg) no-repeat;
+    width:65px;
+    height:30px;
+    cursor:pointer;
+    margin:16px 0 0 30px;
+    _margin:20px 0 0 30px;
+    *margin:20px 0 0 30px;
+    float:left;
+}
+.login span{
+    margin:23px 0 0 35px;
+    *margin:30px 0 0 35px;
+    _margin:30px 0 0 35px;
+    display:block;
+    float:left;
+}
+.gonggao{
+    width:205px;
+    height:130px;
+    background:url(/images/piaoliu/gonggao.jpg) no-repeat;
+    padding:60px 0 0 25px;
+}
+.gonggao a{
+    color:#FFF;
+}
+.gonggao li{
+    line-height:20px;
+    background:url(/images/piaoliu/gif-0752.gif) no-repeat;
+    background-position:center left;
+    padding-left:15px;
+}
+.xianxia h1{
+    width:635px;
+    height:51px;
+    background:url(/images/piaoliu/line1.jpg) no-repeat;
+}
+.xianxia a{
+    display:block;
+}
+.gerenxinxi{
+    width:210px;
+    height:240px;
+    background:url(/images/piaoliu/gerenxinxi.jpg) no-repeat;
+    padding:65px 0 0 20px;
+}
+.gerenxinxi li{
+    line-height:25px;
+}
+.gerenxinxi span{
+    background:url(/images/piaoliu/leaf.gif) no-repeat;
+    padding-left:25px;
+}
+.zhanneixin{
+    background:url(/images/piaoliu/mail.jpg) no-repeat;
+    width:79px;
+    height:39px;
+    padding-left:90px;
+    padding-top:8px;
+    display:block;
+}
+.huodongxinxi{
+    width:210px;
+    height:400px;
+    background:url(/images/piaoliu/huodongxinxi.jpg) no-repeat;
+    padding:70px 0 0 25px;
+}
+.huodongxinxi a{
+    color:#666666;
+}
+.huodongxinxi li{
+    line-height:23px;
+}
+.dotbj{
+    background:url(/images/piaoliu/gou.jpg) no-repeat;
+    background-position:center left;
+    padding-left:5px;
+}
+.duhougan{
+    height:110px;
+    margin-bottom:10px;
+    _margin-bottom:5px;
+}
+.duhougan2{
+    height:110px;
+    margin-bottom:7px;
+    _margin-bottom:0px;
+}
+.duhougan3{
+    height:110px;
+    margin-bottom:7px;
+}
+.mainbottom{
+    height:29px;
+    background:url(/images/piaoliu/mainbottom.jpg) no-repeat;
+    margin:0 auto;
+}
+.xianxialink1{
+    display:block;
+    width:80px;
+    margin-left:370px;
+}
+.xianxialink2{
+    display:block;
+    width:120px;
+    height:35px;
+    margin-left:230px;
+    _margin-left:115px;
+    float:left;
+    text-indent:-9999px;
+}
+.xianxialink3{
+    display:block;
+    width:160px;
+    height:35px;
+    float:left;
+    margin-left:15px;
+    text-indent:-9999px;
+}
+.chakanbanji_in{
+    width:626px;
+    height:342px;
+    background:url(/images/piaoliu/weizhi.jpg) no-repeat;
+}
+.chakanbanji h1{
+    width:635px;
+    height:51px;
+    background:url(/images/piaoliu/line2.jpg) no-repeat;
+    margin-top:10px;
+}
+.chakanbanji_left{
+    float:left;
+    width:200px;
+    height:342px;
+}
+.chakanbanji_right{
+    float:left;
+    width:410px;
+    height:342px;
+}
+.chakanbanji_right table{
+    width:360px;
+    margin:30px 30px;
+    line-height:30px;
+}
+.chakanbanji_right table td{
+    border-bottom:#b9eefe 1px dotted;
+}
+.chakanbanji_right table th{
+    border-bottom:#b9eefe 1px solid;
+    font-weight:bold;
+    text-align:center;
+}
+.chakanbanji_left a{
+    display:block;
+    width:200px;
+    height:300px;
+}
+
+#foot{
+    height:70px;
+    text-align:center;
+    padding-top:30px;
+    background:url(/images/piaoliu/foot.jpg) no-repeat;
+}

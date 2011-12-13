@@ -1,0 +1,139 @@
+<script type="text/javascript">
+  var site_url = "<%= Constant::SITE_URL %>";
+  function alert_div(){
+    var info = $("error1").innerHTML;
+    var flag = false;
+    if($("intro_1").style.display == "block" || $("intro_2").style.display == "block" || $("intro_3").style.display == "block"){
+      flag = true;
+    }
+    if(info.split(":")[1] != ""){
+      $("alert_info").innerHTML = info.split(":")[2];
+      $("alert_span").innerHTML = info.split(":")[3];
+      if(info.split(":")[1] == 1 || info.split(":")[1] == 5){
+        $("image_info").innerHTML = "<img src='/images/zengshu/yes.jpg'/>";
+      }
+      $("tanchu_info").removeClassName("tanchu");
+      if(flag){
+        $("tanchu_info").addClassName("show_alert_1");
+      }else{
+        $("tanchu_info").addClassName("show_alert");
+      }
+      if(info.split(":")[0] != 0){
+        $("confirm_btn").style.display = "none";
+        $("ulr_a").style.display = "block";
+        timer = setTimeout('goto_url('+info.split(":")[0]+')', 5000);
+      }
+    }else{
+      $("alert_info").innerHTML = info.split(":")[2];
+      $("alert_span").innerHTML = info.split(":")[3];
+      $("tanchu_info").removeClassName("tanchu");
+      $("confirm_btn").style.display = "none";
+      $("ulr_a").style.display = "block";
+      timer = setTimeout(function(){if(info.split(":")[1] == ""){
+          window.location.href = site_url+"/book_activities/lottery";
+        }}, 5000);
+      if(flag){
+        $("tanchu_info").addClassName("show_alert_1");
+      }else{
+        $("tanchu_info").addClassName("show_alert");
+      }
+    }
+  }
+  var h_19 = <%= @time_now[1] %>;
+  var h_23 = <%= @time_now[2] %>;
+  var time_now = <%= @time_now[0] %>;
+  function set_info(obj){
+    if(h_19<=time_now&&time_now<h_23){
+      var has_book = obj;
+      if(has_book){
+        $("doing").show();
+        $("btn_doing").show();
+        $("name_input").show();
+        $("over").hide();
+        $("time_over").hide();
+        $("btn_over").hide();
+        $("being").hide();
+        document.getElementById("btn_sub").disabled = false;
+        document.getElementById("btn_close").disabled = false;
+      }else{
+        $("doing").hide();
+        $("btn_doing").hide();
+        $("over").hide();
+        $("time_over").hide();
+        $("btn_over").hide();
+        $("being").hide();
+        $("name_input").hide();
+        document.getElementById("btn_sub").disabled = false;
+        document.getElementById("btn_close").disabled = false;
+      }
+    }else if(h_23<=time_now){
+      $("doing").hide();
+      $("btn_over").hide();
+      $("over").hide();
+      $("time_over").hide();
+      $("btn_doing").hide();
+      $("name_input").hide();
+      $("being").hide();
+      document.getElementById("btn_sub").disabled = true;
+      document.getElementById("btn_close").disabled = true;
+    }else{
+      $("doing").hide();
+      $("btn_doing").hide();
+      $("over").hide();
+      $("time_over").hide();
+      $("btn_over").show();
+      $("being").show();
+      $("name_input").show();
+      document.getElementById("btn_sub").disabled = true;
+      document.getElementById("btn_close").disabled = true;
+    }
+    time_now += 1;
+    setTimeout('set_info('+ obj +')', 1000);
+  }
+</script>
+<%= render :partial => "head" %>
+<div id="main">
+  <%= render :partial => "start" %>
+  <%= render :partial => "rule" %>
+  <% form_remote_tag :url => "/book_activities/apply", :html => {:name => "book_form", :id => "book_form",:class => "required-validate"}, :method => :Post,
+    :condition => "checkForm()", :update => "error1", :complete => "alert_div()", :before => "$('btn_sub').disabled=true;" do %>
+    <%= render :partial => "books" %>
+    <%= render :partial => "introduction" %>
+    <div class="hour" id="hour">
+      <ul>
+        <% if Time.now.strftime("%Y%m%d").to_i > 20101231 %>
+          <li>在线赠书活动全部结束，谢谢您的参与！</li>
+        <% else %>
+          <%if @time_now[0] > @time_now[1] and @time_now[0] < @time_now[2]%>
+            <% if @has_book[3] %>
+              <li><h1>申领开始时间:<%= Time.now.strftime("%Y年%m月%d日") %>19:00<br/>当前时间:<%= Time.now.strftime("%Y年%m月%d日 %H:%M:%S") %></h1></li>
+            <% else %>
+              <li>今日图书已全部申领完，您仍可通过参加抽奖获赠图书，请点击</li>
+              <li><button class="mashangchoujiang_bt" onclick="window.location='/book_activities/lottery'"></button></li>
+            <% end %>
+          <% elsif @time_now[0] > @time_now[2] %>
+            <li>今日图书已全部申领完，您仍可通过参加抽奖获赠图书，请点击</li>
+            <li><button class="mashangchoujiang_bt" onclick="window.location='/book_activities/lottery'"></button></li>
+          <% elsif @time_now[0] < @time_now[1] %>
+            <li><h1>申领开始时间:<%= Time.now.strftime("%Y年%m月%d日") %>19:00<br/>当前时间:<%= Time.now.strftime("%Y年%m月%d日 %H:%M:%S") %></h1></li>
+          <% end %>
+          <li style="display:none" id="being"><a href="/book_activities/lottery"><img src="/images/zengshu/weikaishi.gif"/></a></li>
+          <li style="display:none" id="doing"><img src="/images/zengshu/jinxingzhong.gif" /></li>
+          <li style="display:none" id="over"><img src="/images/zengshu/over.gif" width="505" height="130"/></li>
+          <li id="time_over" style="display:none" ><img src="/images/zengshu/time-over.gif" width="505" height="130"/></li>
+          <li id="name_input" style="display:none;">收到活动短信的手机号码:<input type="text" id="username" name="username"/></li>
+          <li style="display:none" id="btn_doing"><button class="shenling" type="submit" id="btn_sub">&nbsp;</button></li>
+          <li id="btn_over" style="display:none"><button class="shenling-over" id="btn_close" type="button" >&nbsp;</button></li>
+        <% end %>
+      </ul>
+      <div class="goto-cj">
+        <a href="/book_activities/lottery" hidefocus="true"><img src="/images/zengshu/quchoujiang.gif" /></a><a style="margin-left:130px" hidefocus="true" href="/book_exchanges"><img src="/images/zengshu/quhuanshu.gif" /></a>
+      </div>
+    </div>
+  <% end %>
+  <span id="error1" style="display: none;"></span>
+  <%= render :partial => "alert_div" %>
+  <script type="text/javascript">
+    window.onload = function(){set_info(<%= @has_book[3] %>)};
+  </script>
+</div>

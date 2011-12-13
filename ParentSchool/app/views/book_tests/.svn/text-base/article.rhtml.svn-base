@@ -1,0 +1,5 @@
+<%= render :partial => "head" %>
+<div id="main">
+  <div class="zhengwen"></div>
+</div>
+<%= render :partial => "alert_div" %>

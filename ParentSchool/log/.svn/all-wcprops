@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/log
+END
+test.log
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/log/test.log
+END
+development.log
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/log/development.log
+END
+production.log
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/log/production.log
+END
+server.log
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/projects/!svn/ver/42095/branches/Education/ParentsSchool/ParentSchool_20101201_01_2011031001/log/server.log
+END

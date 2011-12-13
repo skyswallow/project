@@ -1,0 +1,28 @@
+<script type="text/javascript">
+  function checkLoginForm(){
+    var valid = new Validation('login_form', {
+      onSubmit:false
+    });
+    var result = valid.validate();
+    if(!result)
+    {
+      return false;
+    }
+  }
+</script>
+<% if !cookies[:space_id] %>
+  <% form_tag "/driftages/login", :method => :post, :id => "login_form", :name => "login_form", :class => 'required-validate', :onsubmit=>"return checkLoginForm()" do %>
+    用户名：<input type="text" id="passport" name="passport" class="required min-length-6 max-length-40" style="width:150px;"/>
+    <div class="clear"></div>
+    密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" id="password" name="password" class="required max-length-30" style="width:150px;"/>
+    <div class="clear"></div>
+    验证码：<input type="text" name="proof_code" id="proof_code" class="required min-length-4 max-length-4" style="width:95px;"/>
+    <span id="proofcode" style="cursor:pointer; background:#ebebeb; height:24px; line-height:24px; padding:1px 7px 1px 7px; color:orange; font-weight:bold; font-size:16px;"  title="看不清楚？可以点击此处换一张"
+          onclick="<%= remote_function :update => :proofcode, :method => :get, :url => "/home/get_proof_code"  %>">
+            <%= session[:proof_code] %>
+    </span>
+    <div class="clear"></div>
+    <button type="submit">登录</button>&nbsp;&nbsp;
+    <a class="blue_link" href="">忘记密码？</a>
+  <% end %>
+<% end %>

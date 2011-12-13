@@ -1,0 +1,111 @@
+<script type="text/javascript">
+  var timer;
+  function alert_div(){
+    var info = $("error1").innerHTML;
+    var flag = false;
+    if($("intro_1").style.display == "block" || $("intro_2").style.display == "block" || $("intro_3").style.display == "block"){
+      flag = true;
+    }
+    if(info.split(":")[0] < 6){
+      $("alert_info_"+info.split(":")[0]).innerHTML = info.split(":")[2];
+      $("alert_"+info.split(":")[0]).removeClassName("tanchu");
+      if(flag){
+        $("alert_"+info.split(":")[0]).addClassName("show_alert_1");
+      }else{
+        $("alert_"+info.split(":")[0]).addClassName("show_alert");
+      }
+      if(info.split(":")[1] == 1){
+        $("alert_p_"+info.split(":")[0]).style.display = "block";
+        if(info.split(":")[0]==3 || info.split(":")[0]== 4){
+          $("confirm_"+info.split(":")[0]).style.display = "none";
+        }
+        timer = setTimeout('goto_url('+info.split(":")[0]+')', 5000);
+      }
+    }else{
+      $("alert_info_"+6).innerHTML = info.split(":")[2];
+      $("alert_"+6).removeClassName("tanchu");
+      if(flag){
+        $("alert_"+6).addClassName("show_alert_1");
+      }else{
+        $("alert_"+6).addClassName("show_alert");
+      }
+    }
+  }
+  var h_19 = <%= @time_now[1] %>;
+  var h_23 = <%= @time_now[2] %>;
+  var time_now = <%= @time_now[0] %>;
+  function set_info(obj){
+    if(h_19<=time_now&&time_now<h_23){
+      var has_book = obj;
+      if(has_book){
+        $("doing").show();
+        $("btn_doing").show();
+        $("over").hide();
+        $("time_over").hide();
+        $("btn_over").hide();
+        $("being").hide();
+        document.getElementById("btn_sub").disabled = false;
+        document.getElementById("btn_close").disabled = false;
+      }else{
+        $("doing").hide();
+        $("btn_doing").hide();
+        $("over").show();
+        $("time_over").hide();
+        $("btn_over").show();
+        $("being").hide();
+        document.getElementById("btn_sub").disabled = false;
+        document.getElementById("btn_close").disabled = false;
+      }
+    }else if(h_23<=time_now){
+      $("doing").hide();
+      $("btn_over").show();
+      $("over").hide();
+      $("time_over").show();
+      $("btn_doing").hide();
+      $("being").hide();
+      document.getElementById("btn_sub").disabled = true;
+      document.getElementById("btn_close").disabled = true;
+    }else{
+      $("doing").hide();
+      $("btn_doing").hide();
+      $("over").hide();
+      $("time_over").hide();
+      $("btn_over").show();
+      $("being").show();
+      document.getElementById("btn_sub").disabled = true;
+      document.getElementById("btn_close").disabled = true;
+    }
+    time_now += 1;
+    setTimeout('set_info('+ obj +')', 1000);
+  }
+</script>
+<%= render :partial => "head" %>
+<div id="main">
+  <%= render :partial => "rule" %>
+  <% form_remote_tag :url => "/book_tests/apply", :html => {:name => "book_form", :id => "book_form",:class => "required-validate"}, :method => :post,
+    :condition => "checkForm()", :update => "error1", :complete => "alert_div()" do %>
+    <%= render :partial => "books" %>
+    <%= render :partial => "introduction" %>
+    <div class="hour" id="hour">
+      <ul>
+        <%if @activity_time[0] >  @activity_time[1] and @activity_time[0] <  @activity_time[2]%>
+          <li><h1>申领时间:<%= Time.now.strftime("%Y年%m月%d日") %>19:00-21:00<br/>当前时间:<%= Time.now.strftime("%Y年%m月%d日 %H:%M:%S") %></h1></li>
+        <% else %>
+          <li><h1>申领时间:2010年12月31日19:00-21:00<br/>当前时间:<%= Time.now.strftime("%Y年%m月%d日 %H:%M:%S") %></h1></li>
+        <% end %>
+        <li style="display:none" id="being"><img src="/images/zengshu/weikaishi.gif"/></li>
+        <li style="display:none" id="doing"><img src="/images/zengshu/jinxingzhong.gif" /></li>
+        <li style="display:none" id="over"><img src="/images/zengshu/over.gif" width="505" height="130"/></li>
+        <li id="time_over" style="display:none" ><img src="/images/zengshu/time-over.gif" width="505" height="130"/></li>
+        <li>南通市网上家长学校用户名:<input type="text" id="username" name="username" class="required validate-digits max-length-15"/></li>
+        <li style="display:none" id="btn_doing"><button class="shenling" type="submit" id="btn_sub">&nbsp;</button></li>
+        <li id="btn_over" style="display:none"><button class="shenling-over" id="btn_close" type="button" >&nbsp;</button></li>
+      </ul>
+    </div>
+  <% end %>
+  <span id="error1" style="display: none;"></span>
+  <%= render :partial => "alert_div" %>
+  <script type="text/javascript">
+    window.onload = function(){set_info(<%= @has_book[3] %>)};
+  </script>
+</div>

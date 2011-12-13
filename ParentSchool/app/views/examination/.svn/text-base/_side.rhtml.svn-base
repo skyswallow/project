@@ -1,0 +1,7 @@
+<%= render :partial => "/examination/side/othercolurl" %>
+<div class="clear"></div>
+<%= render :partial => "/examination/side/jobinfo" %>
+<div class="clear"></div>
+<%= render :partial => "/examination/side/examinfo" %>
+<div class="clear"></div>
+

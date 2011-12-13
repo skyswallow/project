@@ -1,0 +1,6 @@
+<div id="main">
+  <%= render :partial => "/net_classes/main" %>
+</div>
+<div id="side">
+  <%= render :partial => "/net_classes/side" %>
+</div>

@@ -1,0 +1,42 @@
+<div class="fx_area">
+  <table width="617" border="0" align="center">
+    <colgroup>
+      <col width="48%"/>
+      <col width="4%"/>
+      <col width="48%"/>
+    </colgroup>
+    <% i = 1 %>
+    <% AreaNew::AREA.each do |area| %>
+      <% if i%2 == 1 %>
+        <tr>
+        <% end %>
+        <td valign="top">
+          <h3><a href="/areas?area_id=<%= area[0] %>" class="area-link"><span class="area-link"><%= area[1] %></span></a><a class="area-more-link" href="/areas?area_id=<%= area[0] %>">更多&gt;&gt;</a></h3>
+          <div class="fx_area-box" style="height: 128px;">
+            <table width="100%" border="0" align="center">
+              <colgroup>
+                <col width="5%"/>
+                <col width="70%"/>
+                <col width="25%"/>
+              </colgroup>
+              <% area_news = AreaNew.top(area[0],5) %>
+              <% (area_news || []).each do |news| %>
+              <tr>
+                <td><img src="/images/jt-icon.jpg" width="5" height="7" alt=""/></td>
+                <td><a href="/areas/<%= news.id %>" target="_blank"  title="<%= h news.news_title %>"><%= h truncate(news.news_title, :length => 15) %></a></td>
+                <td><%= news.created_at.strftime("%Y.%m.%d") %></td>
+              </tr>              
+              <% end %>
+            </table>
+          </div>
+        </td>
+        <% if i == 1 or (i > 2 and i%2 == 1) %>
+          <td></td>
+        <% end %>
+        <% if i >1 and i%2 ==0 %>
+        </tr>
+      <% end %><% i += 1 %>
+    <% end %>
+  </table>
+</div>
+<div class="clear"></div>

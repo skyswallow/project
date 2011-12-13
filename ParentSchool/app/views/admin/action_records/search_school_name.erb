@@ -1,0 +1,40 @@
+学校
+<hr/>
+<table ><tr><% count =0 %>
+    <% (@school_name || []).each do |school| %>
+      <% count = count + 1 %>
+      <td>
+        <input type="checkbox" value="<%= school.id %>" name="school" class="<%= school.name %>"/>
+        <%=h school.name %>
+      </td>
+      <% if count == 4 %>
+      </tr><tr>
+        <%  count = 0 %>
+      <% end %>
+    <% end %>
+</table>
+<input type="button" value="提交" onclick="pass_value('school');"/>
+<input type="button" value="关闭" onclick="javascript:window.close();"/>
+<script type="text/javascript">
+  function pass_value(control_name){
+    var school_all_name = document.getElementsByName(control_name);
+    var str = "<select name='school_name' id='school_name' style='height: 40px;WIDTH: 250px; margin-top: 20px' multiple onclick='select_school_name()'>";
+    var name="";
+    for(var i=0;i<school_all_name.length;i++){
+      if(school_all_name[i].checked == true){
+        str =str +"<option value="+school_all_name[i].value+">"+school_all_name[i].className+"</option>";
+        name = name+school_all_name[i].value+",";
+      }
+    }
+    if(name==""){
+      alert("学校名称列表框至少选择一项!");
+      return false;
+    }
+    str = str + "</select>";
+    window.opener.document.getElementById("class_name").innerHTML="";
+    window.opener.document.getElementById("school_name_span").innerHTML=str;
+    window.opener.document.getElementById("school_name_info").value = name;
+    window.opener.document.getElementById("class_name_info").value="";
+    window.close();
+  }
+</script>

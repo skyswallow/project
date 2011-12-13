@@ -1,0 +1,69 @@
+<script>
+  function check(){
+    if (document.getElementById("region_id").value != "-1")
+      document.getElementById("check_region").submit();
+  }
+</script>
+
+
+<div class="school_mien">
+  <h2>
+    <span class="title">风采展示</span>
+    <%  form_tag "/schools/check_region", :id => "check_region", :name => "check_region", :method => :post do%>
+      <% @regions = Constant::REGIONS %>
+      <select onchange="check()" name="region_id" id="region_id">
+
+        <% for j in (0..@regions.length-1) %>
+          <% if j%2 == 0 %>
+            <option value="<%= @regions[j] %>" <% if @region_id && @region_id == @regions[j].to_s %>selected <% end %> ><%= @regions[j+1] %></option>
+          <% end %>
+        <% end %>
+      </select>
+    <% end %>
+    <span class="ser_lable">按地区：</span>
+  </h2>
+  <ul>
+    <li><h3>幼儿园</h3></li>
+    <% @children = people(@region_id,1) %>
+    <% for child in @children %>
+      <li>
+        <% if child.url %>
+          <a target="_blank" href="<%= child.url %>"><%= child.name %></a>
+        <% else %><%= child.name %><% end %>
+      </li>
+    <% end if @children %>
+  </ul>
+  <ul>
+    <li><h3>小学</h3></li>
+    <% @juniors = people(@region_id,2) %>
+    <% for junior in @juniors %>
+      <li>
+        <% if junior.url %>
+          <a target="_blank" href="<%= junior.url %>"><%= junior.name %></a>
+        <% else %><%= junior.name %><% end %>
+      </li>
+    <% end if @juniors %>
+  </ul>
+  <ul>
+    <li><h3>中学</h3></li>
+    <% @seniors = people(@region_id,3) %>
+    <% for seniors in @seniors %>
+      <li>
+        <% if seniors.url %>
+          <a target="_blank" href="<%= seniors.url %>"><%= seniors.name %></a>
+        <% else %><%= seniors.name %><% end %>
+      </li>
+    <% end if @seniors %>
+  </ul>
+  <ul>
+    <li><h3>其他</h3></li>
+    <% @others = people(@region_id,4) %>
+    <% for another in @others %>
+      <li>
+        <% if another.url %>
+          <a target="_blank" href="<%= another.url %>"><%= another.name %></a>
+        <% else %><%= another.name %><% end %>
+      </li>
+    <% end if @others %>
+  </ul>
+</div>
